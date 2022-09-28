@@ -1,0 +1,185 @@
+# Decision Trees
+
+
+
+```{r library,include=FALSE}
+library(datasets)
+library(arules)
+library(arulesViz)
+library(ggplot2)
+library(dplyr)
+library(rpart)
+library(rpart.plot)
+library(TH.data)
+library(ISLR2)
+library(lattice)
+library(stats)
+library(rattle)
+library(RColorBrewer)
+library(caret)
+library(ROCR)
+library(tidyverse)  
+library(cluster)  
+library(factoextra) 
+library(gridExtra)
+library(NbClust)
+library(dendextend)
+library(class)
+library(ClustOfVar)
+library(MASS)
+library(partykit)
+
+
+check=read.table("Q:\\My Drive\\Data Mining\\Data\\Checking.csv",sep=',',header=T)
+
+temp.dat=read.table("Q:\\My Drive\\Data Mining\\Data\\Grocery1.csv",sep=',',header=T)
+
+load("Q:\\My Drive\\Data Mining\\Data\\breast_cancer.Rdata")
+
+```
+
+
+
+We will now discuss decision tree.  Two of the most popular algorithms in R is rpart and partykit.  We will fist focus on classification trees (response variable is categorical). The data in the code below uses the breast cancer data set from the UCI repository.
+
+## Classification Trees
+
+```{r Classification trees}
+
+###Classification
+### Get training and test data
+set.seed(7515)
+perm=sample(1:699)
+BC_randomOrder=BCdata[perm,]
+train = BC_randomOrder[1:floor(0.75*699),]
+test = BC_randomOrder[(floor(0.75*699)+1):699,]
+BC.tree = rpart(Target ~ . - ID, data=train, method='class',
+ parms = list(split='gini')) ## or 'information'
+summary(BC.tree)
+print(BC.tree)
+BC.tree$variable.importance
+
+varimp.data=data.frame(BC.tree$variable.importance)
+varimp.data$names=as.character(rownames(varimp.data))
+
+ggplot(data=varimp.data,aes(x=names,y=BC.tree.variable.importance))+geom_bar(stat="identity")+coord_flip()+labs(x="Variable Name",y="Variable Importance")
+
+tscores = predict(BC.tree,type='class')
+scores = predict(BC.tree, test, type='class')
+
+##Training misclassification rate:
+sum(tscores!=train$Target)/nrow(train)
+
+### Test data:
+sum(scores!=test$Target)/nrow(test)
+
+rpart.plot(BC.tree)
+
+```
+
+
+## Regression Trees 
+
+The code below illustrates regression trees on a version of the bodyfat data set.
+
+```{r Regression Trees,collapse=TRUE}
+###Regression
+set.seed(13172) # Set Seed so that same sample can be reproduced in future also
+# Now Selecting 75% of data as sample from total 'n' rows of the data  
+sample <- sample.int(n = nrow(bodyfat), size = floor(.75*nrow(bodyfat)), replace = F)
+train <- bodyfat[sample, ]
+test  <- bodyfat[-sample, ] 
+
+body_model<-rpart(DEXfat ~ age + waistcirc + hipcirc +
+  elbowbreadth + kneebreadth, data = train,
+  control = rpart.control(minsplit = 10))
+ summary(body_model)
+ printcp(body_model)
+ 
+ body_model2<-prune(body_model,cp=0.05175731)
+ printcp(body_model2)
+ 
+varimp.data=data.frame(body_model2$variable.importance)
+varimp.data$names=as.character(rownames(varimp.data))
+
+ggplot(data=varimp.data,aes(x=names,y=body_model2.variable.importance))+geom_bar(stat="identity")+coord_flip()+labs(x="Variable Name",y="Variable Importance")
+
+
+tscores = predict(body_model2,type='vector')
+scores = predict(body_model2, test, type='vector')
+
+##Training measures:
+mean(abs(tscores-train$DEXfat))
+mean(abs((tscores-train$DEXfat)/train$DEXfat))
+
+### Test data:
+mean(abs(scores-test$DEXfat))
+mean(abs((scores-test$DEXfat)/test$DEXfat))
+
+
+rpart.plot(body_model2)
+rsq.rpart(body_model2)
+
+###Another nice plot
+fancyRpartPlot(body_model2, uniform=TRUE)
+
+
+##Can also visualize the cp values
+
+plotcp(body_model)
+
+
+```
+
+## Recursive partitioning with partykit
+
+```{r}
+### Classification example:
+
+set.seed(7515)
+perm=sample(1:699)
+BC_randomOrder=BCdata[perm,]
+train = BC_randomOrder[1:floor(0.75*699),]
+model1=ctree(Target ~ . - ID, data=train)
+model1
+plot(model1)
+
+###Regression example:
+set.seed(13172) 
+sample <- sample.int(n = nrow(bodyfat), size = floor(.75*nrow(bodyfat)), replace = F)
+train <- bodyfat[sample, ]
+model1<-ctree(DEXfat ~ age + waistcirc + hipcirc + elbowbreadth + 
+                kneebreadth, data = train)
+model1
+plot(model1)
+
+### Example for binning data:
+churn=read.csv("Q:\\My Drive\\Data Mining\\Data\\tele_churn.csv")
+churn$y<-ifelse(churn$churn=="TRUE",1,0)
+churn$y<-ordered(churn$y,levels=c(0,1),labels="No","Yes")
+model1<-ctree(y~total.day.minutes,data=churn)
+model1
+plot(model1)
+```
+
+
+Some interesting extra tidbits!!  This shows how to do ROC curves and lift curves for classification trees.
+
+```{r extras}
+test = BC_randomOrder[(floor(0.75*699)+1):699,]
+###Lift (from classification trees)
+scores1=predict(BC.tree,test,type="prob")
+pred_val <-prediction(scores1[,2],test$Target)
+plot(performance(pred_val, measure="lift", x.measure="rpp"), colorize=TRUE)
+
+# Calculating True Positive and False Positive Rate
+perf_val <- performance(pred_val, "tpr", "fpr")
+#Plot the ROC curve
+plot(perf_val, col = "green", lwd = 1.5)
+
+#Calculating KS statistics
+ks1.tree <- max(attr(perf_val, "y.values")[[1]] - (attr(perf_val, "x.values")[[1]]))
+ks1.tree
+
+```
+

@@ -1,0 +1,15 @@
+data-mining
+introduction
+bootstrapping
+adjusting-p-values
+tranaction-data
+association-analysis
+decision-trees
+classification-trees
+regression-trees
+recursive-partitioning-with-partykit
+clustering
+kmeans
+hierarchical-clustering
+variable-clustering
+k-nearest-neighbors

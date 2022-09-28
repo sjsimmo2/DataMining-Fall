@@ -1,0 +1,128 @@
+
+
+```{r library,include=FALSE}
+library(datasets)
+library(arules)
+library(arulesViz)
+library(ggplot2)
+library(dplyr)
+library(rpart)
+library(rpart.plot)
+library(TH.data)
+library(ISLR2)
+library(lattice)
+library(stats)
+library(rattle)
+library(RColorBrewer)
+library(caret)
+library(ROCR)
+library(tidyverse)  
+library(cluster)  
+library(factoextra) 
+library(gridExtra)
+library(NbClust)
+library(dendextend)
+library(class)
+library(ClustOfVar)
+library(MASS)
+library(partykit)
+library(dbscan)
+
+
+check=read.table("Q:\\My Drive\\Data Mining\\Data\\Checking.csv",sep=',',header=T)
+
+temp.dat=read.table("Q:\\My Drive\\Data Mining\\Data\\Grocery1.csv",sep=',',header=T)
+
+load("Q:\\My Drive\\Data Mining\\Data\\breast_cancer.Rdata")
+
+```
+
+# K-nearest neighbors
+
+The kNN algorithm uses the entire training data as its "model".  So, there really is no training, however, to make predictions, this can take a long time (need to find distances from new observations to training data and find the nearest k neighbors!).  The knn command in R is for classification (categorical response).
+
+```{r kNN}
+
+####Note: Bare has 16 missing values.  From decision tree, this variable does not seem as important as the other variables, so will be dropped for this illustration.
+set.seed(7515)
+perm=sample(1:699)
+BC_randomOrder=BCdata[perm,]
+train = BC_randomOrder[1:floor(0.75*699),-c(1,7)]
+test = BC_randomOrder[(floor(0.75*699)+1):699,-c(1,7)]
+
+train.x=subset(train,select=-Target)
+train.y=as.factor(train$Target)
+
+test.x=subset(test,select=-Target)
+test.y=as.factor(test$Target)
+
+predict.test=knn(train.x,test.x,train.y,k=3)
+sum(predict.test != test.y)/175
+```
+
+However, we just chose the value of 3 for k.  Is this the best k value?  We can "tune" this parameter to find the best k...
+```{r tune k in knn}
+
+k.attempts=seq(1,15)
+pred.error=vector(length=15)
+temp.val=vector(length=20)
+
+for (i in 1:length(k.attempts))
+{for (j in 1:length(temp.val))
+  {perm=sample(1:699)
+  BC_randomOrder=BCdata[perm,]
+  train = BC_randomOrder[1:floor(0.75*699),-c(1,7)]
+  test = BC_randomOrder[(floor(0.75*699)+1):699,-c(1,7)]
+
+  train.x=subset(train,select=-Target)
+  train.y=as.factor(train$Target)
+
+  test.x=subset(test,select=-Target)
+  test.y=as.factor(test$Target)
+  predict.test=knn(train.x,test.x,train.y,k=i)
+  temp.val[j]=sum(predict.test != test.y)/175}
+
+pred.error[i]=mean(temp.val)}
+
+all.dat=data.frame(cbind(k.attempts,pred.error))
+ggplot(all.dat,aes(x=k.attempts,y=pred.error))+geom_line()+labs(x="Values for k",y="Test error")
+
+```
+
+# MDS
+
+Multidimensional Scaling is an alternative to PCA in terms of visualizing high dimensional data in a lower dimension.  IF you will be using this data for future analysis (for example, clustering), then PCA would be recommended.  However, if you are trying to visualize your data, MDS is a good alternative that can be explored!  The nice thing about MDS is that it does provide some measures of how it does when it reduces the dimension. 
+
+For example, in classical MDS, you get a measure for the goodness-of-fit (want this number closer to 1...would at least like 0.8).  When performing non-metric MDS, you can get the stress of reduction (want this number close to 0).
+
+
+```{r MDS}
+ex_MDS= NCI60$data
+pca_ex=prcomp(ex_MDS,scale=T)
+pve = 100 *pca_ex$sdev^2/sum(pca_ex$sdev^2)
+plot(cumsum(pve),type="l")
+
+graph.pca=data.frame(cbind(pca_ex$x[,1:2],as.character(NCI60$labs)))
+colnames(graph.pca)=c("PCA1","PCA2","cancer")
+graph.pca$PCA1=as.numeric(graph.pca$PCA1)
+graph.pca$PCA2=as.numeric(graph.pca$PCA2)
+ggplot(graph.pca,aes(x=PCA1,y=PCA2,color=cancer))+geom_point()+labs(y="PCA2",x="PCA1",title="PCA visualization")
+
+d=dist(ex_MDS)
+mds_ex=cmdscale(d,eig=TRUE, k=2)
+graph.mds=data.frame(cbind(mds_ex$points,as.character(NCI60$labs)))
+colnames(graph.mds)=c("MDS1","MDS2","cancer")
+graph.mds$MDS1=as.numeric(graph.mds$MDS1)
+graph.mds$MDS2=as.numeric(graph.mds$MDS2)
+ggplot(graph.mds,aes(x=MDS1,y=MDS2,color=cancer))+geom_point()+labs(y="MDS2",x="MDS1",title="metric MDS visualization")
+
+mds_ex=isoMDS(d, k=2)
+graph.mds=data.frame(cbind(mds_ex$points,as.character(NCI60$labs)))
+colnames(graph.mds)=c("MDS1","MDS2","cancer")
+graph.mds$MDS1=as.numeric(graph.mds$MDS1)
+graph.mds$MDS2=as.numeric(graph.mds$MDS2)
+ggplot(graph.mds,aes(x=MDS1,y=MDS2,color=cancer))+geom_point()+labs(y="MDS2",x="MDS1",title="non-metric MDS visualization")
+
+
+```
+
