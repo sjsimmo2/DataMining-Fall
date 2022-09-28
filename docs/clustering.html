@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Clustering | Data Mining</title>
+  <meta name="description" content="Chapter 4 Clustering | Data Mining" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Clustering | Data Mining" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Clustering | Data Mining" />
+  
+  
+  
+
+<meta name="author" content="Dr. Susan Simmons" />
+
+
+<meta name="date" content="2022-09-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="decision-trees.html"/>
+<link rel="next" href="k-nearest-neighbors.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">DataMining</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Data Mining</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#bootstrapping"><i class="fa fa-check"></i><b>2.1</b> Bootstrapping</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#adjusting-p-values"><i class="fa fa-check"></i><b>2.2</b> Adjusting p-values</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#tranaction-data"><i class="fa fa-check"></i><b>2.3</b> Tranaction data</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#association-analysis"><i class="fa fa-check"></i><b>2.4</b> Association Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="decision-trees.html"><a href="decision-trees.html"><i class="fa fa-check"></i><b>3</b> Decision Trees</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="decision-trees.html"><a href="decision-trees.html#classification-trees"><i class="fa fa-check"></i><b>3.1</b> Classification Trees</a></li>
+<li class="chapter" data-level="3.2" data-path="decision-trees.html"><a href="decision-trees.html#regression-trees"><i class="fa fa-check"></i><b>3.2</b> Regression Trees</a></li>
+<li class="chapter" data-level="3.3" data-path="decision-trees.html"><a href="decision-trees.html#recursive-partitioning-with-partykit"><i class="fa fa-check"></i><b>3.3</b> Recursive partitioning with partykit</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>4</b> Clustering</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="clustering.html"><a href="clustering.html#kmeans"><i class="fa fa-check"></i><b>4.1</b> Kmeans</a></li>
+<li class="chapter" data-level="4.2" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering"><i class="fa fa-check"></i><b>4.2</b> Hierarchical Clustering</a></li>
+<li class="chapter" data-level="4.3" data-path="clustering.html"><a href="clustering.html#variable-clustering"><i class="fa fa-check"></i><b>4.3</b> Variable Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="k-nearest-neighbors.html"><a href="k-nearest-neighbors.html"><i class="fa fa-check"></i><b>5</b> K-nearest neighbors</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Mining</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="clustering" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Clustering<a href="clustering.html#clustering" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We will now get into clustering. There are two broad areas of clustering: hard and soft. Hard clustering is when an observation can belong to one and only one cluster. Soft clustering is when an observation receives some type of measure (for example, a probability) of being in a cluster. We will be focusing on hard clustering.</p>
+<p>Within hard clustering, algorithms can be flat (for example, kmeans) or hierarchical. Finally, within hierarchical, we have agglomeratie and divisive (just like they sound…agglomerative means we will build things up where each observations starts as its own cluster; divisive means we will tear things down which means all observations start in one cluster).</p>
+<p>We will start by looking at kmeans, then move into hierarchical clustering.</p>
+<div id="kmeans" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Kmeans<a href="clustering.html#kmeans" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will be using the USArrests data set (this dat is already in R). It is an older data set, but still good to illustrate clustering. This data has 50 observations (one observation per state) and contains statistics in arrests per 100,000 residents for assault, murder and rape. Also provided is the percent of the population in that state who live in urban areas.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="clustering.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(USArrests)</span></code></pre></div>
+<pre><code>##      Murder          Assault         UrbanPop          Rape      
+##  Min.   : 0.800   Min.   : 45.0   Min.   :32.00   Min.   : 7.30  
+##  1st Qu.: 4.075   1st Qu.:109.0   1st Qu.:54.50   1st Qu.:15.07  
+##  Median : 7.250   Median :159.0   Median :66.00   Median :20.10  
+##  Mean   : 7.788   Mean   :170.8   Mean   :65.54   Mean   :21.23  
+##  3rd Qu.:11.250   3rd Qu.:249.0   3rd Qu.:77.75   3rd Qu.:26.18  
+##  Max.   :17.400   Max.   :337.0   Max.   :91.00   Max.   :46.00</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="clustering.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(USArrests<span class="sc">$</span>Murder)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/cluster%20preprocess-1.png" width="672" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="clustering.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(USArrests<span class="sc">$</span>Assault)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/cluster%20preprocess-2.png" width="672" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="clustering.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(USArrests<span class="sc">$</span>Rape)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/cluster%20preprocess-3.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="clustering.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(USArrests<span class="sc">$</span>UrbanPop)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/cluster%20preprocess-4.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="clustering.html#cb7-1" aria-hidden="true" tabindex="-1"></a>arrest.scal<span class="ot">=</span><span class="fu">scale</span>(USArrests)</span></code></pre></div>
+<p>With only 4 variables and good scales, we will just use the scaled data (arrest.scal) for the clustering.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="clustering.html#cb8-1" aria-hidden="true" tabindex="-1"></a>clus2<span class="ot">=</span><span class="fu">kmeans</span>(arrest.scal,<span class="at">centers=</span><span class="dv">2</span>,<span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb8-2"><a href="clustering.html#cb8-2" aria-hidden="true" tabindex="-1"></a>clus2</span></code></pre></div>
+<pre><code>## K-means clustering with 2 clusters of sizes 30, 20
+## 
+## Cluster means:
+##      Murder    Assault   UrbanPop       Rape
+## 1 -0.669956 -0.6758849 -0.1317235 -0.5646433
+## 2  1.004934  1.0138274  0.1975853  0.8469650
+## 
+## Clustering vector:
+##        Alabama         Alaska        Arizona       Arkansas     California 
+##              2              2              2              1              2 
+##       Colorado    Connecticut       Delaware        Florida        Georgia 
+##              2              1              1              2              2 
+##         Hawaii          Idaho       Illinois        Indiana           Iowa 
+##              1              1              2              1              1 
+##         Kansas       Kentucky      Louisiana          Maine       Maryland 
+##              1              1              2              1              2 
+##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
+##              1              2              1              2              2 
+##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+##              1              1              2              1              1 
+##     New Mexico       New York North Carolina   North Dakota           Ohio 
+##              2              2              2              1              1 
+##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
+##              1              1              1              1              2 
+##   South Dakota      Tennessee          Texas           Utah        Vermont 
+##              1              2              2              1              1 
+##       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
+##              1              1              1              1              1 
+## 
+## Within cluster sum of squares by cluster:
+## [1] 56.11445 46.74796
+##  (between_SS / total_SS =  47.5 %)
+## 
+## Available components:
+## 
+## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;     &quot;tot.withinss&quot;
+## [6] &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="clustering.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_cluster</span>(clus2, <span class="at">data =</span> arrest.scal)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/kmeans-1.png" width="672" /></p>
+<p>We do not know if 2 clusters is the best number of clusters, so we will need to explore other options and determine which is the best number of clusters for this data set.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="clustering.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12964</span>)</span>
+<span id="cb11-2"><a href="clustering.html#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="clustering.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(arrest.scal, kmeans, <span class="at">method =</span> <span class="st">&quot;wss&quot;</span>,<span class="at">k.max =</span> <span class="dv">9</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/numofclusters-1.png" width="672" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="clustering.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(arrest.scal, kmeans, <span class="at">method =</span> <span class="st">&quot;silhouette&quot;</span>,<span class="at">k.max =</span> <span class="dv">9</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/numofclusters-2.png" width="672" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="clustering.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb13-2"><a href="clustering.html#cb13-2" aria-hidden="true" tabindex="-1"></a>gap_stat <span class="ot">=</span> <span class="fu">clusGap</span>(arrest.scal, <span class="at">FUN =</span> kmeans, <span class="at">nstart =</span> <span class="dv">25</span>, <span class="at">K.max =</span> <span class="dv">9</span>, <span class="at">B =</span> <span class="dv">50</span>)</span>
+<span id="cb13-3"><a href="clustering.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_gap_stat</span>(gap_stat)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/numofclusters-3.png" width="672" /></p>
+<p>As you can see, different statistics provide different number of clusters (of course!). As a final thought, let’s plot all of these using PCA.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="clustering.html#cb14-1" aria-hidden="true" tabindex="-1"></a>k2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(arrest.scal, <span class="at">centers =</span> <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb14-2"><a href="clustering.html#cb14-2" aria-hidden="true" tabindex="-1"></a>k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(arrest.scal, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb14-3"><a href="clustering.html#cb14-3" aria-hidden="true" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(arrest.scal, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb14-4"><a href="clustering.html#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="clustering.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plots to compare</span></span>
+<span id="cb14-6"><a href="clustering.html#cb14-6" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k2, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">data =</span> arrest.scal) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 2&quot;</span>)</span>
+<span id="cb14-7"><a href="clustering.html#cb14-7" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k3, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,  <span class="at">data =</span> arrest.scal) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 3&quot;</span>)</span>
+<span id="cb14-8"><a href="clustering.html#cb14-8" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k4, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,  <span class="at">data =</span> arrest.scal) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;k = 4&quot;</span>)</span>
+<span id="cb14-9"><a href="clustering.html#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="clustering.html#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="clustering.html#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p2, p3, p4, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/visualize%20clusters-1.png" width="672" /></p>
+<p>Going with 2 clusters, we can now try to profile the data. First, we need to merge the data with the cluster numbers.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="clustering.html#cb15-1" aria-hidden="true" tabindex="-1"></a>profile.kmeans<span class="ot">=</span><span class="fu">cbind</span>(USArrests,k2<span class="sc">$</span>cluster)</span>
+<span id="cb15-2"><a href="clustering.html#cb15-2" aria-hidden="true" tabindex="-1"></a>all.k<span class="ot">=</span>profile.kmeans <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(k2<span class="sc">$</span>cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="clustering.html#cb15-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarise</span>(<span class="at">mean.assault=</span><span class="fu">mean</span>(Assault),<span class="at">mean.murder=</span><span class="fu">mean</span>(Murder),<span class="at">mean.rape=</span><span class="fu">mean</span>(Rape),<span class="at">mean.pop=</span><span class="fu">mean</span>(UrbanPop))</span>
+<span id="cb15-4"><a href="clustering.html#cb15-4" aria-hidden="true" tabindex="-1"></a> all.k</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   `k2$cluster` mean.assault mean.murder mean.rape mean.pop
+##          &lt;int&gt;        &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1            1         255.       12.2       29.2     68.4
+## 2            2         114.        4.87      15.9     63.6</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="clustering.html#cb17-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">NbClust</span>(arrest.scal,<span class="at">method=</span><span class="st">&quot;kmeans&quot;</span>,<span class="at">min.nc=</span><span class="dv">2</span>,<span class="at">max.nc =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/kmeans%20profile-1.png" width="672" /></p>
+<pre><code>## *** : The Hubert index is a graphical method of determining the number of clusters.
+##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
+##                 significant increase of the value of the measure i.e the significant peak in Hubert
+##                 index second differences plot. 
+## </code></pre>
+<p><img src="bookdownproj_files/figure-html/kmeans%20profile-2.png" width="672" /></p>
+<pre><code>## *** : The D index is a graphical method of determining the number of clusters. 
+##                 In the plot of D index, we seek a significant knee (the significant peak in Dindex
+##                 second differences plot) that corresponds to a significant increase of the value of
+##                 the measure. 
+##  
+## ******************************************************************* 
+## * Among all indices:                                                
+## * 13 proposed 2 as the best number of clusters 
+## * 9 proposed 3 as the best number of clusters 
+## * 2 proposed 4 as the best number of clusters 
+## 
+##                    ***** Conclusion *****                            
+##  
+## * According to the majority rule, the best number of clusters is  2 
+##  
+##  
+## *******************************************************************</code></pre>
+<pre><code>## $All.index
+##       KL      CH Hartigan     CCC    Scott  Marriot   TrCovW   TraceW Friedman
+## 2 5.1512 43.4620  15.0387 -0.1410  81.1595 690539.9 716.8223 102.8624   6.8084
+## 3 2.4059 35.3076   5.6874 -1.0950 124.5851 651900.1 572.6853  78.3233   9.2063
+## 4 0.4884 27.6808   2.5302 -2.6596 152.4673 663556.1 455.6235  69.8686  11.1528
+##    Rubin Cindex     DB Silhouette   Duda Pseudot2   Beale Ratkowsky    Ball
+## 2 1.9055 0.4003 1.0397     0.4085 1.2557  -6.3122 -0.4657    0.4466 51.4312
+## 3 2.5024 0.3595 1.1283     0.3094 0.7004   6.8425  0.9679    0.4417 26.1078
+## 4 2.8053 0.3525 1.1774     0.2590 1.2645  -3.5562 -0.4629    0.3978 17.4671
+##   Ptbiserial    Frey McClain   Dunn Hubert SDindex Dindex   SDbw
+## 2     0.6323  1.7441  0.5470 0.2214 0.0085  1.6841 1.3346 1.1098
+## 3     0.5414  3.4826  1.1571 0.1194 0.0092  1.8410 1.1499 1.4195
+## 4     0.4796 -1.9450  1.6045 0.1235 0.0095  2.1248 1.0671 0.5076
+## 
+## $All.CriticalValues
+##   CritValue_Duda CritValue_PseudoT2 Fvalue_Beale
+## 2         0.3890            48.6824       1.0000
+## 3         0.3508            29.6102       0.4318
+## 4         0.2805            43.6156       1.0000
+## 
+## $Best.nc
+##                     KL     CH Hartigan    CCC   Scott  Marriot  TrCovW  TraceW
+## Number_clusters 2.0000  2.000   3.0000  2.000  3.0000     3.00   3.000  3.0000
+## Value_Index     5.1512 43.462   9.3513 -0.141 43.4256 50295.68 144.137 16.0844
+##                 Friedman   Rubin Cindex     DB Silhouette   Duda PseudoT2
+## Number_clusters   3.0000  3.0000 4.0000 2.0000     2.0000 2.0000   2.0000
+## Value_Index       2.3979 -0.2942 0.3525 1.0397     0.4085 1.2557  -6.3122
+##                   Beale Ratkowsky    Ball PtBiserial   Frey McClain   Dunn
+## Number_clusters  2.0000    2.0000  3.0000     2.0000 3.0000   2.000 2.0000
+## Value_Index     -0.4657    0.4466 25.3234     0.6323 3.4826   0.547 0.2214
+##                 Hubert SDindex Dindex   SDbw
+## Number_clusters      0  2.0000      0 4.0000
+## Value_Index          0  1.6841      0 0.5076
+## 
+## $Best.partition
+##        Alabama         Alaska        Arizona       Arkansas     California 
+##              1              1              1              2              1 
+##       Colorado    Connecticut       Delaware        Florida        Georgia 
+##              1              2              2              1              1 
+##         Hawaii          Idaho       Illinois        Indiana           Iowa 
+##              2              2              1              2              2 
+##         Kansas       Kentucky      Louisiana          Maine       Maryland 
+##              2              2              1              2              1 
+##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
+##              2              1              2              1              1 
+##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+##              2              2              1              2              2 
+##     New Mexico       New York North Carolina   North Dakota           Ohio 
+##              1              1              1              2              2 
+##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
+##              2              2              2              2              1 
+##   South Dakota      Tennessee          Texas           Utah        Vermont 
+##              2              1              1              2              2 
+##       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
+##              2              2              2              2              2</code></pre>
+</div>
+<div id="hierarchical-clustering" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Hierarchical Clustering<a href="clustering.html#hierarchical-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In hierarchical clustering, we need to specify the distance metric we wish to use, as well as the linkage information. There are MANY different distance measures, but the two most common are Euclidean and manhattan. We will use the algorithms in the cluster package in R (provides most flexibility in algorithms). In order to do the basic hierarchical clustering, the algorithm is called agnes (Agglomerative “Nested” Hierarchical Clustering). The code below shows how to do this with complete linkage and using Euclidean distances.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="clustering.html#cb21-1" aria-hidden="true" tabindex="-1"></a>dist.assault<span class="ot">=</span><span class="fu">dist</span>(arrest.scal,<span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>)</span>
+<span id="cb21-2"><a href="clustering.html#cb21-2" aria-hidden="true" tabindex="-1"></a>h1.comp.eucl<span class="ot">=</span><span class="fu">agnes</span>(dist.assault,<span class="at">method=</span><span class="st">&quot;complete&quot;</span>)</span>
+<span id="cb21-3"><a href="clustering.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pltree</span>(h1.comp.eucl, <span class="at">cex =</span> <span class="fl">0.6</span>, <span class="at">hang =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">main =</span> <span class="st">&quot;Dendrogram of agnes&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/Hierarchical%20Complete%20Euclidean-1.png" width="672" /></p>
+<p>If you want to try a number of different linkage possibilities:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="clustering.html#cb22-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&quot;average&quot;</span>, <span class="st">&quot;single&quot;</span>, <span class="st">&quot;complete&quot;</span>, <span class="st">&quot;ward&quot;</span>)</span>
+<span id="cb22-2"><a href="clustering.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(m) <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&quot;average&quot;</span>, <span class="st">&quot;single&quot;</span>, <span class="st">&quot;complete&quot;</span>, <span class="st">&quot;ward&quot;</span>)</span>
+<span id="cb22-3"><a href="clustering.html#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="clustering.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># function to compute coefficient</span></span>
+<span id="cb22-5"><a href="clustering.html#cb22-5" aria-hidden="true" tabindex="-1"></a>ac <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb22-6"><a href="clustering.html#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">agnes</span>(dist.assault, <span class="at">method =</span> x)<span class="sc">$</span>ac</span>
+<span id="cb22-7"><a href="clustering.html#cb22-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-8"><a href="clustering.html#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="clustering.html#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dbl</span>(m, ac)</span></code></pre></div>
+<pre><code>##   average    single  complete      ward 
+## 0.7379371 0.6276128 0.8531583 0.9346210</code></pre>
+<p>In order to get cluster identification, you will need to tell R where you want to cut your dendrogram.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="clustering.html#cb24-1" aria-hidden="true" tabindex="-1"></a>h2<span class="ot">=</span><span class="fu">agnes</span>(dist.assault,<span class="at">method=</span><span class="st">&quot;ward&quot;</span>)</span>
+<span id="cb24-2"><a href="clustering.html#cb24-2" aria-hidden="true" tabindex="-1"></a>h2_clus <span class="ot">&lt;-</span> <span class="fu">cutree</span>(h2, <span class="at">k =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>You can also compare different dendrograms….</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="clustering.html#cb25-1" aria-hidden="true" tabindex="-1"></a>dend1 <span class="ot">&lt;-</span> <span class="fu">as.dendrogram</span> (h1.comp.eucl)</span>
+<span id="cb25-2"><a href="clustering.html#cb25-2" aria-hidden="true" tabindex="-1"></a>dend2 <span class="ot">&lt;-</span> <span class="fu">as.dendrogram</span> (h2)</span>
+<span id="cb25-3"><a href="clustering.html#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="clustering.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tanglegram</span>(dend1, dend2)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/compare%20dendrograms-1.png" width="672" /></p>
+<p>You can also use the measures from the NbClust algorithm here, too….</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="clustering.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">NbClust</span>(arrest.scal,<span class="at">distance=</span><span class="st">&quot;euclidean&quot;</span>,<span class="at">method=</span><span class="st">&quot;complete&quot;</span>,<span class="at">min.nc=</span><span class="dv">2</span>,<span class="at">max.nc =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/NbClust%20with%20HC-1.png" width="672" /></p>
+<pre><code>## *** : The Hubert index is a graphical method of determining the number of clusters.
+##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
+##                 significant increase of the value of the measure i.e the significant peak in Hubert
+##                 index second differences plot. 
+## </code></pre>
+<p><img src="bookdownproj_files/figure-html/NbClust%20with%20HC-2.png" width="672" /></p>
+<pre><code>## *** : The D index is a graphical method of determining the number of clusters. 
+##                 In the plot of D index, we seek a significant knee (the significant peak in Dindex
+##                 second differences plot) that corresponds to a significant increase of the value of
+##                 the measure. 
+##  
+## ******************************************************************* 
+## * Among all indices:                                                
+## * 9 proposed 2 as the best number of clusters 
+## * 9 proposed 3 as the best number of clusters 
+## * 5 proposed 4 as the best number of clusters 
+## 
+##                    ***** Conclusion *****                            
+##  
+## * According to the majority rule, the best number of clusters is  2 
+##  
+##  
+## *******************************************************************</code></pre>
+<pre><code>## $All.index
+##         KL      CH Hartigan     CCC    Scott  Marriot   TrCovW   TraceW
+## 2  26.3587 41.8949  11.5200 -0.3483  78.6988 725375.1 708.1600 104.6556
+## 3   0.0704 31.0737  18.9426 -2.0049 107.4372 918599.5 331.2367  84.3997
+## 4 393.5832 34.6264   5.4577 -0.7050 156.0842 617250.0 257.9307  60.1552
+##   Friedman  Rubin Cindex     DB Silhouette   Duda Pseudot2   Beale Ratkowsky
+## 2   6.7099 1.8728 0.4031 1.0513     0.4048 0.5525  13.7698  1.8468    0.4404
+## 3   8.1357 2.3223 0.3800 1.0433     0.3692 0.5918  20.0040  1.6098    0.4305
+## 4  10.8610 3.2582 0.4334 1.0811     0.3160 1.0527  -0.3001 -0.1035    0.4155
+##      Ball Ptbiserial   Frey McClain   Dunn Hubert SDindex Dindex   SDbw
+## 2 52.3278     0.6330 0.9663  0.5287 0.2637 0.0087  1.3745 1.3451 1.1226
+## 3 28.1332     0.6315 0.8670  0.6873 0.2648 0.0092  1.2895 1.2025 0.7789
+## 4 15.0388     0.5820 0.0448  1.3366 0.1622 0.0108  1.4085 1.0199 0.5029
+## 
+## $All.CriticalValues
+##   CritValue_Duda CritValue_PseudoT2 Fvalue_Beale
+## 2         0.3773            28.0561       0.1300
+## 3         0.4780            31.6758       0.1765
+## 4         0.1265            41.4361       1.0000
+## 
+## $Best.nc
+##                       KL      CH Hartigan     CCC  Scott Marriot   TrCovW
+## Number_clusters   4.0000  2.0000   4.0000  2.0000  4.000       3   3.0000
+## Value_Index     393.5832 41.8949  13.4849 -0.3483 48.647 -494574 376.9233
+##                  TraceW Friedman  Rubin Cindex     DB Silhouette   Duda
+## Number_clusters  3.0000   4.0000 3.0000   3.00 3.0000     2.0000 2.0000
+## Value_Index     -3.9886   2.7253 0.4865   0.38 1.0433     0.4048 0.5525
+##                 PseudoT2  Beale Ratkowsky    Ball PtBiserial Frey McClain
+## Number_clusters   2.0000 2.0000    2.0000  3.0000      2.000    1  2.0000
+## Value_Index      13.7698 1.8468    0.4404 24.1946      0.633   NA  0.5287
+##                   Dunn Hubert SDindex Dindex   SDbw
+## Number_clusters 3.0000      0  3.0000      0 4.0000
+## Value_Index     0.2648      0  1.2895      0 0.5029
+## 
+## $Best.partition
+##        Alabama         Alaska        Arizona       Arkansas     California 
+##              1              1              1              2              1 
+##       Colorado    Connecticut       Delaware        Florida        Georgia 
+##              1              2              2              1              1 
+##         Hawaii          Idaho       Illinois        Indiana           Iowa 
+##              2              2              1              2              2 
+##         Kansas       Kentucky      Louisiana          Maine       Maryland 
+##              2              2              1              2              1 
+##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
+##              2              1              2              1              2 
+##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+##              2              2              1              2              2 
+##     New Mexico       New York North Carolina   North Dakota           Ohio 
+##              1              1              1              2              2 
+##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
+##              2              2              2              2              1 
+##   South Dakota      Tennessee          Texas           Utah        Vermont 
+##              2              1              1              2              2 
+##       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
+##              2              2              2              2              2</code></pre>
+<p>##DBSCAN</p>
+<p>DBSCAN is one of the most popular density-based clustering algorithm in use. Density Based Spatial Clustering Applications with Noise (DBSCAN) cluster points together that are “density reachable” (within a certain radius of each other). Users can specify this distance and the minimum number of points that will be used to create clusters (see <a href="https://cran.r-project.org/web/packages/dbscan/vignettes/dbscan.pdf" class="uri">https://cran.r-project.org/web/packages/dbscan/vignettes/dbscan.pdf</a>)</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="clustering.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="do">##use number dimensions </span></span>
+<span id="cb30-2"><a href="clustering.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kNNdistplot</span>(arrest.scal, <span class="at">k =</span> <span class="dv">4</span>)</span>
+<span id="cb30-3"><a href="clustering.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fl">1.4</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/dbscan-1.png" width="672" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="clustering.html#cb31-1" aria-hidden="true" tabindex="-1"></a>res.dbscan<span class="ot">=</span><span class="fu">dbscan</span>(arrest.scal,<span class="at">eps=</span><span class="fl">1.2</span>,<span class="at">minPts=</span><span class="dv">5</span>)</span>
+<span id="cb31-2"><a href="clustering.html#cb31-2" aria-hidden="true" tabindex="-1"></a>res.dbscan</span></code></pre></div>
+<pre><code>## DBSCAN clustering for 50 objects.
+## Parameters: eps = 1.2, minPts = 5
+## The clustering contains 3 cluster(s) and 8 noise points.
+## 
+##  0  1  2  3 
+##  8  5  5 32 
+## 
+## Available fields: cluster, eps, minPts</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="clustering.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(arrest.scal[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">col =</span> res.dbscan<span class="sc">$</span>cluster <span class="sc">+</span> 1L, <span class="at">pch =</span> res.dbscan<span class="sc">$</span>cluster <span class="sc">+</span> 1L)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/dbscan-2.png" width="672" /></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="clustering.html#cb34-1" aria-hidden="true" tabindex="-1"></a>pca.arrest<span class="ot">=</span><span class="fu">prcomp</span>(arrest.scal)</span>
+<span id="cb34-2"><a href="clustering.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca.arrest<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">col =</span> res.dbscan<span class="sc">$</span>cluster <span class="sc">+</span> 1L, <span class="at">pch =</span> res.dbscan<span class="sc">$</span>cluster <span class="sc">+</span> 1L)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/dbscan-3.png" width="672" /></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="clustering.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="do">###Nice visuals for PCA results:</span></span>
+<span id="cb35-2"><a href="clustering.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="do">## http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/</span></span></code></pre></div>
+</div>
+<div id="variable-clustering" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Variable Clustering<a href="clustering.html#variable-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="clustering.html#cb36-1" aria-hidden="true" tabindex="-1"></a>telco<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;Q:</span><span class="sc">\\</span><span class="st">My Drive</span><span class="sc">\\</span><span class="st">Data Mining</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">TelcoChurn.csv&quot;</span>,<span class="at">header=</span>T)</span>
+<span id="cb36-2"><a href="clustering.html#cb36-2" aria-hidden="true" tabindex="-1"></a>telco[<span class="fu">is.na</span>(telco)] <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb36-3"><a href="clustering.html#cb36-3" aria-hidden="true" tabindex="-1"></a>quant.var<span class="ot">=</span>telco[,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">19</span>,<span class="dv">20</span>)]</span>
+<span id="cb36-4"><a href="clustering.html#cb36-4" aria-hidden="true" tabindex="-1"></a>qual.var<span class="ot">=</span>telco[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span><span class="sc">:</span><span class="dv">18</span>)]</span>
+<span id="cb36-5"><a href="clustering.html#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="clustering.html#cb36-6" aria-hidden="true" tabindex="-1"></a>var.clust.h<span class="ot">=</span><span class="fu">hclustvar</span>(quant.var, qual.var)</span>
+<span id="cb36-7"><a href="clustering.html#cb36-7" aria-hidden="true" tabindex="-1"></a>stab<span class="ot">=</span><span class="fu">stability</span>(var.clust.h,<span class="at">B=</span><span class="dv">50</span>) <span class="do">## This will take time!</span></span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/variable%20clustering-1.png" width="672" /></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="clustering.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stab)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/variable%20clustering-2.png" width="672" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="clustering.html#cb38-1" aria-hidden="true" tabindex="-1"></a>h6<span class="ot">=</span><span class="fu">cutreevar</span>(var.clust.h, <span class="dv">6</span>)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="decision-trees.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="k-nearest-neighbors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sjsimmo2/DataMining-Fall/edit/master/03-Clustering.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/sjsimmo2/DataMining-Fall/blob/master/03-Clustering.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
