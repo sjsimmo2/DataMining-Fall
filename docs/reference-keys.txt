@@ -13,3 +13,6 @@ kmeans
 hierarchical-clustering
 variable-clustering
 k-nearest-neighbors
+tab:unnamed-chunk-1
+tab:unnamed-chunk-2
+tab:association
