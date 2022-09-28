@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="decision-trees.html"/>
-<link rel="next" href="k-nearest-neighbors.html"/>
+<link rel="next" href="other-topics.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -156,7 +156,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering"><i class="fa fa-check"></i><b>4.2</b> Hierarchical Clustering</a></li>
 <li class="chapter" data-level="4.3" data-path="clustering.html"><a href="clustering.html#variable-clustering"><i class="fa fa-check"></i><b>4.3</b> Variable Clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="k-nearest-neighbors.html"><a href="k-nearest-neighbors.html"><i class="fa fa-check"></i><b>5</b> K-nearest neighbors</a></li>
+<li class="chapter" data-level="5" data-path="other-topics.html"><a href="other-topics.html"><i class="fa fa-check"></i><b>5</b> Other Topics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="other-topics.html"><a href="other-topics.html#k-nearest-neighbors"><i class="fa fa-check"></i><b>5.1</b> K-nearest neighbors</a></li>
+<li class="chapter" data-level="5.2" data-path="other-topics.html"><a href="other-topics.html#mds"><i class="fa fa-check"></i><b>5.2</b> MDS</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -204,37 +208,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>With only 4 variables and good scales, we will just use the scaled data (arrest.scal) for the clustering.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="clustering.html#cb8-1" aria-hidden="true" tabindex="-1"></a>clus2<span class="ot">=</span><span class="fu">kmeans</span>(arrest.scal,<span class="at">centers=</span><span class="dv">2</span>,<span class="at">nstart =</span> <span class="dv">25</span>)</span>
 <span id="cb8-2"><a href="clustering.html#cb8-2" aria-hidden="true" tabindex="-1"></a>clus2</span></code></pre></div>
-<pre><code>## K-means clustering with 2 clusters of sizes 30, 20
+<pre><code>## K-means clustering with 2 clusters of sizes 20, 30
 ## 
 ## Cluster means:
 ##      Murder    Assault   UrbanPop       Rape
-## 1 -0.669956 -0.6758849 -0.1317235 -0.5646433
-## 2  1.004934  1.0138274  0.1975853  0.8469650
+## 1  1.004934  1.0138274  0.1975853  0.8469650
+## 2 -0.669956 -0.6758849 -0.1317235 -0.5646433
 ## 
 ## Clustering vector:
 ##        Alabama         Alaska        Arizona       Arkansas     California 
-##              2              2              2              1              2 
+##              1              1              1              2              1 
 ##       Colorado    Connecticut       Delaware        Florida        Georgia 
-##              2              1              1              2              2 
-##         Hawaii          Idaho       Illinois        Indiana           Iowa 
-##              1              1              2              1              1 
-##         Kansas       Kentucky      Louisiana          Maine       Maryland 
-##              1              1              2              1              2 
-##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
-##              1              2              1              2              2 
-##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
-##              1              1              2              1              1 
-##     New Mexico       New York North Carolina   North Dakota           Ohio 
-##              2              2              2              1              1 
-##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
-##              1              1              1              1              2 
-##   South Dakota      Tennessee          Texas           Utah        Vermont 
 ##              1              2              2              1              1 
+##         Hawaii          Idaho       Illinois        Indiana           Iowa 
+##              2              2              1              2              2 
+##         Kansas       Kentucky      Louisiana          Maine       Maryland 
+##              2              2              1              2              1 
+##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
+##              2              1              2              1              1 
+##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+##              2              2              1              2              2 
+##     New Mexico       New York North Carolina   North Dakota           Ohio 
+##              1              1              1              2              2 
+##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
+##              2              2              2              2              1 
+##   South Dakota      Tennessee          Texas           Utah        Vermont 
+##              2              1              1              2              2 
 ##       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
-##              1              1              1              1              1 
+##              2              2              2              2              2 
 ## 
 ## Within cluster sum of squares by cluster:
-## [1] 56.11445 46.74796
+## [1] 46.74796 56.11445
 ##  (between_SS / total_SS =  47.5 %)
 ## 
 ## Available components:
@@ -513,7 +517,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="decision-trees.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="k-nearest-neighbors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="other-topics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
