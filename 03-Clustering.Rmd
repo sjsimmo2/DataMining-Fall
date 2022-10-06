@@ -175,17 +175,24 @@ NbClust(arrest.scal,distance="euclidean",method="complete",min.nc=2,max.nc = 4)
 
 DBSCAN is one of the most popular density-based clustering algorithm in use. Density Based Spatial Clustering Applications with Noise (DBSCAN) cluster points together that are "density reachable" (within a certain radius of each other). Users can specify this distance and the minimum number of points that will be used to create clusters (see https://cran.r-project.org/web/packages/dbscan/vignettes/dbscan.pdf)
 
-```{r dbscan}
+```{r hdbscan}
 
-##use number dimensions 
-kNNdistplot(arrest.scal, k = 4)
-abline(h=1.4, col = "red", lty=2)
+scan1<-hdbscan(arrest.scal,minPts=4)
+pca_ex=prcomp(arrest.scal,scale=F)
+scan1data=cbind.data.frame(pca_ex$x[,1],pca_ex$x[,2],as.factor(scan1$cluster+1))
+colnames(scan1data)=c("PCA1","PCA2","cluster")
+ggplot(scan1data,aes(x=PCA1,y=PCA2,color=cluster))+geom_point()+ scale_fill_brewer(palette = "Dark2")
 
-res.dbscan=dbscan(arrest.scal,eps=1.2,minPts=5)
+plot(scan1,show_flat=T)
+
+#res.dbscan=dbscan(arrest.scal,eps=1.2,minPts=4)
+d=dist(arrest.scal,method = "canberra")
+res.dbscan=dbscan(d,eps=1.2,minPts=4)
 res.dbscan
-plot(arrest.scal[,1:2], col = res.dbscan$cluster + 1L, pch = res.dbscan$cluster + 1L)
-pca.arrest=prcomp(arrest.scal)
-plot(pca.arrest$x[,1:2], col = res.dbscan$cluster + 1L, pch = res.dbscan$cluster + 1L)
+
+scan1data=cbind.data.frame(pca_ex$x[,1],pca_ex$x[,2],as.factor(res.dbscan$cluster+1))
+colnames(scan1data)=c("PCA1","PCA2","cluster")
+ggplot(scan1data,aes(x=PCA1,y=PCA2,color=cluster))+geom_point()+ scale_fill_brewer(palette = "Dark2")
 
 
 ###Nice visuals for PCA results:

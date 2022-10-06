@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. Susan Simmons" />
 
 
-<meta name="date" content="2022-09-28" />
+<meta name="date" content="2022-10-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -473,25 +473,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##              2              2              2              2              2</code></pre>
 <p>##DBSCAN</p>
 <p>DBSCAN is one of the most popular density-based clustering algorithm in use. Density Based Spatial Clustering Applications with Noise (DBSCAN) cluster points together that are “density reachable” (within a certain radius of each other). Users can specify this distance and the minimum number of points that will be used to create clusters (see <a href="https://cran.r-project.org/web/packages/dbscan/vignettes/dbscan.pdf" class="uri">https://cran.r-project.org/web/packages/dbscan/vignettes/dbscan.pdf</a>)</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="clustering.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="do">##use number dimensions </span></span>
-<span id="cb30-2"><a href="clustering.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kNNdistplot</span>(arrest.scal, <span class="at">k =</span> <span class="dv">4</span>)</span>
-<span id="cb30-3"><a href="clustering.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fl">1.4</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/dbscan-1.png" width="672" /></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="clustering.html#cb31-1" aria-hidden="true" tabindex="-1"></a>res.dbscan<span class="ot">=</span><span class="fu">dbscan</span>(arrest.scal,<span class="at">eps=</span><span class="fl">1.2</span>,<span class="at">minPts=</span><span class="dv">5</span>)</span>
-<span id="cb31-2"><a href="clustering.html#cb31-2" aria-hidden="true" tabindex="-1"></a>res.dbscan</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="clustering.html#cb30-1" aria-hidden="true" tabindex="-1"></a>scan1<span class="ot">&lt;-</span><span class="fu">hdbscan</span>(arrest.scal,<span class="at">minPts=</span><span class="dv">4</span>)</span>
+<span id="cb30-2"><a href="clustering.html#cb30-2" aria-hidden="true" tabindex="-1"></a>pca_ex<span class="ot">=</span><span class="fu">prcomp</span>(arrest.scal,<span class="at">scale=</span>F)</span>
+<span id="cb30-3"><a href="clustering.html#cb30-3" aria-hidden="true" tabindex="-1"></a>scan1data<span class="ot">=</span><span class="fu">cbind.data.frame</span>(pca_ex<span class="sc">$</span>x[,<span class="dv">1</span>],pca_ex<span class="sc">$</span>x[,<span class="dv">2</span>],<span class="fu">as.factor</span>(scan1<span class="sc">$</span>cluster<span class="sc">+</span><span class="dv">1</span>))</span>
+<span id="cb30-4"><a href="clustering.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(scan1data)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;PCA1&quot;</span>,<span class="st">&quot;PCA2&quot;</span>,<span class="st">&quot;cluster&quot;</span>)</span>
+<span id="cb30-5"><a href="clustering.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(scan1data,<span class="fu">aes</span>(<span class="at">x=</span>PCA1,<span class="at">y=</span>PCA2,<span class="at">color=</span>cluster))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/hdbscan-1.png" width="672" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="clustering.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(scan1,<span class="at">show_flat=</span>T)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/hdbscan-2.png" width="672" /></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="clustering.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#res.dbscan=dbscan(arrest.scal,eps=1.2,minPts=4)</span></span>
+<span id="cb32-2"><a href="clustering.html#cb32-2" aria-hidden="true" tabindex="-1"></a>d<span class="ot">=</span><span class="fu">dist</span>(arrest.scal,<span class="at">method =</span> <span class="st">&quot;canberra&quot;</span>)</span>
+<span id="cb32-3"><a href="clustering.html#cb32-3" aria-hidden="true" tabindex="-1"></a>res.dbscan<span class="ot">=</span><span class="fu">dbscan</span>(d,<span class="at">eps=</span><span class="fl">1.2</span>,<span class="at">minPts=</span><span class="dv">4</span>)</span>
+<span id="cb32-4"><a href="clustering.html#cb32-4" aria-hidden="true" tabindex="-1"></a>res.dbscan</span></code></pre></div>
 <pre><code>## DBSCAN clustering for 50 objects.
-## Parameters: eps = 1.2, minPts = 5
-## The clustering contains 3 cluster(s) and 8 noise points.
+## Parameters: eps = 1.2, minPts = 4
+## The clustering contains 2 cluster(s) and 27 noise points.
 ## 
-##  0  1  2  3 
-##  8  5  5 32 
+##  0  1  2 
+## 27 10 13 
 ## 
 ## Available fields: cluster, eps, minPts</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="clustering.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(arrest.scal[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">col =</span> res.dbscan<span class="sc">$</span>cluster <span class="sc">+</span> 1L, <span class="at">pch =</span> res.dbscan<span class="sc">$</span>cluster <span class="sc">+</span> 1L)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/dbscan-2.png" width="672" /></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="clustering.html#cb34-1" aria-hidden="true" tabindex="-1"></a>pca.arrest<span class="ot">=</span><span class="fu">prcomp</span>(arrest.scal)</span>
-<span id="cb34-2"><a href="clustering.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca.arrest<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">col =</span> res.dbscan<span class="sc">$</span>cluster <span class="sc">+</span> 1L, <span class="at">pch =</span> res.dbscan<span class="sc">$</span>cluster <span class="sc">+</span> 1L)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/dbscan-3.png" width="672" /></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="clustering.html#cb34-1" aria-hidden="true" tabindex="-1"></a>scan1data<span class="ot">=</span><span class="fu">cbind.data.frame</span>(pca_ex<span class="sc">$</span>x[,<span class="dv">1</span>],pca_ex<span class="sc">$</span>x[,<span class="dv">2</span>],<span class="fu">as.factor</span>(res.dbscan<span class="sc">$</span>cluster<span class="sc">+</span><span class="dv">1</span>))</span>
+<span id="cb34-2"><a href="clustering.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(scan1data)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;PCA1&quot;</span>,<span class="st">&quot;PCA2&quot;</span>,<span class="st">&quot;cluster&quot;</span>)</span>
+<span id="cb34-3"><a href="clustering.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(scan1data,<span class="fu">aes</span>(<span class="at">x=</span>PCA1,<span class="at">y=</span>PCA2,<span class="at">color=</span>cluster))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/hdbscan-3.png" width="672" /></p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="clustering.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="do">###Nice visuals for PCA results:</span></span>
 <span id="cb35-2"><a href="clustering.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="do">## http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/</span></span></code></pre></div>
 </div>
