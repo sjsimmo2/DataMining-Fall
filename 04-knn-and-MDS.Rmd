@@ -34,6 +34,7 @@ check=read.table("Q:\\My Drive\\Data Mining\\Data\\Checking.csv",sep=',',header=
 temp.dat=read.table("Q:\\My Drive\\Data Mining\\Data\\Grocery1.csv",sep=',',header=T)
 
 load("Q:\\My Drive\\Data Mining\\Data\\breast_cancer.Rdata")
+arrest.scal=scale(USArrests)
 
 ```
 # Other Topics
@@ -95,6 +96,31 @@ ggplot(all.dat,aes(x=k.attempts,y=pred.error))+geom_line()+labs(x="Values for k"
 Multidimensional Scaling is an alternative to PCA in terms of visualizing high dimensional data in a lower dimension.  IF you will be using this data for future analysis (for example, clustering), then PCA would be recommended.  However, if you are trying to visualize your data, MDS is a good alternative that can be explored!  The nice thing about MDS is that it does provide some measures of how it does when it reduces the dimension. 
 
 For example, in classical MDS, you get a measure for the goodness-of-fit (want this number closer to 1...would at least like 0.8).  When performing non-metric MDS, you can get the stress of reduction (want this number close to 0).
+
+
+```{r MDS arrest}
+
+pca_ex=prcomp(arrest.scal,scale=F)
+pve = 100 *pca_ex$sdev^2/sum(pca_ex$sdev^2)
+plot(cumsum(pve),type="l")
+
+graph.pca=data.frame(cbind(pca_ex$x[,1:2]))
+colnames(graph.pca)=c("PCA1","PCA2")
+graph.pca$PCA1=as.numeric(graph.pca$PCA1)
+graph.pca$PCA2=as.numeric(graph.pca$PCA2)
+ggplot(graph.pca,aes(x=PCA1,y=PCA2))+geom_point()+labs(y="PCA2",x="PCA1",title="PCA visualization")
+
+d=dist(arrest.scal)
+mds_ex=cmdscale(d,eig=TRUE, k=2)
+graph.mds=data.frame(mds_ex$points)
+colnames(graph.mds)=c("MDS1","MDS2")
+graph.mds$MDS1=as.numeric(graph.mds$MDS1)
+graph.mds$MDS2=as.numeric(graph.mds$MDS2)
+ggplot(graph.mds,aes(x=MDS1,y=MDS2))+geom_point()+labs(y="MDS2",x="MDS1",title="metric MDS visualization")
+
+
+
+```
 
 
 ```{r MDS}
