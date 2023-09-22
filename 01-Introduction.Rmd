@@ -1,6 +1,6 @@
 # Introduction
 
-Libraries that you will need for this module:
+Welcome to your Data Mining code book!!  I have provided information in both R and Python for this module (of course, most emphasis is in R...which means you might need to do some extra work in Python for some of these codes).  Libraries in R that you will need for this module:
 
 
 ```{r library,results = FALSE,warning=FALSE,collapse=TRUE,message=FALSE}
@@ -31,6 +31,8 @@ library(MASS)
 library(kableExtra)
 library(partykit)
 library(dbscan)
+library(AmesHousing)
+
 #library(knitr)
 
 ```
@@ -45,22 +47,27 @@ temp.dat=read.table("Q:\\My Drive\\Data Mining\\Data\\Grocery1.csv",sep=',',head
 
 load("Q:\\My Drive\\Data Mining\\Data\\breast_cancer.Rdata")
 
+ames <- make_ordinal_ames() 
+
 ```
 
 
 ## Bootstrapping
 
-Bootstrapping is a nonparametric tool that can be used to estimate variability about a statistic, create confidence intervals and perform hypothesis testing.  The idea is that we use our sample as our population and randomly sample from it (with replacement).  We create a whole bunch of samples this way, estimate the statistic of interest and then can use this information for our inference.  We will do two examples: one to estimate the variability of a statistic (and create a confidence interval) and a second one to illustrate a hypothesis test.  To illustrate this, we will be using the Carbon Dioxide data set from the Mauna Loa station (monthly data from 1959 to 1997). \  
+Bootstrapping is a nonparametric tool that can be used to estimate variability about a statistic, create confidence intervals and perform hypothesis testing.  The idea is that we use our sample as our population and randomly sample from it (with replacement).  We create a whole bunch of samples this way, estimate the statistic of interest and then can use this information for our inference.  The first example will estimate the median Carbon Dioxide reading from the Mauna Loa station (this data is an R data set and provides monthly data from 1959 to 1997). We will also calculate a 95% confidence interval for the median. \  
 
-First, we will find a 95% confidence interval for a median.
 
 ```{r bootstrap confidence interval,collapse=TRUE}
 plot.co2=cbind.data.frame(co2,seq(as.Date("1959/1/1"),by="month",length.out=468))
 colnames(plot.co2)[2]="Date"
+
+### Visualize the data
 ggplot(data=plot.co2,aes(x=Date,y=co2))+geom_line()
 ggplot(data=plot.co2,aes(x=co2))+geom_histogram()
 
+## Actual median of the data set
 act.med=median(co2)
+### Initialize the vector to run the bootstrap algorithm
 boot.med=vector(length=10000)
 for (i in 1:length(boot.med)){
   index.boot=sample(1:length(co2),length(co2),replace=T)
@@ -73,39 +80,34 @@ quantile(boot.med,probs = c(0.025,0.975))
 ggplot(data=data.frame(boot.med),aes(x=boot.med))+geom_histogram() + labs(x="Bootstrap Sample",y="Frequency")
 
 ```
-Now we are going to show how to use the boostrap to develop the null distribution (under the null hypothesis).  We are interested in knowing if the trend in Carbon Dioxide  (let's just use simple linear regression to estimate the trend line) has increased after 1980.  In other words, I want to test the following test: \  
+The second example is exploring if the median price of homes in Iowa with air conditioning is significantly different than the median price of homes in Iowa without air conditioning (this is using the Ames housing data set from summer!).  Recall that distributions of Sale Price were NOT normal (for both with and without air conditioning) and the variability of the distributions were very different.  We are able to test the hypothesis:   
 
 
+$$H_{0}: Median_{YES} = Median_{NO}$$
 
+$$H_{A}: Median_{YES} \neq Median_{NO}$$
 
-$$H_{0}: \beta_{before1980} = \beta_{after1980}$$
-
-$$H_{A}: \beta_{before1980} < \beta_{after1980}$$
+by creating a confidence interval about the difference $ Median_{YES}-Median_{NO} $.
 
 ```{r bootstrap hypothesis test}
 
-test.stat=vector(length=10000)
-x.before=seq(1,144)
-x.after=seq(1,324)
-lm.0=lm(co2[1:144]~x.before)
-lm.1=lm(co2[145:468]~x.after)
-act.test=(lm.0$coef[2]-lm.1$coef[2])/sqrt(diag(vcov(lm.0))[2]+diag(vcov(lm.1))[2])
-for (i in 1:length(test.stat)){
-  before=sample(1:length(co2),144,replace=T)
-  after=sample(1:length(co2),324,replace=T)
-  co0=co2[before]
-  co1=co2[after]
-  lm.0=lm(co0~x.before)
-  lm.1=lm(co1~x.after)
-  test.stat[i]=(lm.0$coef[2]-lm.1$coef[2])/sqrt(diag(vcov(lm.0))[2]+diag(vcov(lm.1))[2])
-}  
 
-ggplot(data=data.frame(test.stat),aes(x=test.stat))+geom_histogram()
+diff.stat=vector(length=10000)
+yes<-ames %>% filter(Central_Air=="Y") %>% pull(Sale_Price)
+no<-ames %>% filter(Central_Air=="N") %>% pull(Sale_Price)
+for (i in 1:10000){
+  yes.vec <-median(sample(yes,length(yes),replace = T))
+  no.vec <-median(sample(no,length(no),replace = T))
+  diff.stat[i]<- yes.vec-no.vec
+}
 
-p.val=sum(test.stat<act.test)/10000
+
+ggplot(data=data.frame(diff.stat),aes(x=diff.stat))+geom_histogram()
+
+quantile(diff.stat,probs = c(0.005,0.995))
 
 ```
-The actual "test statistic" is -13.2, and from the created distribution the number of samples less than -13.2 is 0 (p-value is 0/10000=0).  Based on the very low p-value, we would reject 
+Since the confidence interval does NOT include 0, we would conclude that the medians appear to be significantly different.
 
 ## Adjusting p-values
 
@@ -122,7 +124,7 @@ p.adjust(temp,method="BH")
 ```
 
 
-## Tranaction data
+## Transaction data
 
 A basic concept you will need is how to deal with transactional data.  Trasactional data is usually in the form of a long data set with multiple observation per "ID".  Take for example the following small data set:
 
@@ -170,7 +172,7 @@ kbl(new.check, caption = "Rolled up") %>%
 
 Association analysis looks for "associations" among items to provide information on which items happen together more frequently.  This could be used for marketing purposes to figure out which items should be stocked together; or it could be used in the medical profession to see which co-morbidities happen together.  There are many situations in which you are interested in exploring and understanding theses associations!!  
 
-Most often, this data presents itself as transactional data.  For example, if shopper 1 buys 10 items, you will see this in a dataset with 10 lines (representing the 10 items bought) but with the same shopper ID value.  Below is a snippet of a small grocery data set.
+Most often, this data presents itself as transactional data.  For example, if shopper 1 buys 10 items, you will see this in a data set with 10 lines (representing the 10 items bought) but with the same shopper ID value.  Below is a snippet of a small grocery data set.
 
 
 ```{r association, echo=FALSE,results='asis'}
