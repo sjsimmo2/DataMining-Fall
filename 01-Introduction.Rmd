@@ -70,8 +70,7 @@ act.med=median(co2)
 ### Initialize the vector to run the bootstrap algorithm
 boot.med=vector(length=10000)
 for (i in 1:length(boot.med)){
-  index.boot=sample(1:length(co2),length(co2),replace=T)
-  boot.samp=co2[index.boot]
+  boot.samp=sample(co2,replace=T)
   boot.med[i]=median(boot.samp)
 }
 sd(boot.med)
