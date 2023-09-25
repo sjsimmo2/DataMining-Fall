@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Decision Trees | Data Mining</title>
   <meta name="description" content="Chapter 3 Decision Trees | Data Mining" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Decision Trees | Data Mining" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. Susan Simmons" />
 
 
-<meta name="date" content="2022-09-28" />
+<meta name="date" content="2023-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -141,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#bootstrapping"><i class="fa fa-check"></i><b>2.1</b> Bootstrapping</a></li>
 <li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#adjusting-p-values"><i class="fa fa-check"></i><b>2.2</b> Adjusting p-values</a></li>
-<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#tranaction-data"><i class="fa fa-check"></i><b>2.3</b> Tranaction data</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#transaction-data"><i class="fa fa-check"></i><b>2.3</b> Transaction data</a></li>
 <li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#association-analysis"><i class="fa fa-check"></i><b>2.4</b> Association Analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="decision-trees.html"><a href="decision-trees.html"><i class="fa fa-check"></i><b>3</b> Decision Trees</a>
@@ -149,6 +153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="decision-trees.html"><a href="decision-trees.html#classification-trees"><i class="fa fa-check"></i><b>3.1</b> Classification Trees</a></li>
 <li class="chapter" data-level="3.2" data-path="decision-trees.html"><a href="decision-trees.html#regression-trees"><i class="fa fa-check"></i><b>3.2</b> Regression Trees</a></li>
 <li class="chapter" data-level="3.3" data-path="decision-trees.html"><a href="decision-trees.html#recursive-partitioning-with-partykit"><i class="fa fa-check"></i><b>3.3</b> Recursive partitioning with partykit</a></li>
+<li class="chapter" data-level="3.4" data-path="decision-trees.html"><a href="decision-trees.html#model-reliance"><i class="fa fa-check"></i><b>3.4</b> Model Reliance</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>4</b> Clustering</a>
 <ul>
@@ -156,7 +161,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering"><i class="fa fa-check"></i><b>4.2</b> Hierarchical Clustering</a></li>
 <li class="chapter" data-level="4.3" data-path="clustering.html"><a href="clustering.html#variable-clustering"><i class="fa fa-check"></i><b>4.3</b> Variable Clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="k-nearest-neighbors.html"><a href="k-nearest-neighbors.html"><i class="fa fa-check"></i><b>5</b> K-nearest neighbors</a></li>
+<li class="chapter" data-level="5" data-path="other-topics.html"><a href="other-topics.html"><i class="fa fa-check"></i><b>5</b> Other Topics</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="other-topics.html"><a href="other-topics.html#k-nearest-neighbors"><i class="fa fa-check"></i><b>5.1</b> K-nearest neighbors</a></li>
+<li class="chapter" data-level="5.2" data-path="other-topics.html"><a href="other-topics.html#mds"><i class="fa fa-check"></i><b>5.2</b> MDS</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -181,16 +190,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We will now discuss decision tree. Two of the most popular algorithms in R is rpart and partykit. We will fist focus on classification trees (response variable is categorical). The data in the code below uses the breast cancer data set from the UCI repository.</p>
 <div id="classification-trees" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Classification Trees<a href="decision-trees.html#classification-trees" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="decision-trees.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">###Classification</span></span>
-<span id="cb1-2"><a href="decision-trees.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">### Get training and test data</span></span>
-<span id="cb1-3"><a href="decision-trees.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7515</span>)</span>
-<span id="cb1-4"><a href="decision-trees.html#cb1-4" aria-hidden="true" tabindex="-1"></a>perm<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">699</span>)</span>
-<span id="cb1-5"><a href="decision-trees.html#cb1-5" aria-hidden="true" tabindex="-1"></a>BC_randomOrder<span class="ot">=</span>BCdata[perm,]</span>
-<span id="cb1-6"><a href="decision-trees.html#cb1-6" aria-hidden="true" tabindex="-1"></a>train <span class="ot">=</span> BC_randomOrder[<span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>),]</span>
-<span id="cb1-7"><a href="decision-trees.html#cb1-7" aria-hidden="true" tabindex="-1"></a>test <span class="ot">=</span> BC_randomOrder[(<span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">699</span>,]</span>
-<span id="cb1-8"><a href="decision-trees.html#cb1-8" aria-hidden="true" tabindex="-1"></a>BC.tree <span class="ot">=</span> <span class="fu">rpart</span>(Target <span class="sc">~</span> . <span class="sc">-</span> ID, <span class="at">data=</span>train, <span class="at">method=</span><span class="st">&#39;class&#39;</span>,</span>
-<span id="cb1-9"><a href="decision-trees.html#cb1-9" aria-hidden="true" tabindex="-1"></a> <span class="at">parms =</span> <span class="fu">list</span>(<span class="at">split=</span><span class="st">&#39;gini&#39;</span>)) <span class="do">## or &#39;information&#39;</span></span>
-<span id="cb1-10"><a href="decision-trees.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(BC.tree)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="decision-trees.html#cb1-1" tabindex="-1"></a><span class="do">###Classification</span></span>
+<span id="cb1-2"><a href="decision-trees.html#cb1-2" tabindex="-1"></a><span class="do">### Get training and test data</span></span>
+<span id="cb1-3"><a href="decision-trees.html#cb1-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7515</span>)</span>
+<span id="cb1-4"><a href="decision-trees.html#cb1-4" tabindex="-1"></a>perm<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">699</span>)</span>
+<span id="cb1-5"><a href="decision-trees.html#cb1-5" tabindex="-1"></a>BC_randomOrder<span class="ot">=</span>BCdata[perm,]</span>
+<span id="cb1-6"><a href="decision-trees.html#cb1-6" tabindex="-1"></a>train <span class="ot">=</span> BC_randomOrder[<span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>),]</span>
+<span id="cb1-7"><a href="decision-trees.html#cb1-7" tabindex="-1"></a>test <span class="ot">=</span> BC_randomOrder[(<span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">699</span>,]</span>
+<span id="cb1-8"><a href="decision-trees.html#cb1-8" tabindex="-1"></a>BC.tree <span class="ot">=</span> <span class="fu">rpart</span>(Target <span class="sc">~</span> . <span class="sc">-</span> ID, <span class="at">data=</span>train, <span class="at">method=</span><span class="st">&#39;class&#39;</span>,</span>
+<span id="cb1-9"><a href="decision-trees.html#cb1-9" tabindex="-1"></a> <span class="at">parms =</span> <span class="fu">list</span>(<span class="at">split=</span><span class="st">&#39;gini&#39;</span>)) <span class="do">## or &#39;information&#39;</span></span>
+<span id="cb1-10"><a href="decision-trees.html#cb1-10" tabindex="-1"></a><span class="fu">summary</span>(BC.tree)</span></code></pre></div>
 <pre><code>## Call:
 ## rpart(formula = Target ~ . - ID, data = train, method = &quot;class&quot;, 
 ##     parms = list(split = &quot;gini&quot;))
@@ -302,7 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   predicted class=1  expected loss=0.2  P(node) =0.01908397
 ##     class counts:     2     8
 ##    probabilities: 0.200 0.800</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="decision-trees.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(BC.tree)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="decision-trees.html#cb3-1" tabindex="-1"></a><span class="fu">print</span>(BC.tree)</span></code></pre></div>
 <pre><code>## n= 524 
 ## 
 ## node), split, n, loss, yval, (yprob)
@@ -317,251 +326,251 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         19) CT&gt;=3.5 10   2 1 (0.20000000 0.80000000) *
 ##      5) Normal&gt;=3.5 26   6 1 (0.23076923 0.76923077) *
 ##    3) Size&gt;=3.5 164   9 1 (0.05487805 0.94512195) *</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="decision-trees.html#cb5-1" aria-hidden="true" tabindex="-1"></a>BC.tree<span class="sc">$</span>variable.importance</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="decision-trees.html#cb5-1" tabindex="-1"></a>BC.tree<span class="sc">$</span>variable.importance</span></code></pre></div>
 <pre><code>##       Size      Shape     Normal  Chromatin Epithelial     Margin         CT 
 ##  175.82429  145.82955  128.09709  118.66130  116.94858  105.82111   13.37876 
 ##       Bare 
 ##    4.53164</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="decision-trees.html#cb7-1" aria-hidden="true" tabindex="-1"></a>varimp.data<span class="ot">=</span><span class="fu">data.frame</span>(BC.tree<span class="sc">$</span>variable.importance)</span>
-<span id="cb7-2"><a href="decision-trees.html#cb7-2" aria-hidden="true" tabindex="-1"></a>varimp.data<span class="sc">$</span>names<span class="ot">=</span><span class="fu">as.character</span>(<span class="fu">rownames</span>(varimp.data))</span>
-<span id="cb7-3"><a href="decision-trees.html#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="decision-trees.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>varimp.data,<span class="fu">aes</span>(<span class="at">x=</span>names,<span class="at">y=</span>BC.tree.variable.importance))<span class="sc">+</span><span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="sc">+</span><span class="fu">coord_flip</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Variable Name&quot;</span>,<span class="at">y=</span><span class="st">&quot;Variable Importance&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="decision-trees.html#cb7-1" tabindex="-1"></a>varimp.data<span class="ot">=</span><span class="fu">data.frame</span>(BC.tree<span class="sc">$</span>variable.importance)</span>
+<span id="cb7-2"><a href="decision-trees.html#cb7-2" tabindex="-1"></a>varimp.data<span class="sc">$</span>names<span class="ot">=</span><span class="fu">as.character</span>(<span class="fu">rownames</span>(varimp.data))</span>
+<span id="cb7-3"><a href="decision-trees.html#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="decision-trees.html#cb7-4" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>varimp.data,<span class="fu">aes</span>(<span class="at">x=</span>names,<span class="at">y=</span>BC.tree.variable.importance))<span class="sc">+</span><span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="sc">+</span><span class="fu">coord_flip</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Variable Name&quot;</span>,<span class="at">y=</span><span class="st">&quot;Variable Importance&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/Classification%20trees-1.png" width="672" /></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="decision-trees.html#cb8-1" aria-hidden="true" tabindex="-1"></a>tscores <span class="ot">=</span> <span class="fu">predict</span>(BC.tree,<span class="at">type=</span><span class="st">&#39;class&#39;</span>)</span>
-<span id="cb8-2"><a href="decision-trees.html#cb8-2" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">=</span> <span class="fu">predict</span>(BC.tree, test, <span class="at">type=</span><span class="st">&#39;class&#39;</span>)</span>
-<span id="cb8-3"><a href="decision-trees.html#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="decision-trees.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">##Training misclassification rate:</span></span>
-<span id="cb8-5"><a href="decision-trees.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(tscores<span class="sc">!=</span>train<span class="sc">$</span>Target)<span class="sc">/</span><span class="fu">nrow</span>(train)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="decision-trees.html#cb8-1" tabindex="-1"></a>tscores <span class="ot">=</span> <span class="fu">predict</span>(BC.tree,<span class="at">type=</span><span class="st">&#39;class&#39;</span>)</span>
+<span id="cb8-2"><a href="decision-trees.html#cb8-2" tabindex="-1"></a>scores <span class="ot">=</span> <span class="fu">predict</span>(BC.tree, test, <span class="at">type=</span><span class="st">&#39;class&#39;</span>)</span>
+<span id="cb8-3"><a href="decision-trees.html#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="decision-trees.html#cb8-4" tabindex="-1"></a><span class="do">##Training misclassification rate:</span></span>
+<span id="cb8-5"><a href="decision-trees.html#cb8-5" tabindex="-1"></a><span class="fu">sum</span>(tscores<span class="sc">!=</span>train<span class="sc">$</span>Target)<span class="sc">/</span><span class="fu">nrow</span>(train)</span></code></pre></div>
 <pre><code>## [1] 0.03244275</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="decision-trees.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Test data:</span></span>
-<span id="cb10-2"><a href="decision-trees.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(scores<span class="sc">!=</span>test<span class="sc">$</span>Target)<span class="sc">/</span><span class="fu">nrow</span>(test)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="decision-trees.html#cb10-1" tabindex="-1"></a><span class="do">### Test data:</span></span>
+<span id="cb10-2"><a href="decision-trees.html#cb10-2" tabindex="-1"></a><span class="fu">sum</span>(scores<span class="sc">!=</span>test<span class="sc">$</span>Target)<span class="sc">/</span><span class="fu">nrow</span>(test)</span></code></pre></div>
 <pre><code>## [1] 0.05714286</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="decision-trees.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(BC.tree)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="decision-trees.html#cb12-1" tabindex="-1"></a><span class="fu">rpart.plot</span>(BC.tree)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/Classification%20trees-2.png" width="672" /></p>
 </div>
 <div id="regression-trees" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Regression Trees<a href="decision-trees.html#regression-trees" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The code below illustrates regression trees on a version of the bodyfat data set.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="decision-trees.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">###Regression</span></span>
-<span id="cb13-2"><a href="decision-trees.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">13172</span>) <span class="co"># Set Seed so that same sample can be reproduced in future also</span></span>
-<span id="cb13-3"><a href="decision-trees.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Now Selecting 75% of data as sample from total &#39;n&#39; rows of the data  </span></span>
-<span id="cb13-4"><a href="decision-trees.html#cb13-4" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="fu">nrow</span>(bodyfat), <span class="at">size =</span> <span class="fu">floor</span>(.<span class="dv">75</span><span class="sc">*</span><span class="fu">nrow</span>(bodyfat)), <span class="at">replace =</span> F)</span>
-<span id="cb13-5"><a href="decision-trees.html#cb13-5" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> bodyfat[sample, ]</span>
-<span id="cb13-6"><a href="decision-trees.html#cb13-6" aria-hidden="true" tabindex="-1"></a>test  <span class="ot">&lt;-</span> bodyfat[<span class="sc">-</span>sample, ] </span>
-<span id="cb13-7"><a href="decision-trees.html#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="decision-trees.html#cb13-8" aria-hidden="true" tabindex="-1"></a>body_model<span class="ot">&lt;-</span><span class="fu">rpart</span>(DEXfat <span class="sc">~</span> age <span class="sc">+</span> waistcirc <span class="sc">+</span> hipcirc <span class="sc">+</span></span>
-<span id="cb13-9"><a href="decision-trees.html#cb13-9" aria-hidden="true" tabindex="-1"></a>  elbowbreadth <span class="sc">+</span> kneebreadth, <span class="at">data =</span> train,</span>
-<span id="cb13-10"><a href="decision-trees.html#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">minsplit =</span> <span class="dv">10</span>))</span>
-<span id="cb13-11"><a href="decision-trees.html#cb13-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">summary</span>(body_model)</span>
-<span id="cb13-12"><a href="decision-trees.html#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Call:</span></span>
-<span id="cb13-13"><a href="decision-trees.html#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="do">## rpart(formula = DEXfat ~ age + waistcirc + hipcirc + elbowbreadth + </span></span>
-<span id="cb13-14"><a href="decision-trees.html#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="do">##     kneebreadth, data = train, control = rpart.control(minsplit = 10))</span></span>
-<span id="cb13-15"><a href="decision-trees.html#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="do">##   n= 53 </span></span>
-<span id="cb13-16"><a href="decision-trees.html#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-17"><a href="decision-trees.html#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="do">##           CP nsplit  rel error    xerror       xstd</span></span>
-<span id="cb13-18"><a href="decision-trees.html#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 0.67492210      0 1.00000000 1.0387549 0.19298200</span></span>
-<span id="cb13-19"><a href="decision-trees.html#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 0.12397892      1 0.32507790 0.3674702 0.09713363</span></span>
-<span id="cb13-20"><a href="decision-trees.html#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 0.06337174      2 0.20109898 0.3207674 0.07055438</span></span>
-<span id="cb13-21"><a href="decision-trees.html#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 0.04539485      3 0.13772723 0.3298414 0.07030078</span></span>
-<span id="cb13-22"><a href="decision-trees.html#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 0.01311181      4 0.09233238 0.2635804 0.07215928</span></span>
-<span id="cb13-23"><a href="decision-trees.html#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 0.01000000      5 0.07922057 0.2502471 0.06967234</span></span>
-<span id="cb13-24"><a href="decision-trees.html#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-25"><a href="decision-trees.html#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="do">## Variable importance</span></span>
-<span id="cb13-26"><a href="decision-trees.html#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="do">##    waistcirc      hipcirc  kneebreadth elbowbreadth          age </span></span>
-<span id="cb13-27"><a href="decision-trees.html#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="do">##           30           25           25           11            9 </span></span>
-<span id="cb13-28"><a href="decision-trees.html#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-29"><a href="decision-trees.html#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Node number 1: 53 observations,    complexity param=0.6749221</span></span>
-<span id="cb13-30"><a href="decision-trees.html#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean=31.98226, MSE=126.5508 </span></span>
-<span id="cb13-31"><a href="decision-trees.html#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="do">##   left son=2 (25 obs) right son=3 (28 obs)</span></span>
-<span id="cb13-32"><a href="decision-trees.html#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="do">##   Primary splits:</span></span>
-<span id="cb13-33"><a href="decision-trees.html#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 86.5   to the left,  improve=0.6749221, (0 missing)</span></span>
-<span id="cb13-34"><a href="decision-trees.html#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 109.25 to the left,  improve=0.6400649, (0 missing)</span></span>
-<span id="cb13-35"><a href="decision-trees.html#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 9.35   to the left,  improve=0.4913650, (0 missing)</span></span>
-<span id="cb13-36"><a href="decision-trees.html#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="do">##       age          &lt; 37     to the left,  improve=0.1897384, (0 missing)</span></span>
-<span id="cb13-37"><a href="decision-trees.html#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.55   to the left,  improve=0.1514361, (0 missing)</span></span>
-<span id="cb13-38"><a href="decision-trees.html#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="do">##   Surrogate splits:</span></span>
-<span id="cb13-39"><a href="decision-trees.html#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 107.85 to the left,  agree=0.887, adj=0.76, (0 split)</span></span>
-<span id="cb13-40"><a href="decision-trees.html#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 9.35   to the left,  agree=0.849, adj=0.68, (0 split)</span></span>
-<span id="cb13-41"><a href="decision-trees.html#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.55   to the left,  agree=0.679, adj=0.32, (0 split)</span></span>
-<span id="cb13-42"><a href="decision-trees.html#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="do">##       age          &lt; 37     to the left,  agree=0.660, adj=0.28, (0 split)</span></span>
-<span id="cb13-43"><a href="decision-trees.html#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-44"><a href="decision-trees.html#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Node number 2: 25 observations,    complexity param=0.04539485</span></span>
-<span id="cb13-45"><a href="decision-trees.html#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean=22.2016, MSE=24.60555 </span></span>
-<span id="cb13-46"><a href="decision-trees.html#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="do">##   left son=4 (11 obs) right son=5 (14 obs)</span></span>
-<span id="cb13-47"><a href="decision-trees.html#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="do">##   Primary splits:</span></span>
-<span id="cb13-48"><a href="decision-trees.html#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 96.5   to the left,  improve=0.49496490, (0 missing)</span></span>
-<span id="cb13-49"><a href="decision-trees.html#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 75.15  to the left,  improve=0.43069200, (0 missing)</span></span>
-<span id="cb13-50"><a href="decision-trees.html#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="do">##       age          &lt; 31.5   to the left,  improve=0.33752490, (0 missing)</span></span>
-<span id="cb13-51"><a href="decision-trees.html#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 8.55   to the left,  improve=0.24410760, (0 missing)</span></span>
-<span id="cb13-52"><a href="decision-trees.html#cb13-52" aria-hidden="true" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.65   to the left,  improve=0.08933998, (0 missing)</span></span>
-<span id="cb13-53"><a href="decision-trees.html#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="do">##   Surrogate splits:</span></span>
-<span id="cb13-54"><a href="decision-trees.html#cb13-54" aria-hidden="true" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 72     to the left,  agree=0.76, adj=0.455, (0 split)</span></span>
-<span id="cb13-55"><a href="decision-trees.html#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 8.25   to the left,  agree=0.76, adj=0.455, (0 split)</span></span>
-<span id="cb13-56"><a href="decision-trees.html#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="do">##       age          &lt; 31.5   to the left,  agree=0.72, adj=0.364, (0 split)</span></span>
-<span id="cb13-57"><a href="decision-trees.html#cb13-57" aria-hidden="true" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.45   to the left,  agree=0.64, adj=0.182, (0 split)</span></span>
-<span id="cb13-58"><a href="decision-trees.html#cb13-58" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-59"><a href="decision-trees.html#cb13-59" aria-hidden="true" tabindex="-1"></a><span class="do">## Node number 3: 28 observations,    complexity param=0.1239789</span></span>
-<span id="cb13-60"><a href="decision-trees.html#cb13-60" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean=40.715, MSE=55.90078 </span></span>
-<span id="cb13-61"><a href="decision-trees.html#cb13-61" aria-hidden="true" tabindex="-1"></a><span class="do">##   left son=6 (25 obs) right son=7 (3 obs)</span></span>
-<span id="cb13-62"><a href="decision-trees.html#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="do">##   Primary splits:</span></span>
-<span id="cb13-63"><a href="decision-trees.html#cb13-63" aria-hidden="true" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 11.15  to the left,  improve=0.53126700, (0 missing)</span></span>
-<span id="cb13-64"><a href="decision-trees.html#cb13-64" aria-hidden="true" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 109.9  to the left,  improve=0.49501800, (0 missing)</span></span>
-<span id="cb13-65"><a href="decision-trees.html#cb13-65" aria-hidden="true" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 106    to the left,  improve=0.48547170, (0 missing)</span></span>
-<span id="cb13-66"><a href="decision-trees.html#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.35   to the left,  improve=0.18322950, (0 missing)</span></span>
-<span id="cb13-67"><a href="decision-trees.html#cb13-67" aria-hidden="true" tabindex="-1"></a><span class="do">##       age          &lt; 64     to the left,  improve=0.06033762, (0 missing)</span></span>
-<span id="cb13-68"><a href="decision-trees.html#cb13-68" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-69"><a href="decision-trees.html#cb13-69" aria-hidden="true" tabindex="-1"></a><span class="do">## Node number 4: 11 observations,    complexity param=0.01311181</span></span>
-<span id="cb13-70"><a href="decision-trees.html#cb13-70" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean=18.26455, MSE=16.37561 </span></span>
-<span id="cb13-71"><a href="decision-trees.html#cb13-71" aria-hidden="true" tabindex="-1"></a><span class="do">##   left son=8 (7 obs) right son=9 (4 obs)</span></span>
-<span id="cb13-72"><a href="decision-trees.html#cb13-72" aria-hidden="true" tabindex="-1"></a><span class="do">##   Primary splits:</span></span>
-<span id="cb13-73"><a href="decision-trees.html#cb13-73" aria-hidden="true" tabindex="-1"></a><span class="do">##       age          &lt; 56.5   to the left,  improve=0.48821750, (0 missing)</span></span>
-<span id="cb13-74"><a href="decision-trees.html#cb13-74" aria-hidden="true" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 77.5   to the left,  improve=0.37437570, (0 missing)</span></span>
-<span id="cb13-75"><a href="decision-trees.html#cb13-75" aria-hidden="true" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 94.1   to the left,  improve=0.26063300, (0 missing)</span></span>
-<span id="cb13-76"><a href="decision-trees.html#cb13-76" aria-hidden="true" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 8.55   to the left,  improve=0.02392090, (0 missing)</span></span>
-<span id="cb13-77"><a href="decision-trees.html#cb13-77" aria-hidden="true" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.15   to the left,  improve=0.02295546, (0 missing)</span></span>
-<span id="cb13-78"><a href="decision-trees.html#cb13-78" aria-hidden="true" tabindex="-1"></a><span class="do">##   Surrogate splits:</span></span>
-<span id="cb13-79"><a href="decision-trees.html#cb13-79" aria-hidden="true" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 77.5   to the left,  agree=0.818, adj=0.50, (0 split)</span></span>
-<span id="cb13-80"><a href="decision-trees.html#cb13-80" aria-hidden="true" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.55   to the left,  agree=0.818, adj=0.50, (0 split)</span></span>
-<span id="cb13-81"><a href="decision-trees.html#cb13-81" aria-hidden="true" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 91.5   to the right, agree=0.727, adj=0.25, (0 split)</span></span>
-<span id="cb13-82"><a href="decision-trees.html#cb13-82" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-83"><a href="decision-trees.html#cb13-83" aria-hidden="true" tabindex="-1"></a><span class="do">## Node number 5: 14 observations</span></span>
-<span id="cb13-84"><a href="decision-trees.html#cb13-84" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean=25.295, MSE=9.323925 </span></span>
-<span id="cb13-85"><a href="decision-trees.html#cb13-85" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-86"><a href="decision-trees.html#cb13-86" aria-hidden="true" tabindex="-1"></a><span class="do">## Node number 6: 25 observations,    complexity param=0.06337174</span></span>
-<span id="cb13-87"><a href="decision-trees.html#cb13-87" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean=38.8272, MSE=23.49564 </span></span>
-<span id="cb13-88"><a href="decision-trees.html#cb13-88" aria-hidden="true" tabindex="-1"></a><span class="do">##   left son=12 (11 obs) right son=13 (14 obs)</span></span>
-<span id="cb13-89"><a href="decision-trees.html#cb13-89" aria-hidden="true" tabindex="-1"></a><span class="do">##   Primary splits:</span></span>
-<span id="cb13-90"><a href="decision-trees.html#cb13-90" aria-hidden="true" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 109.9  to the left,  improve=0.72361790, (0 missing)</span></span>
-<span id="cb13-91"><a href="decision-trees.html#cb13-91" aria-hidden="true" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 98.75  to the left,  improve=0.46229770, (0 missing)</span></span>
-<span id="cb13-92"><a href="decision-trees.html#cb13-92" aria-hidden="true" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.35   to the left,  improve=0.24168590, (0 missing)</span></span>
-<span id="cb13-93"><a href="decision-trees.html#cb13-93" aria-hidden="true" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 9.9    to the left,  improve=0.22697980, (0 missing)</span></span>
-<span id="cb13-94"><a href="decision-trees.html#cb13-94" aria-hidden="true" tabindex="-1"></a><span class="do">##       age          &lt; 60.5   to the left,  improve=0.03275597, (0 missing)</span></span>
-<span id="cb13-95"><a href="decision-trees.html#cb13-95" aria-hidden="true" tabindex="-1"></a><span class="do">##   Surrogate splits:</span></span>
-<span id="cb13-96"><a href="decision-trees.html#cb13-96" aria-hidden="true" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 98.75  to the left,  agree=0.84, adj=0.636, (0 split)</span></span>
-<span id="cb13-97"><a href="decision-trees.html#cb13-97" aria-hidden="true" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.45   to the left,  agree=0.76, adj=0.455, (0 split)</span></span>
-<span id="cb13-98"><a href="decision-trees.html#cb13-98" aria-hidden="true" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 8.75   to the left,  agree=0.68, adj=0.273, (0 split)</span></span>
-<span id="cb13-99"><a href="decision-trees.html#cb13-99" aria-hidden="true" tabindex="-1"></a><span class="do">##       age          &lt; 49.5   to the right, agree=0.60, adj=0.091, (0 split)</span></span>
-<span id="cb13-100"><a href="decision-trees.html#cb13-100" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-101"><a href="decision-trees.html#cb13-101" aria-hidden="true" tabindex="-1"></a><span class="do">## Node number 7: 3 observations</span></span>
-<span id="cb13-102"><a href="decision-trees.html#cb13-102" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean=56.44667, MSE=48.76009 </span></span>
-<span id="cb13-103"><a href="decision-trees.html#cb13-103" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-104"><a href="decision-trees.html#cb13-104" aria-hidden="true" tabindex="-1"></a><span class="do">## Node number 8: 7 observations</span></span>
-<span id="cb13-105"><a href="decision-trees.html#cb13-105" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean=16.12714, MSE=8.875049 </span></span>
-<span id="cb13-106"><a href="decision-trees.html#cb13-106" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-107"><a href="decision-trees.html#cb13-107" aria-hidden="true" tabindex="-1"></a><span class="do">## Node number 9: 4 observations</span></span>
-<span id="cb13-108"><a href="decision-trees.html#cb13-108" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean=22.005, MSE=7.515725 </span></span>
-<span id="cb13-109"><a href="decision-trees.html#cb13-109" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-110"><a href="decision-trees.html#cb13-110" aria-hidden="true" tabindex="-1"></a><span class="do">## Node number 12: 11 observations</span></span>
-<span id="cb13-111"><a href="decision-trees.html#cb13-111" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean=34.17545, MSE=7.173207 </span></span>
-<span id="cb13-112"><a href="decision-trees.html#cb13-112" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-113"><a href="decision-trees.html#cb13-113" aria-hidden="true" tabindex="-1"></a><span class="do">## Node number 13: 14 observations</span></span>
-<span id="cb13-114"><a href="decision-trees.html#cb13-114" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean=42.48214, MSE=5.959931</span></span>
-<span id="cb13-115"><a href="decision-trees.html#cb13-115" aria-hidden="true" tabindex="-1"></a> <span class="fu">printcp</span>(body_model)</span>
-<span id="cb13-116"><a href="decision-trees.html#cb13-116" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-117"><a href="decision-trees.html#cb13-117" aria-hidden="true" tabindex="-1"></a><span class="do">## Regression tree:</span></span>
-<span id="cb13-118"><a href="decision-trees.html#cb13-118" aria-hidden="true" tabindex="-1"></a><span class="do">## rpart(formula = DEXfat ~ age + waistcirc + hipcirc + elbowbreadth + </span></span>
-<span id="cb13-119"><a href="decision-trees.html#cb13-119" aria-hidden="true" tabindex="-1"></a><span class="do">##     kneebreadth, data = train, control = rpart.control(minsplit = 10))</span></span>
-<span id="cb13-120"><a href="decision-trees.html#cb13-120" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-121"><a href="decision-trees.html#cb13-121" aria-hidden="true" tabindex="-1"></a><span class="do">## Variables actually used in tree construction:</span></span>
-<span id="cb13-122"><a href="decision-trees.html#cb13-122" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] age         hipcirc     kneebreadth waistcirc  </span></span>
-<span id="cb13-123"><a href="decision-trees.html#cb13-123" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-124"><a href="decision-trees.html#cb13-124" aria-hidden="true" tabindex="-1"></a><span class="do">## Root node error: 6707.2/53 = 126.55</span></span>
-<span id="cb13-125"><a href="decision-trees.html#cb13-125" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-126"><a href="decision-trees.html#cb13-126" aria-hidden="true" tabindex="-1"></a><span class="do">## n= 53 </span></span>
-<span id="cb13-127"><a href="decision-trees.html#cb13-127" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-128"><a href="decision-trees.html#cb13-128" aria-hidden="true" tabindex="-1"></a><span class="do">##         CP nsplit rel error  xerror     xstd</span></span>
-<span id="cb13-129"><a href="decision-trees.html#cb13-129" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 0.674922      0  1.000000 1.03875 0.192982</span></span>
-<span id="cb13-130"><a href="decision-trees.html#cb13-130" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 0.123979      1  0.325078 0.36747 0.097134</span></span>
-<span id="cb13-131"><a href="decision-trees.html#cb13-131" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 0.063372      2  0.201099 0.32077 0.070554</span></span>
-<span id="cb13-132"><a href="decision-trees.html#cb13-132" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 0.045395      3  0.137727 0.32984 0.070301</span></span>
-<span id="cb13-133"><a href="decision-trees.html#cb13-133" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 0.013112      4  0.092332 0.26358 0.072159</span></span>
-<span id="cb13-134"><a href="decision-trees.html#cb13-134" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 0.010000      5  0.079221 0.25025 0.069672</span></span>
-<span id="cb13-135"><a href="decision-trees.html#cb13-135" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb13-136"><a href="decision-trees.html#cb13-136" aria-hidden="true" tabindex="-1"></a> body_model2<span class="ot">&lt;-</span><span class="fu">prune</span>(body_model,<span class="at">cp=</span><span class="fl">0.05175731</span>)</span>
-<span id="cb13-137"><a href="decision-trees.html#cb13-137" aria-hidden="true" tabindex="-1"></a> <span class="fu">printcp</span>(body_model2)</span>
-<span id="cb13-138"><a href="decision-trees.html#cb13-138" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-139"><a href="decision-trees.html#cb13-139" aria-hidden="true" tabindex="-1"></a><span class="do">## Regression tree:</span></span>
-<span id="cb13-140"><a href="decision-trees.html#cb13-140" aria-hidden="true" tabindex="-1"></a><span class="do">## rpart(formula = DEXfat ~ age + waistcirc + hipcirc + elbowbreadth + </span></span>
-<span id="cb13-141"><a href="decision-trees.html#cb13-141" aria-hidden="true" tabindex="-1"></a><span class="do">##     kneebreadth, data = train, control = rpart.control(minsplit = 10))</span></span>
-<span id="cb13-142"><a href="decision-trees.html#cb13-142" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-143"><a href="decision-trees.html#cb13-143" aria-hidden="true" tabindex="-1"></a><span class="do">## Variables actually used in tree construction:</span></span>
-<span id="cb13-144"><a href="decision-trees.html#cb13-144" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] hipcirc     kneebreadth waistcirc  </span></span>
-<span id="cb13-145"><a href="decision-trees.html#cb13-145" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-146"><a href="decision-trees.html#cb13-146" aria-hidden="true" tabindex="-1"></a><span class="do">## Root node error: 6707.2/53 = 126.55</span></span>
-<span id="cb13-147"><a href="decision-trees.html#cb13-147" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-148"><a href="decision-trees.html#cb13-148" aria-hidden="true" tabindex="-1"></a><span class="do">## n= 53 </span></span>
-<span id="cb13-149"><a href="decision-trees.html#cb13-149" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb13-150"><a href="decision-trees.html#cb13-150" aria-hidden="true" tabindex="-1"></a><span class="do">##         CP nsplit rel error  xerror     xstd</span></span>
-<span id="cb13-151"><a href="decision-trees.html#cb13-151" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 0.674922      0   1.00000 1.03875 0.192982</span></span>
-<span id="cb13-152"><a href="decision-trees.html#cb13-152" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 0.123979      1   0.32508 0.36747 0.097134</span></span>
-<span id="cb13-153"><a href="decision-trees.html#cb13-153" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 0.063372      2   0.20110 0.32077 0.070554</span></span>
-<span id="cb13-154"><a href="decision-trees.html#cb13-154" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 0.051757      3   0.13773 0.32984 0.070301</span></span>
-<span id="cb13-155"><a href="decision-trees.html#cb13-155" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb13-156"><a href="decision-trees.html#cb13-156" aria-hidden="true" tabindex="-1"></a>varimp.data<span class="ot">=</span><span class="fu">data.frame</span>(body_model2<span class="sc">$</span>variable.importance)</span>
-<span id="cb13-157"><a href="decision-trees.html#cb13-157" aria-hidden="true" tabindex="-1"></a>varimp.data<span class="sc">$</span>names<span class="ot">=</span><span class="fu">as.character</span>(<span class="fu">rownames</span>(varimp.data))</span>
-<span id="cb13-158"><a href="decision-trees.html#cb13-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-159"><a href="decision-trees.html#cb13-159" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>varimp.data,<span class="fu">aes</span>(<span class="at">x=</span>names,<span class="at">y=</span>body_model2.variable.importance))<span class="sc">+</span><span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="sc">+</span><span class="fu">coord_flip</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Variable Name&quot;</span>,<span class="at">y=</span><span class="st">&quot;Variable Importance&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="decision-trees.html#cb13-1" tabindex="-1"></a><span class="do">###Regression</span></span>
+<span id="cb13-2"><a href="decision-trees.html#cb13-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">13172</span>) <span class="co"># Set Seed so that same sample can be reproduced in future also</span></span>
+<span id="cb13-3"><a href="decision-trees.html#cb13-3" tabindex="-1"></a><span class="co"># Now Selecting 75% of data as sample from total &#39;n&#39; rows of the data  </span></span>
+<span id="cb13-4"><a href="decision-trees.html#cb13-4" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="fu">nrow</span>(bodyfat), <span class="at">size =</span> <span class="fu">floor</span>(.<span class="dv">75</span><span class="sc">*</span><span class="fu">nrow</span>(bodyfat)), <span class="at">replace =</span> F)</span>
+<span id="cb13-5"><a href="decision-trees.html#cb13-5" tabindex="-1"></a>train <span class="ot">&lt;-</span> bodyfat[sample, ]</span>
+<span id="cb13-6"><a href="decision-trees.html#cb13-6" tabindex="-1"></a>test  <span class="ot">&lt;-</span> bodyfat[<span class="sc">-</span>sample, ] </span>
+<span id="cb13-7"><a href="decision-trees.html#cb13-7" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="decision-trees.html#cb13-8" tabindex="-1"></a>body_model<span class="ot">&lt;-</span><span class="fu">rpart</span>(DEXfat <span class="sc">~</span> age <span class="sc">+</span> waistcirc <span class="sc">+</span> hipcirc <span class="sc">+</span></span>
+<span id="cb13-9"><a href="decision-trees.html#cb13-9" tabindex="-1"></a>  elbowbreadth <span class="sc">+</span> kneebreadth, <span class="at">data =</span> train,</span>
+<span id="cb13-10"><a href="decision-trees.html#cb13-10" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">minsplit =</span> <span class="dv">10</span>))</span>
+<span id="cb13-11"><a href="decision-trees.html#cb13-11" tabindex="-1"></a> <span class="fu">summary</span>(body_model)</span>
+<span id="cb13-12"><a href="decision-trees.html#cb13-12" tabindex="-1"></a><span class="do">## Call:</span></span>
+<span id="cb13-13"><a href="decision-trees.html#cb13-13" tabindex="-1"></a><span class="do">## rpart(formula = DEXfat ~ age + waistcirc + hipcirc + elbowbreadth + </span></span>
+<span id="cb13-14"><a href="decision-trees.html#cb13-14" tabindex="-1"></a><span class="do">##     kneebreadth, data = train, control = rpart.control(minsplit = 10))</span></span>
+<span id="cb13-15"><a href="decision-trees.html#cb13-15" tabindex="-1"></a><span class="do">##   n= 53 </span></span>
+<span id="cb13-16"><a href="decision-trees.html#cb13-16" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-17"><a href="decision-trees.html#cb13-17" tabindex="-1"></a><span class="do">##           CP nsplit  rel error    xerror       xstd</span></span>
+<span id="cb13-18"><a href="decision-trees.html#cb13-18" tabindex="-1"></a><span class="do">## 1 0.67492210      0 1.00000000 1.0387549 0.19298200</span></span>
+<span id="cb13-19"><a href="decision-trees.html#cb13-19" tabindex="-1"></a><span class="do">## 2 0.12397892      1 0.32507790 0.3674702 0.09713363</span></span>
+<span id="cb13-20"><a href="decision-trees.html#cb13-20" tabindex="-1"></a><span class="do">## 3 0.06337174      2 0.20109898 0.3207674 0.07055438</span></span>
+<span id="cb13-21"><a href="decision-trees.html#cb13-21" tabindex="-1"></a><span class="do">## 4 0.04539485      3 0.13772723 0.3298414 0.07030078</span></span>
+<span id="cb13-22"><a href="decision-trees.html#cb13-22" tabindex="-1"></a><span class="do">## 5 0.01311181      4 0.09233238 0.2635804 0.07215928</span></span>
+<span id="cb13-23"><a href="decision-trees.html#cb13-23" tabindex="-1"></a><span class="do">## 6 0.01000000      5 0.07922057 0.2502471 0.06967234</span></span>
+<span id="cb13-24"><a href="decision-trees.html#cb13-24" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-25"><a href="decision-trees.html#cb13-25" tabindex="-1"></a><span class="do">## Variable importance</span></span>
+<span id="cb13-26"><a href="decision-trees.html#cb13-26" tabindex="-1"></a><span class="do">##    waistcirc      hipcirc  kneebreadth elbowbreadth          age </span></span>
+<span id="cb13-27"><a href="decision-trees.html#cb13-27" tabindex="-1"></a><span class="do">##           30           25           25           11            9 </span></span>
+<span id="cb13-28"><a href="decision-trees.html#cb13-28" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-29"><a href="decision-trees.html#cb13-29" tabindex="-1"></a><span class="do">## Node number 1: 53 observations,    complexity param=0.6749221</span></span>
+<span id="cb13-30"><a href="decision-trees.html#cb13-30" tabindex="-1"></a><span class="do">##   mean=31.98226, MSE=126.5508 </span></span>
+<span id="cb13-31"><a href="decision-trees.html#cb13-31" tabindex="-1"></a><span class="do">##   left son=2 (25 obs) right son=3 (28 obs)</span></span>
+<span id="cb13-32"><a href="decision-trees.html#cb13-32" tabindex="-1"></a><span class="do">##   Primary splits:</span></span>
+<span id="cb13-33"><a href="decision-trees.html#cb13-33" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 86.5   to the left,  improve=0.6749221, (0 missing)</span></span>
+<span id="cb13-34"><a href="decision-trees.html#cb13-34" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 109.25 to the left,  improve=0.6400649, (0 missing)</span></span>
+<span id="cb13-35"><a href="decision-trees.html#cb13-35" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 9.35   to the left,  improve=0.4913650, (0 missing)</span></span>
+<span id="cb13-36"><a href="decision-trees.html#cb13-36" tabindex="-1"></a><span class="do">##       age          &lt; 37     to the left,  improve=0.1897384, (0 missing)</span></span>
+<span id="cb13-37"><a href="decision-trees.html#cb13-37" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.55   to the left,  improve=0.1514361, (0 missing)</span></span>
+<span id="cb13-38"><a href="decision-trees.html#cb13-38" tabindex="-1"></a><span class="do">##   Surrogate splits:</span></span>
+<span id="cb13-39"><a href="decision-trees.html#cb13-39" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 107.85 to the left,  agree=0.887, adj=0.76, (0 split)</span></span>
+<span id="cb13-40"><a href="decision-trees.html#cb13-40" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 9.35   to the left,  agree=0.849, adj=0.68, (0 split)</span></span>
+<span id="cb13-41"><a href="decision-trees.html#cb13-41" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.55   to the left,  agree=0.679, adj=0.32, (0 split)</span></span>
+<span id="cb13-42"><a href="decision-trees.html#cb13-42" tabindex="-1"></a><span class="do">##       age          &lt; 37     to the left,  agree=0.660, adj=0.28, (0 split)</span></span>
+<span id="cb13-43"><a href="decision-trees.html#cb13-43" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-44"><a href="decision-trees.html#cb13-44" tabindex="-1"></a><span class="do">## Node number 2: 25 observations,    complexity param=0.04539485</span></span>
+<span id="cb13-45"><a href="decision-trees.html#cb13-45" tabindex="-1"></a><span class="do">##   mean=22.2016, MSE=24.60555 </span></span>
+<span id="cb13-46"><a href="decision-trees.html#cb13-46" tabindex="-1"></a><span class="do">##   left son=4 (11 obs) right son=5 (14 obs)</span></span>
+<span id="cb13-47"><a href="decision-trees.html#cb13-47" tabindex="-1"></a><span class="do">##   Primary splits:</span></span>
+<span id="cb13-48"><a href="decision-trees.html#cb13-48" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 96.5   to the left,  improve=0.49496490, (0 missing)</span></span>
+<span id="cb13-49"><a href="decision-trees.html#cb13-49" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 75.15  to the left,  improve=0.43069200, (0 missing)</span></span>
+<span id="cb13-50"><a href="decision-trees.html#cb13-50" tabindex="-1"></a><span class="do">##       age          &lt; 31.5   to the left,  improve=0.33752490, (0 missing)</span></span>
+<span id="cb13-51"><a href="decision-trees.html#cb13-51" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 8.55   to the left,  improve=0.24410760, (0 missing)</span></span>
+<span id="cb13-52"><a href="decision-trees.html#cb13-52" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.65   to the left,  improve=0.08933998, (0 missing)</span></span>
+<span id="cb13-53"><a href="decision-trees.html#cb13-53" tabindex="-1"></a><span class="do">##   Surrogate splits:</span></span>
+<span id="cb13-54"><a href="decision-trees.html#cb13-54" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 72     to the left,  agree=0.76, adj=0.455, (0 split)</span></span>
+<span id="cb13-55"><a href="decision-trees.html#cb13-55" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 8.25   to the left,  agree=0.76, adj=0.455, (0 split)</span></span>
+<span id="cb13-56"><a href="decision-trees.html#cb13-56" tabindex="-1"></a><span class="do">##       age          &lt; 31.5   to the left,  agree=0.72, adj=0.364, (0 split)</span></span>
+<span id="cb13-57"><a href="decision-trees.html#cb13-57" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.45   to the left,  agree=0.64, adj=0.182, (0 split)</span></span>
+<span id="cb13-58"><a href="decision-trees.html#cb13-58" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-59"><a href="decision-trees.html#cb13-59" tabindex="-1"></a><span class="do">## Node number 3: 28 observations,    complexity param=0.1239789</span></span>
+<span id="cb13-60"><a href="decision-trees.html#cb13-60" tabindex="-1"></a><span class="do">##   mean=40.715, MSE=55.90078 </span></span>
+<span id="cb13-61"><a href="decision-trees.html#cb13-61" tabindex="-1"></a><span class="do">##   left son=6 (25 obs) right son=7 (3 obs)</span></span>
+<span id="cb13-62"><a href="decision-trees.html#cb13-62" tabindex="-1"></a><span class="do">##   Primary splits:</span></span>
+<span id="cb13-63"><a href="decision-trees.html#cb13-63" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 11.15  to the left,  improve=0.53126700, (0 missing)</span></span>
+<span id="cb13-64"><a href="decision-trees.html#cb13-64" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 109.9  to the left,  improve=0.49501800, (0 missing)</span></span>
+<span id="cb13-65"><a href="decision-trees.html#cb13-65" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 106    to the left,  improve=0.48547170, (0 missing)</span></span>
+<span id="cb13-66"><a href="decision-trees.html#cb13-66" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.35   to the left,  improve=0.18322950, (0 missing)</span></span>
+<span id="cb13-67"><a href="decision-trees.html#cb13-67" tabindex="-1"></a><span class="do">##       age          &lt; 64     to the left,  improve=0.06033762, (0 missing)</span></span>
+<span id="cb13-68"><a href="decision-trees.html#cb13-68" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-69"><a href="decision-trees.html#cb13-69" tabindex="-1"></a><span class="do">## Node number 4: 11 observations,    complexity param=0.01311181</span></span>
+<span id="cb13-70"><a href="decision-trees.html#cb13-70" tabindex="-1"></a><span class="do">##   mean=18.26455, MSE=16.37561 </span></span>
+<span id="cb13-71"><a href="decision-trees.html#cb13-71" tabindex="-1"></a><span class="do">##   left son=8 (7 obs) right son=9 (4 obs)</span></span>
+<span id="cb13-72"><a href="decision-trees.html#cb13-72" tabindex="-1"></a><span class="do">##   Primary splits:</span></span>
+<span id="cb13-73"><a href="decision-trees.html#cb13-73" tabindex="-1"></a><span class="do">##       age          &lt; 56.5   to the left,  improve=0.48821750, (0 missing)</span></span>
+<span id="cb13-74"><a href="decision-trees.html#cb13-74" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 77.5   to the left,  improve=0.37437570, (0 missing)</span></span>
+<span id="cb13-75"><a href="decision-trees.html#cb13-75" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 94.1   to the left,  improve=0.26063300, (0 missing)</span></span>
+<span id="cb13-76"><a href="decision-trees.html#cb13-76" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 8.55   to the left,  improve=0.02392090, (0 missing)</span></span>
+<span id="cb13-77"><a href="decision-trees.html#cb13-77" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.15   to the left,  improve=0.02295546, (0 missing)</span></span>
+<span id="cb13-78"><a href="decision-trees.html#cb13-78" tabindex="-1"></a><span class="do">##   Surrogate splits:</span></span>
+<span id="cb13-79"><a href="decision-trees.html#cb13-79" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 77.5   to the left,  agree=0.818, adj=0.50, (0 split)</span></span>
+<span id="cb13-80"><a href="decision-trees.html#cb13-80" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.55   to the left,  agree=0.818, adj=0.50, (0 split)</span></span>
+<span id="cb13-81"><a href="decision-trees.html#cb13-81" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 91.5   to the right, agree=0.727, adj=0.25, (0 split)</span></span>
+<span id="cb13-82"><a href="decision-trees.html#cb13-82" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-83"><a href="decision-trees.html#cb13-83" tabindex="-1"></a><span class="do">## Node number 5: 14 observations</span></span>
+<span id="cb13-84"><a href="decision-trees.html#cb13-84" tabindex="-1"></a><span class="do">##   mean=25.295, MSE=9.323925 </span></span>
+<span id="cb13-85"><a href="decision-trees.html#cb13-85" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-86"><a href="decision-trees.html#cb13-86" tabindex="-1"></a><span class="do">## Node number 6: 25 observations,    complexity param=0.06337174</span></span>
+<span id="cb13-87"><a href="decision-trees.html#cb13-87" tabindex="-1"></a><span class="do">##   mean=38.8272, MSE=23.49564 </span></span>
+<span id="cb13-88"><a href="decision-trees.html#cb13-88" tabindex="-1"></a><span class="do">##   left son=12 (11 obs) right son=13 (14 obs)</span></span>
+<span id="cb13-89"><a href="decision-trees.html#cb13-89" tabindex="-1"></a><span class="do">##   Primary splits:</span></span>
+<span id="cb13-90"><a href="decision-trees.html#cb13-90" tabindex="-1"></a><span class="do">##       hipcirc      &lt; 109.9  to the left,  improve=0.72361790, (0 missing)</span></span>
+<span id="cb13-91"><a href="decision-trees.html#cb13-91" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 98.75  to the left,  improve=0.46229770, (0 missing)</span></span>
+<span id="cb13-92"><a href="decision-trees.html#cb13-92" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.35   to the left,  improve=0.24168590, (0 missing)</span></span>
+<span id="cb13-93"><a href="decision-trees.html#cb13-93" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 9.9    to the left,  improve=0.22697980, (0 missing)</span></span>
+<span id="cb13-94"><a href="decision-trees.html#cb13-94" tabindex="-1"></a><span class="do">##       age          &lt; 60.5   to the left,  improve=0.03275597, (0 missing)</span></span>
+<span id="cb13-95"><a href="decision-trees.html#cb13-95" tabindex="-1"></a><span class="do">##   Surrogate splits:</span></span>
+<span id="cb13-96"><a href="decision-trees.html#cb13-96" tabindex="-1"></a><span class="do">##       waistcirc    &lt; 98.75  to the left,  agree=0.84, adj=0.636, (0 split)</span></span>
+<span id="cb13-97"><a href="decision-trees.html#cb13-97" tabindex="-1"></a><span class="do">##       elbowbreadth &lt; 6.45   to the left,  agree=0.76, adj=0.455, (0 split)</span></span>
+<span id="cb13-98"><a href="decision-trees.html#cb13-98" tabindex="-1"></a><span class="do">##       kneebreadth  &lt; 8.75   to the left,  agree=0.68, adj=0.273, (0 split)</span></span>
+<span id="cb13-99"><a href="decision-trees.html#cb13-99" tabindex="-1"></a><span class="do">##       age          &lt; 49.5   to the right, agree=0.60, adj=0.091, (0 split)</span></span>
+<span id="cb13-100"><a href="decision-trees.html#cb13-100" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-101"><a href="decision-trees.html#cb13-101" tabindex="-1"></a><span class="do">## Node number 7: 3 observations</span></span>
+<span id="cb13-102"><a href="decision-trees.html#cb13-102" tabindex="-1"></a><span class="do">##   mean=56.44667, MSE=48.76009 </span></span>
+<span id="cb13-103"><a href="decision-trees.html#cb13-103" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-104"><a href="decision-trees.html#cb13-104" tabindex="-1"></a><span class="do">## Node number 8: 7 observations</span></span>
+<span id="cb13-105"><a href="decision-trees.html#cb13-105" tabindex="-1"></a><span class="do">##   mean=16.12714, MSE=8.875049 </span></span>
+<span id="cb13-106"><a href="decision-trees.html#cb13-106" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-107"><a href="decision-trees.html#cb13-107" tabindex="-1"></a><span class="do">## Node number 9: 4 observations</span></span>
+<span id="cb13-108"><a href="decision-trees.html#cb13-108" tabindex="-1"></a><span class="do">##   mean=22.005, MSE=7.515725 </span></span>
+<span id="cb13-109"><a href="decision-trees.html#cb13-109" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-110"><a href="decision-trees.html#cb13-110" tabindex="-1"></a><span class="do">## Node number 12: 11 observations</span></span>
+<span id="cb13-111"><a href="decision-trees.html#cb13-111" tabindex="-1"></a><span class="do">##   mean=34.17545, MSE=7.173207 </span></span>
+<span id="cb13-112"><a href="decision-trees.html#cb13-112" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-113"><a href="decision-trees.html#cb13-113" tabindex="-1"></a><span class="do">## Node number 13: 14 observations</span></span>
+<span id="cb13-114"><a href="decision-trees.html#cb13-114" tabindex="-1"></a><span class="do">##   mean=42.48214, MSE=5.959931</span></span>
+<span id="cb13-115"><a href="decision-trees.html#cb13-115" tabindex="-1"></a> <span class="fu">printcp</span>(body_model)</span>
+<span id="cb13-116"><a href="decision-trees.html#cb13-116" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-117"><a href="decision-trees.html#cb13-117" tabindex="-1"></a><span class="do">## Regression tree:</span></span>
+<span id="cb13-118"><a href="decision-trees.html#cb13-118" tabindex="-1"></a><span class="do">## rpart(formula = DEXfat ~ age + waistcirc + hipcirc + elbowbreadth + </span></span>
+<span id="cb13-119"><a href="decision-trees.html#cb13-119" tabindex="-1"></a><span class="do">##     kneebreadth, data = train, control = rpart.control(minsplit = 10))</span></span>
+<span id="cb13-120"><a href="decision-trees.html#cb13-120" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-121"><a href="decision-trees.html#cb13-121" tabindex="-1"></a><span class="do">## Variables actually used in tree construction:</span></span>
+<span id="cb13-122"><a href="decision-trees.html#cb13-122" tabindex="-1"></a><span class="do">## [1] age         hipcirc     kneebreadth waistcirc  </span></span>
+<span id="cb13-123"><a href="decision-trees.html#cb13-123" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-124"><a href="decision-trees.html#cb13-124" tabindex="-1"></a><span class="do">## Root node error: 6707.2/53 = 126.55</span></span>
+<span id="cb13-125"><a href="decision-trees.html#cb13-125" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-126"><a href="decision-trees.html#cb13-126" tabindex="-1"></a><span class="do">## n= 53 </span></span>
+<span id="cb13-127"><a href="decision-trees.html#cb13-127" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-128"><a href="decision-trees.html#cb13-128" tabindex="-1"></a><span class="do">##         CP nsplit rel error  xerror     xstd</span></span>
+<span id="cb13-129"><a href="decision-trees.html#cb13-129" tabindex="-1"></a><span class="do">## 1 0.674922      0  1.000000 1.03875 0.192982</span></span>
+<span id="cb13-130"><a href="decision-trees.html#cb13-130" tabindex="-1"></a><span class="do">## 2 0.123979      1  0.325078 0.36747 0.097134</span></span>
+<span id="cb13-131"><a href="decision-trees.html#cb13-131" tabindex="-1"></a><span class="do">## 3 0.063372      2  0.201099 0.32077 0.070554</span></span>
+<span id="cb13-132"><a href="decision-trees.html#cb13-132" tabindex="-1"></a><span class="do">## 4 0.045395      3  0.137727 0.32984 0.070301</span></span>
+<span id="cb13-133"><a href="decision-trees.html#cb13-133" tabindex="-1"></a><span class="do">## 5 0.013112      4  0.092332 0.26358 0.072159</span></span>
+<span id="cb13-134"><a href="decision-trees.html#cb13-134" tabindex="-1"></a><span class="do">## 6 0.010000      5  0.079221 0.25025 0.069672</span></span>
+<span id="cb13-135"><a href="decision-trees.html#cb13-135" tabindex="-1"></a> </span>
+<span id="cb13-136"><a href="decision-trees.html#cb13-136" tabindex="-1"></a> body_model2<span class="ot">&lt;-</span><span class="fu">prune</span>(body_model,<span class="at">cp=</span><span class="fl">0.05175731</span>)</span>
+<span id="cb13-137"><a href="decision-trees.html#cb13-137" tabindex="-1"></a> <span class="fu">printcp</span>(body_model2)</span>
+<span id="cb13-138"><a href="decision-trees.html#cb13-138" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-139"><a href="decision-trees.html#cb13-139" tabindex="-1"></a><span class="do">## Regression tree:</span></span>
+<span id="cb13-140"><a href="decision-trees.html#cb13-140" tabindex="-1"></a><span class="do">## rpart(formula = DEXfat ~ age + waistcirc + hipcirc + elbowbreadth + </span></span>
+<span id="cb13-141"><a href="decision-trees.html#cb13-141" tabindex="-1"></a><span class="do">##     kneebreadth, data = train, control = rpart.control(minsplit = 10))</span></span>
+<span id="cb13-142"><a href="decision-trees.html#cb13-142" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-143"><a href="decision-trees.html#cb13-143" tabindex="-1"></a><span class="do">## Variables actually used in tree construction:</span></span>
+<span id="cb13-144"><a href="decision-trees.html#cb13-144" tabindex="-1"></a><span class="do">## [1] hipcirc     kneebreadth waistcirc  </span></span>
+<span id="cb13-145"><a href="decision-trees.html#cb13-145" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-146"><a href="decision-trees.html#cb13-146" tabindex="-1"></a><span class="do">## Root node error: 6707.2/53 = 126.55</span></span>
+<span id="cb13-147"><a href="decision-trees.html#cb13-147" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-148"><a href="decision-trees.html#cb13-148" tabindex="-1"></a><span class="do">## n= 53 </span></span>
+<span id="cb13-149"><a href="decision-trees.html#cb13-149" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb13-150"><a href="decision-trees.html#cb13-150" tabindex="-1"></a><span class="do">##         CP nsplit rel error  xerror     xstd</span></span>
+<span id="cb13-151"><a href="decision-trees.html#cb13-151" tabindex="-1"></a><span class="do">## 1 0.674922      0   1.00000 1.03875 0.192982</span></span>
+<span id="cb13-152"><a href="decision-trees.html#cb13-152" tabindex="-1"></a><span class="do">## 2 0.123979      1   0.32508 0.36747 0.097134</span></span>
+<span id="cb13-153"><a href="decision-trees.html#cb13-153" tabindex="-1"></a><span class="do">## 3 0.063372      2   0.20110 0.32077 0.070554</span></span>
+<span id="cb13-154"><a href="decision-trees.html#cb13-154" tabindex="-1"></a><span class="do">## 4 0.051757      3   0.13773 0.32984 0.070301</span></span>
+<span id="cb13-155"><a href="decision-trees.html#cb13-155" tabindex="-1"></a> </span>
+<span id="cb13-156"><a href="decision-trees.html#cb13-156" tabindex="-1"></a>varimp.data<span class="ot">=</span><span class="fu">data.frame</span>(body_model2<span class="sc">$</span>variable.importance)</span>
+<span id="cb13-157"><a href="decision-trees.html#cb13-157" tabindex="-1"></a>varimp.data<span class="sc">$</span>names<span class="ot">=</span><span class="fu">as.character</span>(<span class="fu">rownames</span>(varimp.data))</span>
+<span id="cb13-158"><a href="decision-trees.html#cb13-158" tabindex="-1"></a></span>
+<span id="cb13-159"><a href="decision-trees.html#cb13-159" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>varimp.data,<span class="fu">aes</span>(<span class="at">x=</span>names,<span class="at">y=</span>body_model2.variable.importance))<span class="sc">+</span><span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="sc">+</span><span class="fu">coord_flip</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Variable Name&quot;</span>,<span class="at">y=</span><span class="st">&quot;Variable Importance&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/Regression%20Trees-1.png" width="672" /></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="decision-trees.html#cb14-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-2"><a href="decision-trees.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="decision-trees.html#cb14-3" aria-hidden="true" tabindex="-1"></a>tscores <span class="ot">=</span> <span class="fu">predict</span>(body_model2,<span class="at">type=</span><span class="st">&#39;vector&#39;</span>)</span>
-<span id="cb14-4"><a href="decision-trees.html#cb14-4" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">=</span> <span class="fu">predict</span>(body_model2, test, <span class="at">type=</span><span class="st">&#39;vector&#39;</span>)</span>
-<span id="cb14-5"><a href="decision-trees.html#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="decision-trees.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="do">##Training measures:</span></span>
-<span id="cb14-7"><a href="decision-trees.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(tscores<span class="sc">-</span>train<span class="sc">$</span>DEXfat))</span>
-<span id="cb14-8"><a href="decision-trees.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 3.338013</span></span>
-<span id="cb14-9"><a href="decision-trees.html#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>((tscores<span class="sc">-</span>train<span class="sc">$</span>DEXfat)<span class="sc">/</span>train<span class="sc">$</span>DEXfat))</span>
-<span id="cb14-10"><a href="decision-trees.html#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.1357316</span></span>
-<span id="cb14-11"><a href="decision-trees.html#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="decision-trees.html#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="do">### Test data:</span></span>
-<span id="cb14-13"><a href="decision-trees.html#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(scores<span class="sc">-</span>test<span class="sc">$</span>DEXfat))</span>
-<span id="cb14-14"><a href="decision-trees.html#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 5.622164</span></span>
-<span id="cb14-15"><a href="decision-trees.html#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>((scores<span class="sc">-</span>test<span class="sc">$</span>DEXfat)<span class="sc">/</span>test<span class="sc">$</span>DEXfat))</span>
-<span id="cb14-16"><a href="decision-trees.html#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.2492064</span></span>
-<span id="cb14-17"><a href="decision-trees.html#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-18"><a href="decision-trees.html#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-19"><a href="decision-trees.html#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(body_model2)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="decision-trees.html#cb14-1" tabindex="-1"></a></span>
+<span id="cb14-2"><a href="decision-trees.html#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="decision-trees.html#cb14-3" tabindex="-1"></a>tscores <span class="ot">=</span> <span class="fu">predict</span>(body_model2,<span class="at">type=</span><span class="st">&#39;vector&#39;</span>)</span>
+<span id="cb14-4"><a href="decision-trees.html#cb14-4" tabindex="-1"></a>scores <span class="ot">=</span> <span class="fu">predict</span>(body_model2, test, <span class="at">type=</span><span class="st">&#39;vector&#39;</span>)</span>
+<span id="cb14-5"><a href="decision-trees.html#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="decision-trees.html#cb14-6" tabindex="-1"></a><span class="do">##Training measures:</span></span>
+<span id="cb14-7"><a href="decision-trees.html#cb14-7" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(tscores<span class="sc">-</span>train<span class="sc">$</span>DEXfat))</span>
+<span id="cb14-8"><a href="decision-trees.html#cb14-8" tabindex="-1"></a><span class="do">## [1] 3.338013</span></span>
+<span id="cb14-9"><a href="decision-trees.html#cb14-9" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>((tscores<span class="sc">-</span>train<span class="sc">$</span>DEXfat)<span class="sc">/</span>train<span class="sc">$</span>DEXfat))</span>
+<span id="cb14-10"><a href="decision-trees.html#cb14-10" tabindex="-1"></a><span class="do">## [1] 0.1357316</span></span>
+<span id="cb14-11"><a href="decision-trees.html#cb14-11" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="decision-trees.html#cb14-12" tabindex="-1"></a><span class="do">### Test data:</span></span>
+<span id="cb14-13"><a href="decision-trees.html#cb14-13" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(scores<span class="sc">-</span>test<span class="sc">$</span>DEXfat))</span>
+<span id="cb14-14"><a href="decision-trees.html#cb14-14" tabindex="-1"></a><span class="do">## [1] 5.622164</span></span>
+<span id="cb14-15"><a href="decision-trees.html#cb14-15" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>((scores<span class="sc">-</span>test<span class="sc">$</span>DEXfat)<span class="sc">/</span>test<span class="sc">$</span>DEXfat))</span>
+<span id="cb14-16"><a href="decision-trees.html#cb14-16" tabindex="-1"></a><span class="do">## [1] 0.2492064</span></span>
+<span id="cb14-17"><a href="decision-trees.html#cb14-17" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="decision-trees.html#cb14-18" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="decision-trees.html#cb14-19" tabindex="-1"></a><span class="fu">rpart.plot</span>(body_model2)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/Regression%20Trees-2.png" width="672" /></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="decision-trees.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rsq.rpart</span>(body_model2)</span>
-<span id="cb15-2"><a href="decision-trees.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb15-3"><a href="decision-trees.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Regression tree:</span></span>
-<span id="cb15-4"><a href="decision-trees.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## rpart(formula = DEXfat ~ age + waistcirc + hipcirc + elbowbreadth + </span></span>
-<span id="cb15-5"><a href="decision-trees.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="do">##     kneebreadth, data = train, control = rpart.control(minsplit = 10))</span></span>
-<span id="cb15-6"><a href="decision-trees.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb15-7"><a href="decision-trees.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Variables actually used in tree construction:</span></span>
-<span id="cb15-8"><a href="decision-trees.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] hipcirc     kneebreadth waistcirc  </span></span>
-<span id="cb15-9"><a href="decision-trees.html#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb15-10"><a href="decision-trees.html#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Root node error: 6707.2/53 = 126.55</span></span>
-<span id="cb15-11"><a href="decision-trees.html#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb15-12"><a href="decision-trees.html#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="do">## n= 53 </span></span>
-<span id="cb15-13"><a href="decision-trees.html#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb15-14"><a href="decision-trees.html#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="do">##         CP nsplit rel error  xerror     xstd</span></span>
-<span id="cb15-15"><a href="decision-trees.html#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 0.674922      0   1.00000 1.03875 0.192982</span></span>
-<span id="cb15-16"><a href="decision-trees.html#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 0.123979      1   0.32508 0.36747 0.097134</span></span>
-<span id="cb15-17"><a href="decision-trees.html#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 0.063372      2   0.20110 0.32077 0.070554</span></span>
-<span id="cb15-18"><a href="decision-trees.html#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 0.051757      3   0.13773 0.32984 0.070301</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="decision-trees.html#cb15-1" tabindex="-1"></a><span class="fu">rsq.rpart</span>(body_model2)</span>
+<span id="cb15-2"><a href="decision-trees.html#cb15-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb15-3"><a href="decision-trees.html#cb15-3" tabindex="-1"></a><span class="do">## Regression tree:</span></span>
+<span id="cb15-4"><a href="decision-trees.html#cb15-4" tabindex="-1"></a><span class="do">## rpart(formula = DEXfat ~ age + waistcirc + hipcirc + elbowbreadth + </span></span>
+<span id="cb15-5"><a href="decision-trees.html#cb15-5" tabindex="-1"></a><span class="do">##     kneebreadth, data = train, control = rpart.control(minsplit = 10))</span></span>
+<span id="cb15-6"><a href="decision-trees.html#cb15-6" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb15-7"><a href="decision-trees.html#cb15-7" tabindex="-1"></a><span class="do">## Variables actually used in tree construction:</span></span>
+<span id="cb15-8"><a href="decision-trees.html#cb15-8" tabindex="-1"></a><span class="do">## [1] hipcirc     kneebreadth waistcirc  </span></span>
+<span id="cb15-9"><a href="decision-trees.html#cb15-9" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb15-10"><a href="decision-trees.html#cb15-10" tabindex="-1"></a><span class="do">## Root node error: 6707.2/53 = 126.55</span></span>
+<span id="cb15-11"><a href="decision-trees.html#cb15-11" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb15-12"><a href="decision-trees.html#cb15-12" tabindex="-1"></a><span class="do">## n= 53 </span></span>
+<span id="cb15-13"><a href="decision-trees.html#cb15-13" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb15-14"><a href="decision-trees.html#cb15-14" tabindex="-1"></a><span class="do">##         CP nsplit rel error  xerror     xstd</span></span>
+<span id="cb15-15"><a href="decision-trees.html#cb15-15" tabindex="-1"></a><span class="do">## 1 0.674922      0   1.00000 1.03875 0.192982</span></span>
+<span id="cb15-16"><a href="decision-trees.html#cb15-16" tabindex="-1"></a><span class="do">## 2 0.123979      1   0.32508 0.36747 0.097134</span></span>
+<span id="cb15-17"><a href="decision-trees.html#cb15-17" tabindex="-1"></a><span class="do">## 3 0.063372      2   0.20110 0.32077 0.070554</span></span>
+<span id="cb15-18"><a href="decision-trees.html#cb15-18" tabindex="-1"></a><span class="do">## 4 0.051757      3   0.13773 0.32984 0.070301</span></span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/Regression%20Trees-3.png" width="672" /><img src="bookdownproj_files/figure-html/Regression%20Trees-4.png" width="672" /></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="decision-trees.html#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-2"><a href="decision-trees.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="do">###Another nice plot</span></span>
-<span id="cb16-3"><a href="decision-trees.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fancyRpartPlot</span>(body_model2, <span class="at">uniform=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="decision-trees.html#cb16-1" tabindex="-1"></a></span>
+<span id="cb16-2"><a href="decision-trees.html#cb16-2" tabindex="-1"></a><span class="do">###Another nice plot</span></span>
+<span id="cb16-3"><a href="decision-trees.html#cb16-3" tabindex="-1"></a><span class="fu">fancyRpartPlot</span>(body_model2, <span class="at">uniform=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/Regression%20Trees-5.png" width="672" /></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="decision-trees.html#cb17-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-2"><a href="decision-trees.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="decision-trees.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="do">##Can also visualize the cp values</span></span>
-<span id="cb17-4"><a href="decision-trees.html#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="decision-trees.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plotcp</span>(body_model)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="decision-trees.html#cb17-1" tabindex="-1"></a></span>
+<span id="cb17-2"><a href="decision-trees.html#cb17-2" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="decision-trees.html#cb17-3" tabindex="-1"></a><span class="do">##Can also visualize the cp values</span></span>
+<span id="cb17-4"><a href="decision-trees.html#cb17-4" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="decision-trees.html#cb17-5" tabindex="-1"></a><span class="fu">plotcp</span>(body_model)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/Regression%20Trees-6.png" width="672" /></p>
 </div>
 <div id="recursive-partitioning-with-partykit" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Recursive partitioning with partykit<a href="decision-trees.html#recursive-partitioning-with-partykit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="decision-trees.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Classification example:</span></span>
-<span id="cb18-2"><a href="decision-trees.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="decision-trees.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7515</span>)</span>
-<span id="cb18-4"><a href="decision-trees.html#cb18-4" aria-hidden="true" tabindex="-1"></a>perm<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">699</span>)</span>
-<span id="cb18-5"><a href="decision-trees.html#cb18-5" aria-hidden="true" tabindex="-1"></a>BC_randomOrder<span class="ot">=</span>BCdata[perm,]</span>
-<span id="cb18-6"><a href="decision-trees.html#cb18-6" aria-hidden="true" tabindex="-1"></a>train <span class="ot">=</span> BC_randomOrder[<span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>),]</span>
-<span id="cb18-7"><a href="decision-trees.html#cb18-7" aria-hidden="true" tabindex="-1"></a>model1<span class="ot">=</span><span class="fu">ctree</span>(Target <span class="sc">~</span> . <span class="sc">-</span> ID, <span class="at">data=</span>train)</span>
-<span id="cb18-8"><a href="decision-trees.html#cb18-8" aria-hidden="true" tabindex="-1"></a>model1</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="decision-trees.html#cb18-1" tabindex="-1"></a><span class="do">### Classification example:</span></span>
+<span id="cb18-2"><a href="decision-trees.html#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="decision-trees.html#cb18-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7515</span>)</span>
+<span id="cb18-4"><a href="decision-trees.html#cb18-4" tabindex="-1"></a>perm<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">699</span>)</span>
+<span id="cb18-5"><a href="decision-trees.html#cb18-5" tabindex="-1"></a>BC_randomOrder<span class="ot">=</span>BCdata[perm,]</span>
+<span id="cb18-6"><a href="decision-trees.html#cb18-6" tabindex="-1"></a>train <span class="ot">=</span> BC_randomOrder[<span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>),]</span>
+<span id="cb18-7"><a href="decision-trees.html#cb18-7" tabindex="-1"></a>model1<span class="ot">=</span><span class="fu">ctree</span>(Target <span class="sc">~</span> . <span class="sc">-</span> ID, <span class="at">data=</span>train)</span>
+<span id="cb18-8"><a href="decision-trees.html#cb18-8" tabindex="-1"></a>model1</span></code></pre></div>
 <pre><code>## 
 ## Model formula:
 ## Target ~ CT + Size + Shape + Margin + Epithelial + Bare + Chromatin + 
@@ -590,15 +599,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of inner nodes:     9
 ## Number of terminal nodes: 10</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="decision-trees.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="decision-trees.html#cb20-1" tabindex="-1"></a><span class="fu">plot</span>(model1)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="decision-trees.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">###Regression example:</span></span>
-<span id="cb21-2"><a href="decision-trees.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">13172</span>) </span>
-<span id="cb21-3"><a href="decision-trees.html#cb21-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="fu">nrow</span>(bodyfat), <span class="at">size =</span> <span class="fu">floor</span>(.<span class="dv">75</span><span class="sc">*</span><span class="fu">nrow</span>(bodyfat)), <span class="at">replace =</span> F)</span>
-<span id="cb21-4"><a href="decision-trees.html#cb21-4" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> bodyfat[sample, ]</span>
-<span id="cb21-5"><a href="decision-trees.html#cb21-5" aria-hidden="true" tabindex="-1"></a>model1<span class="ot">&lt;-</span><span class="fu">ctree</span>(DEXfat <span class="sc">~</span> age <span class="sc">+</span> waistcirc <span class="sc">+</span> hipcirc <span class="sc">+</span> elbowbreadth <span class="sc">+</span> </span>
-<span id="cb21-6"><a href="decision-trees.html#cb21-6" aria-hidden="true" tabindex="-1"></a>                kneebreadth, <span class="at">data =</span> train)</span>
-<span id="cb21-7"><a href="decision-trees.html#cb21-7" aria-hidden="true" tabindex="-1"></a>model1</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="decision-trees.html#cb21-1" tabindex="-1"></a><span class="do">###Regression example:</span></span>
+<span id="cb21-2"><a href="decision-trees.html#cb21-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">13172</span>) </span>
+<span id="cb21-3"><a href="decision-trees.html#cb21-3" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="fu">nrow</span>(bodyfat), <span class="at">size =</span> <span class="fu">floor</span>(.<span class="dv">75</span><span class="sc">*</span><span class="fu">nrow</span>(bodyfat)), <span class="at">replace =</span> F)</span>
+<span id="cb21-4"><a href="decision-trees.html#cb21-4" tabindex="-1"></a>train <span class="ot">&lt;-</span> bodyfat[sample, ]</span>
+<span id="cb21-5"><a href="decision-trees.html#cb21-5" tabindex="-1"></a>model1<span class="ot">&lt;-</span><span class="fu">ctree</span>(DEXfat <span class="sc">~</span> age <span class="sc">+</span> waistcirc <span class="sc">+</span> hipcirc <span class="sc">+</span> elbowbreadth <span class="sc">+</span> </span>
+<span id="cb21-6"><a href="decision-trees.html#cb21-6" tabindex="-1"></a>                kneebreadth, <span class="at">data =</span> train)</span>
+<span id="cb21-7"><a href="decision-trees.html#cb21-7" tabindex="-1"></a>model1</span></code></pre></div>
 <pre><code>## 
 ## Model formula:
 ## DEXfat ~ age + waistcirc + hipcirc + elbowbreadth + kneebreadth
@@ -614,14 +623,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of inner nodes:    3
 ## Number of terminal nodes: 4</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="decision-trees.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="decision-trees.html#cb23-1" tabindex="-1"></a><span class="fu">plot</span>(model1)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="decision-trees.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Example for binning data:</span></span>
-<span id="cb24-2"><a href="decision-trees.html#cb24-2" aria-hidden="true" tabindex="-1"></a>churn<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;Q:</span><span class="sc">\\</span><span class="st">My Drive</span><span class="sc">\\</span><span class="st">Data Mining</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">tele_churn.csv&quot;</span>)</span>
-<span id="cb24-3"><a href="decision-trees.html#cb24-3" aria-hidden="true" tabindex="-1"></a>churn<span class="sc">$</span>y<span class="ot">&lt;-</span><span class="fu">ifelse</span>(churn<span class="sc">$</span>churn<span class="sc">==</span><span class="st">&quot;TRUE&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb24-4"><a href="decision-trees.html#cb24-4" aria-hidden="true" tabindex="-1"></a>churn<span class="sc">$</span>y<span class="ot">&lt;-</span><span class="fu">ordered</span>(churn<span class="sc">$</span>y,<span class="at">levels=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">labels=</span><span class="st">&quot;No&quot;</span>,<span class="st">&quot;Yes&quot;</span>)</span>
-<span id="cb24-5"><a href="decision-trees.html#cb24-5" aria-hidden="true" tabindex="-1"></a>model1<span class="ot">&lt;-</span><span class="fu">ctree</span>(y<span class="sc">~</span>total.day.minutes,<span class="at">data=</span>churn)</span>
-<span id="cb24-6"><a href="decision-trees.html#cb24-6" aria-hidden="true" tabindex="-1"></a>model1</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="decision-trees.html#cb24-1" tabindex="-1"></a><span class="do">### Example for binning data:</span></span>
+<span id="cb24-2"><a href="decision-trees.html#cb24-2" tabindex="-1"></a>churn<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;Q:</span><span class="sc">\\</span><span class="st">My Drive</span><span class="sc">\\</span><span class="st">Data Mining</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">tele_churn.csv&quot;</span>)</span>
+<span id="cb24-3"><a href="decision-trees.html#cb24-3" tabindex="-1"></a>churn<span class="sc">$</span>y<span class="ot">&lt;-</span><span class="fu">ifelse</span>(churn<span class="sc">$</span>churn<span class="sc">==</span><span class="st">&quot;TRUE&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb24-4"><a href="decision-trees.html#cb24-4" tabindex="-1"></a>churn<span class="sc">$</span>y<span class="ot">&lt;-</span><span class="fu">ordered</span>(churn<span class="sc">$</span>y,<span class="at">levels=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">labels=</span><span class="st">&quot;No&quot;</span>,<span class="st">&quot;Yes&quot;</span>)</span>
+<span id="cb24-5"><a href="decision-trees.html#cb24-5" tabindex="-1"></a>model1<span class="ot">&lt;-</span><span class="fu">ctree</span>(y<span class="sc">~</span>total.day.minutes,<span class="at">data=</span>churn)</span>
+<span id="cb24-6"><a href="decision-trees.html#cb24-6" tabindex="-1"></a>model1</span></code></pre></div>
 <pre><code>## 
 ## Model formula:
 ## y ~ total.day.minutes
@@ -635,24 +644,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of inner nodes:    2
 ## Number of terminal nodes: 3</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="decision-trees.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="decision-trees.html#cb26-1" tabindex="-1"></a><span class="fu">plot</span>(model1)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
 <p>Some interesting extra tidbits!! This shows how to do ROC curves and lift curves for classification trees.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="decision-trees.html#cb27-1" aria-hidden="true" tabindex="-1"></a>test <span class="ot">=</span> BC_randomOrder[(<span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">699</span>,]</span>
-<span id="cb27-2"><a href="decision-trees.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="do">###Lift (from classification trees)</span></span>
-<span id="cb27-3"><a href="decision-trees.html#cb27-3" aria-hidden="true" tabindex="-1"></a>scores1<span class="ot">=</span><span class="fu">predict</span>(BC.tree,test,<span class="at">type=</span><span class="st">&quot;prob&quot;</span>)</span>
-<span id="cb27-4"><a href="decision-trees.html#cb27-4" aria-hidden="true" tabindex="-1"></a>pred_val <span class="ot">&lt;-</span><span class="fu">prediction</span>(scores1[,<span class="dv">2</span>],test<span class="sc">$</span>Target)</span>
-<span id="cb27-5"><a href="decision-trees.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">performance</span>(pred_val, <span class="at">measure=</span><span class="st">&quot;lift&quot;</span>, <span class="at">x.measure=</span><span class="st">&quot;rpp&quot;</span>), <span class="at">colorize=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="decision-trees.html#cb27-1" tabindex="-1"></a>test <span class="ot">=</span> BC_randomOrder[(<span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">699</span>,]</span>
+<span id="cb27-2"><a href="decision-trees.html#cb27-2" tabindex="-1"></a><span class="do">###Lift (from classification trees)</span></span>
+<span id="cb27-3"><a href="decision-trees.html#cb27-3" tabindex="-1"></a>scores1<span class="ot">=</span><span class="fu">predict</span>(BC.tree,test,<span class="at">type=</span><span class="st">&quot;prob&quot;</span>)</span>
+<span id="cb27-4"><a href="decision-trees.html#cb27-4" tabindex="-1"></a>pred_val <span class="ot">&lt;-</span><span class="fu">prediction</span>(scores1[,<span class="dv">2</span>],test<span class="sc">$</span>Target)</span>
+<span id="cb27-5"><a href="decision-trees.html#cb27-5" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">performance</span>(pred_val, <span class="at">measure=</span><span class="st">&quot;lift&quot;</span>, <span class="at">x.measure=</span><span class="st">&quot;rpp&quot;</span>), <span class="at">colorize=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/extras-1.png" width="672" /></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="decision-trees.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating True Positive and False Positive Rate</span></span>
-<span id="cb28-2"><a href="decision-trees.html#cb28-2" aria-hidden="true" tabindex="-1"></a>perf_val <span class="ot">&lt;-</span> <span class="fu">performance</span>(pred_val, <span class="st">&quot;tpr&quot;</span>, <span class="st">&quot;fpr&quot;</span>)</span>
-<span id="cb28-3"><a href="decision-trees.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot the ROC curve</span></span>
-<span id="cb28-4"><a href="decision-trees.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(perf_val, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="decision-trees.html#cb28-1" tabindex="-1"></a><span class="co"># Calculating True Positive and False Positive Rate</span></span>
+<span id="cb28-2"><a href="decision-trees.html#cb28-2" tabindex="-1"></a>perf_val <span class="ot">&lt;-</span> <span class="fu">performance</span>(pred_val, <span class="st">&quot;tpr&quot;</span>, <span class="st">&quot;fpr&quot;</span>)</span>
+<span id="cb28-3"><a href="decision-trees.html#cb28-3" tabindex="-1"></a><span class="co">#Plot the ROC curve</span></span>
+<span id="cb28-4"><a href="decision-trees.html#cb28-4" tabindex="-1"></a><span class="fu">plot</span>(perf_val, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/extras-2.png" width="672" /></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="decision-trees.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculating KS statistics</span></span>
-<span id="cb29-2"><a href="decision-trees.html#cb29-2" aria-hidden="true" tabindex="-1"></a>ks1.tree <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">attr</span>(perf_val, <span class="st">&quot;y.values&quot;</span>)[[<span class="dv">1</span>]] <span class="sc">-</span> (<span class="fu">attr</span>(perf_val, <span class="st">&quot;x.values&quot;</span>)[[<span class="dv">1</span>]]))</span>
-<span id="cb29-3"><a href="decision-trees.html#cb29-3" aria-hidden="true" tabindex="-1"></a>ks1.tree</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="decision-trees.html#cb29-1" tabindex="-1"></a><span class="co">#Calculating KS statistics</span></span>
+<span id="cb29-2"><a href="decision-trees.html#cb29-2" tabindex="-1"></a>ks1.tree <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">attr</span>(perf_val, <span class="st">&quot;y.values&quot;</span>)[[<span class="dv">1</span>]] <span class="sc">-</span> (<span class="fu">attr</span>(perf_val, <span class="st">&quot;x.values&quot;</span>)[[<span class="dv">1</span>]]))</span>
+<span id="cb29-3"><a href="decision-trees.html#cb29-3" tabindex="-1"></a>ks1.tree</span></code></pre></div>
 <pre><code>## [1] 0.8971412</code></pre>
+</div>
+<div id="model-reliance" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Model Reliance<a href="decision-trees.html#model-reliance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Model reliance is a model agnostic value for variable importance. It is the ratio of the expected loss of a model when “noise” is incorporated into a model versus the expect loss of the model. For incorporating “noise” into the model, we will use Dr. Breiman’s permutation of a variable in the model. To explore the importance of variable 1, we will permutet the values of variable 1 and compare its expected loss to the expect loss when this variable is not permuted. We will do this for all variables in the data set. We will go back to the original decision tree:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="decision-trees.html#cb31-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7515</span>)</span>
+<span id="cb31-2"><a href="decision-trees.html#cb31-2" tabindex="-1"></a>perm<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">699</span>)</span>
+<span id="cb31-3"><a href="decision-trees.html#cb31-3" tabindex="-1"></a>BC_randomOrder<span class="ot">=</span>BCdata[perm,]</span>
+<span id="cb31-4"><a href="decision-trees.html#cb31-4" tabindex="-1"></a>train <span class="ot">=</span> BC_randomOrder[<span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>),]</span>
+<span id="cb31-5"><a href="decision-trees.html#cb31-5" tabindex="-1"></a>test <span class="ot">=</span> BC_randomOrder[(<span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">699</span>,]</span>
+<span id="cb31-6"><a href="decision-trees.html#cb31-6" tabindex="-1"></a>BC.tree <span class="ot">=</span> <span class="fu">rpart</span>(Target <span class="sc">~</span> . <span class="sc">-</span> ID, <span class="at">data=</span>train, <span class="at">method=</span><span class="st">&#39;class&#39;</span>,</span>
+<span id="cb31-7"><a href="decision-trees.html#cb31-7" tabindex="-1"></a> <span class="at">parms =</span> <span class="fu">list</span>(<span class="at">split=</span><span class="st">&#39;gini&#39;</span>)) <span class="do">## or &#39;information&#39;</span></span>
+<span id="cb31-8"><a href="decision-trees.html#cb31-8" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="decision-trees.html#cb31-9" tabindex="-1"></a>VI <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length=</span><span class="fu">ncol</span>(train)<span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb31-10"><a href="decision-trees.html#cb31-10" tabindex="-1"></a>loss.model<span class="ot">=</span><span class="fu">mean</span>(<span class="fu">abs</span>(train<span class="sc">$</span>Target<span class="sc">-</span><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(<span class="fu">predict</span>(BC.tree,<span class="at">type=</span><span class="st">&quot;class&quot;</span>)))))</span>
+<span id="cb31-11"><a href="decision-trees.html#cb31-11" tabindex="-1"></a>temp1<span class="ot">=</span>train</span>
+<span id="cb31-12"><a href="decision-trees.html#cb31-12" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb31-13"><a href="decision-trees.html#cb31-13" tabindex="-1"></a>  {temp1<span class="ot">=</span>train</span>
+<span id="cb31-14"><a href="decision-trees.html#cb31-14" tabindex="-1"></a>   temp1[,j]<span class="ot">=</span><span class="fu">sample</span>(train[,j])</span>
+<span id="cb31-15"><a href="decision-trees.html#cb31-15" tabindex="-1"></a>   loss.noise <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">abs</span>(train<span class="sc">$</span>Target<span class="sc">-</span><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(<span class="fu">predict</span>(BC.tree, <span class="at">newdata=</span>temp1,<span class="at">type=</span><span class="st">&quot;class&quot;</span>)))))</span>
+<span id="cb31-16"><a href="decision-trees.html#cb31-16" tabindex="-1"></a>   VI[(j<span class="dv">-1</span>)] <span class="ot">=</span> loss.noise<span class="sc">/</span>loss.model</span>
+<span id="cb31-17"><a href="decision-trees.html#cb31-17" tabindex="-1"></a>}</span>
+<span id="cb31-18"><a href="decision-trees.html#cb31-18" tabindex="-1"></a></span>
+<span id="cb31-19"><a href="decision-trees.html#cb31-19" tabindex="-1"></a>VI<span class="ot">&lt;-</span><span class="fu">data.frame</span>(VI)</span>
+<span id="cb31-20"><a href="decision-trees.html#cb31-20" tabindex="-1"></a><span class="fu">rownames</span>(VI)<span class="ot">&lt;-</span><span class="fu">colnames</span>(train[<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>])</span>
+<span id="cb31-21"><a href="decision-trees.html#cb31-21" tabindex="-1"></a>VI</span></code></pre></div>
+<pre><code>##                  VI
+## CT         1.764706
+## Size       6.588235
+## Shape      1.000000
+## Margin     1.000000
+## Epithelial 1.000000
+## Bare       3.352941
+## Chromatin  1.000000
+## Normal     6.117647
+## Mitoses    1.000000</code></pre>
+<p>Please NOTE that Size is the most important, followed by Normal, then Bare, and finally CT. This is the exact order of the decision tree (which makes sense why these are the most important and the order of importance). Since model reliance is a model agnostic procedure, you can use this on other models as well. Good introduction to some of the other measures you will see in Machine Learning.</p>
 
 </div>
 </div>

@@ -183,3 +183,34 @@ ks1.tree
 
 ```
 
+## Model Reliance
+
+Model reliance is a model agnostic value for variable importance.  It is the ratio of the expected loss of a model when "noise" is incorporated into a model versus the expect loss of the model.  For incorporating "noise" into the model, we will use Dr. Breiman's permutation of a variable in the model.  To explore the importance of variable 1, we will permutet the values of variable 1 and compare its expected loss to the expect loss when this variable is not permuted.  We will do this for all variables in the data set. We will go back to the original decision tree:
+
+```{r}
+set.seed(7515)
+perm=sample(1:699)
+BC_randomOrder=BCdata[perm,]
+train = BC_randomOrder[1:floor(0.75*699),]
+test = BC_randomOrder[(floor(0.75*699)+1):699,]
+BC.tree = rpart(Target ~ . - ID, data=train, method='class',
+ parms = list(split='gini')) ## or 'information'
+
+VI <- vector(length=ncol(train)-2)
+loss.model=mean(abs(train$Target-as.numeric(as.character(predict(BC.tree,type="class")))))
+temp1=train
+for (j in 2:10)
+  {temp1=train
+   temp1[,j]=sample(train[,j])
+   loss.noise = mean(abs(train$Target-as.numeric(as.character(predict(BC.tree, newdata=temp1,type="class")))))
+   VI[(j-1)] = loss.noise/loss.model
+}
+
+VI<-data.frame(VI)
+rownames(VI)<-colnames(train[2:10])
+VI
+
+```
+
+
+Please NOTE that Size is the most important, followed by Normal, then Bare, and finally CT. This is the exact order of the decision tree (which makes sense why these are the most important and the order of importance).  Since model reliance is a model agnostic procedure, you can use this on other models as well.  Good introduction to some of the other measures you will see in Machine Learning.
