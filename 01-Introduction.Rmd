@@ -177,6 +177,22 @@ p.adjust(temp,method="BH")
 ```
 
 
+### Python code for FDR
+
+Please note that the false discover rate command is commented out in this chunk. This is because the stats within scipy needs an earlier version of numpy (which I just updated for the bootstrap algorithm above).
+
+
+```{python}
+#from scipy import stats
+
+p_test = np.array([0.001,0.03,0.2,0.4])
+#stats.false_discovery_control(p_test, method='bh')
+
+# Bonferroni
+p_test *len(p_test)
+```
+
+
 ## Transaction data
 
 A basic concept you will need is how to deal with transactional data.  Trasactional data is usually in the form of a long data set with multiple observation per "ID".  Take for example the following small data set:

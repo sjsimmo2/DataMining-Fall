@@ -153,7 +153,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1.1" data-path="introduction.html"><a href="introduction.html#python-for-bootstrapping"><i class="fa fa-check"></i><b>2.1.1</b> Python for Bootstrapping</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#adjusting-p-values"><i class="fa fa-check"></i><b>2.2</b> Adjusting p-values</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#adjusting-p-values"><i class="fa fa-check"></i><b>2.2</b> Adjusting p-values</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction.html"><a href="introduction.html#python-code-for-fdr"><i class="fa fa-check"></i><b>2.2.1</b> Python code for FDR</a></li>
+</ul></li>
 <li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#transaction-data"><i class="fa fa-check"></i><b>2.3</b> Transaction data</a></li>
 <li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#association-analysis"><i class="fa fa-check"></i><b>2.4</b> Association Analysis</a></li>
 </ul></li>
@@ -264,12 +267,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-8"><a href="introduction.html#cb5-8" tabindex="-1"></a>  boot.med[i]<span class="ot">=</span><span class="fu">median</span>(boot.samp)</span>
 <span id="cb5-9"><a href="introduction.html#cb5-9" tabindex="-1"></a>}</span>
 <span id="cb5-10"><a href="introduction.html#cb5-10" tabindex="-1"></a><span class="fu">sd</span>(boot.med)</span>
-<span id="cb5-11"><a href="introduction.html#cb5-11" tabindex="-1"></a><span class="do">## [1] 1.355891</span></span>
+<span id="cb5-11"><a href="introduction.html#cb5-11" tabindex="-1"></a><span class="do">## [1] 1.344323</span></span>
 <span id="cb5-12"><a href="introduction.html#cb5-12" tabindex="-1"></a>act.med</span>
 <span id="cb5-13"><a href="introduction.html#cb5-13" tabindex="-1"></a><span class="do">## [1] 335.17</span></span>
 <span id="cb5-14"><a href="introduction.html#cb5-14" tabindex="-1"></a><span class="fu">quantile</span>(boot.med,<span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</span>
 <span id="cb5-15"><a href="introduction.html#cb5-15" tabindex="-1"></a><span class="do">##    2.5%   97.5% </span></span>
-<span id="cb5-16"><a href="introduction.html#cb5-16" tabindex="-1"></a><span class="do">## 332.675 337.800</span></span>
+<span id="cb5-16"><a href="introduction.html#cb5-16" tabindex="-1"></a><span class="do">## 332.745 337.800</span></span>
 <span id="cb5-17"><a href="introduction.html#cb5-17" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">data.frame</span>(boot.med),<span class="fu">aes</span>(<span class="at">x=</span>boot.med))<span class="sc">+</span><span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Bootstrap Sample&quot;</span>,<span class="at">y=</span><span class="st">&quot;Frequency&quot;</span>)</span>
 <span id="cb5-18"><a href="introduction.html#cb5-18" tabindex="-1"></a><span class="do">## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/bootstrap%20confidence%20interval-3.png" width="672" />
@@ -292,7 +295,7 @@ The second example is exploring if the median price of homes in Iowa with air co
 <p><img src="bookdownproj_files/figure-html/bootstrap%20hypothesis%20test-1.png" width="672" /></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="introduction.html#cb8-1" tabindex="-1"></a><span class="fu">quantile</span>(diff.stat,<span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.005</span>,<span class="fl">0.995</span>))</span></code></pre></div>
 <pre><code>##    0.5%   99.5% 
-## 58875.0 76865.5</code></pre>
+## 59000.0 76882.8</code></pre>
 <p>Since the confidence interval does NOT include 0, we would conclude that the medians appear to be significantly different.</p>
 <div id="python-for-bootstrapping" class="section level3 hasAnchor" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Python for Bootstrapping<a href="introduction.html#python-for-bootstrapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -321,15 +324,15 @@ The second example is exploring if the median price of homes in Iowa with air co
 <span id="cb15-5"><a href="introduction.html#cb15-5" tabindex="-1"></a><span class="co">#temp =statistics.median(random.choice(co2_py,n))</span></span>
 <span id="cb15-6"><a href="introduction.html#cb15-6" tabindex="-1"></a></span>
 <span id="cb15-7"><a href="introduction.html#cb15-7" tabindex="-1"></a><span class="bu">print</span>(statistics.stdev(temp))</span></code></pre></div>
-<pre><code>## 1.3630486884365889</code></pre>
+<pre><code>## 1.3555625565580598</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="introduction.html#cb17-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Lower 95</span><span class="sc">% c</span><span class="st">onfidence interval for median&quot;</span>,np.quantile(temp,<span class="fl">0.025</span>))</span></code></pre></div>
 <pre><code>## Lower 95% confidence interval for median 332.675</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="introduction.html#cb19-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Upper 95</span><span class="sc">% c</span><span class="st">onfidence interval for median&quot;</span>,np.quantile(temp,<span class="fl">0.975</span>))</span></code></pre></div>
-<pre><code>## Upper 95% confidence interval for median 337.815</code></pre>
+<pre><code>## Upper 95% confidence interval for median 337.81</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="introduction.html#cb21-1" tabindex="-1"></a>plt.hist(temp)</span></code></pre></div>
-<pre><code>## (array([2.000e+00, 4.900e+01, 6.030e+02, 1.719e+03, 2.841e+03, 2.393e+03,
-##        1.653e+03, 6.830e+02, 5.100e+01, 6.000e+00]), array([330.14 , 331.186, 332.232, 333.278, 334.324, 335.37 , 336.416,
-##        337.462, 338.508, 339.554, 340.6  ]), &lt;BarContainer object of 10 artists&gt;)</code></pre>
+<pre><code>## (array([  18.,  253.,  771., 2082., 2426., 2836.,  938.,  628.,   43.,
+##           5.]), array([330.735, 331.706, 332.677, 333.648, 334.619, 335.59 , 336.561,
+##        337.532, 338.503, 339.474, 340.445]), &lt;BarContainer object of 10 artists&gt;)</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="introduction.html#cb23-1" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="introduction.html#cb24-1" tabindex="-1"></a>ames_py<span class="op">=</span>r.ames</span>
@@ -347,9 +350,9 @@ The second example is exploring if the median price of homes in Iowa with air co
 <span id="cb26-10"><a href="introduction.html#cb26-10" tabindex="-1"></a>  diff_sale.append(diff_temp)</span>
 <span id="cb26-11"><a href="introduction.html#cb26-11" tabindex="-1"></a>  </span>
 <span id="cb26-12"><a href="introduction.html#cb26-12" tabindex="-1"></a>plt.hist(diff_sale)</span></code></pre></div>
-<pre><code>## (array([   9.,   70.,  277., 1446., 2555., 2297., 2337.,  736.,  250.,
-##          23.]), array([60500., 61900., 63300., 64700., 66100., 67500., 68900., 70300.,
-##        71700., 73100., 74500.]), &lt;BarContainer object of 10 artists&gt;)</code></pre>
+<pre><code>## (array([   7.,   48.,  181., 1196., 2694., 2492., 2268.,  822.,  270.,
+##          22.]), array([60000.  , 61464.25, 62928.5 , 64392.75, 65857.  , 67321.25,
+##        68785.5 , 70249.75, 71714.  , 73178.25, 74642.5 ]), &lt;BarContainer object of 10 artists&gt;)</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="introduction.html#cb28-1" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
 </div>
@@ -365,13 +368,25 @@ The second example is exploring if the median price of homes in Iowa with air co
 <span id="cb29-6"><a href="introduction.html#cb29-6" tabindex="-1"></a><span class="co">#Benjamini &amp; Hochberg</span></span>
 <span id="cb29-7"><a href="introduction.html#cb29-7" tabindex="-1"></a><span class="fu">p.adjust</span>(temp,<span class="at">method=</span><span class="st">&quot;BH&quot;</span>)</span>
 <span id="cb29-8"><a href="introduction.html#cb29-8" tabindex="-1"></a><span class="do">## [1] 0.0040000 0.0600000 0.2666667 0.4000000</span></span></code></pre></div>
+<div id="python-code-for-fdr" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Python code for FDR<a href="introduction.html#python-code-for-fdr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Please note that the false discover rate command is commented out in this chunk. This is because the stats within scipy needs an earlier version of numpy (which I just updated for the bootstrap algorithm above).</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="introduction.html#cb30-1" tabindex="-1"></a><span class="co">#from scipy import stats</span></span>
+<span id="cb30-2"><a href="introduction.html#cb30-2" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="introduction.html#cb30-3" tabindex="-1"></a>p_test <span class="op">=</span> np.array([<span class="fl">0.001</span>,<span class="fl">0.03</span>,<span class="fl">0.2</span>,<span class="fl">0.4</span>])</span>
+<span id="cb30-4"><a href="introduction.html#cb30-4" tabindex="-1"></a><span class="co">#stats.false_discovery_control(p_test, method=&#39;bh&#39;)</span></span>
+<span id="cb30-5"><a href="introduction.html#cb30-5" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="introduction.html#cb30-6" tabindex="-1"></a><span class="co"># Bonferroni</span></span>
+<span id="cb30-7"><a href="introduction.html#cb30-7" tabindex="-1"></a>p_test <span class="op">*</span><span class="bu">len</span>(p_test)</span></code></pre></div>
+<pre><code>## array([0.004, 0.12 , 0.8  , 1.6  ])</code></pre>
+</div>
 </div>
 <div id="transaction-data" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Transaction data<a href="introduction.html#transaction-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A basic concept you will need is how to deal with transactional data. Trasactional data is usually in the form of a long data set with multiple observation per “ID”. Take for example the following small data set:</p>
 <table class=" lightable-paper lightable-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-2">Table 2.1: </span>Example
+<span id="tab:unnamed-chunk-3">Table 2.1: </span>Example
 </caption>
 <thead>
 <tr>
@@ -490,16 +505,16 @@ NA
 </tbody>
 </table>
 <p>Notice that there are four transactions for Person 1, four transactions for Person 2 (including a missing value) and three transactions for Person 3. We will need to “roll” these up into one observation per person.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="introduction.html#cb30-1" tabindex="-1"></a>new.check <span class="ot">=</span> check <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(ID) <span class="sc">%&gt;%</span></span>
-<span id="cb30-2"><a href="introduction.html#cb30-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean.check=</span><span class="fu">mean</span>(Checking,<span class="at">na.rm=</span>T),<span class="at">std.check=</span><span class="fu">sd</span>(Checking,<span class="at">na.rm=</span>T))</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="introduction.html#cb32-1" tabindex="-1"></a>new.check <span class="ot">=</span> check <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(ID) <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="introduction.html#cb32-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean.check=</span><span class="fu">mean</span>(Checking,<span class="at">na.rm=</span>T),<span class="at">std.check=</span><span class="fu">sd</span>(Checking,<span class="at">na.rm=</span>T))</span></code></pre></div>
 <p>It is HIGHLY recommended that you ALWAYS create a flag for missing values (do this BEFORE rolling up). The following code creates the flag for the missing values and then rolls everything up:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introduction.html#cb31-1" tabindex="-1"></a>check<span class="sc">$</span>flag<span class="ot">=</span><span class="fu">ifelse</span>(<span class="fu">is.na</span>(check<span class="sc">$</span>Checking),<span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb31-2"><a href="introduction.html#cb31-2" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="introduction.html#cb31-3" tabindex="-1"></a>new.check <span class="ot">=</span> check <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(ID) <span class="sc">%&gt;%</span></span>
-<span id="cb31-4"><a href="introduction.html#cb31-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean.check=</span><span class="fu">mean</span>(Checking,<span class="at">na.rm=</span>T),<span class="at">std.check=</span><span class="fu">sd</span>(Checking,<span class="at">na.rm=</span>T),<span class="at">na.check=</span><span class="fu">sum</span>(flag))</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="introduction.html#cb33-1" tabindex="-1"></a>check<span class="sc">$</span>flag<span class="ot">=</span><span class="fu">ifelse</span>(<span class="fu">is.na</span>(check<span class="sc">$</span>Checking),<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb33-2"><a href="introduction.html#cb33-2" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="introduction.html#cb33-3" tabindex="-1"></a>new.check <span class="ot">=</span> check <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(ID) <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href="introduction.html#cb33-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean.check=</span><span class="fu">mean</span>(Checking,<span class="at">na.rm=</span>T),<span class="at">std.check=</span><span class="fu">sd</span>(Checking,<span class="at">na.rm=</span>T),<span class="at">na.check=</span><span class="fu">sum</span>(flag))</span></code></pre></div>
 <table class=" lightable-paper lightable-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-3">Table 2.2: </span>Rolled up
+<span id="tab:unnamed-chunk-4">Table 2.2: </span>Rolled up
 </caption>
 <thead>
 <tr>
@@ -693,8 +708,8 @@ bread
 </tbody>
 </table>
 <p>As you can see, there is a separate line for each item. If we want to analyze this data set with the package ‘arules’, we need the data to be wide (not long). In other words, one line per ID. We can create the wide data set in R by using the following line (and then “inspect” it or view it).</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="introduction.html#cb32-1" tabindex="-1"></a>trans.dat <span class="ot">&lt;-</span> <span class="fu">as</span>(<span class="fu">split</span>(temp.dat<span class="sc">$</span>Grocery, temp.dat<span class="sc">$</span>ID), <span class="st">&quot;transactions&quot;</span>)</span>
-<span id="cb32-2"><a href="introduction.html#cb32-2" tabindex="-1"></a><span class="fu">inspect</span>(trans.dat)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="introduction.html#cb34-1" tabindex="-1"></a>trans.dat <span class="ot">&lt;-</span> <span class="fu">as</span>(<span class="fu">split</span>(temp.dat<span class="sc">$</span>Grocery, temp.dat<span class="sc">$</span>ID), <span class="st">&quot;transactions&quot;</span>)</span>
+<span id="cb34-2"><a href="introduction.html#cb34-2" tabindex="-1"></a><span class="fu">inspect</span>(trans.dat)</span></code></pre></div>
 <pre><code>##      items                             transactionID
 ## [1]  {bread, egg, oat packet, papaya}  1            
 ## [2]  {bread, milk, oat packet, papaya} 2            
@@ -708,14 +723,14 @@ bread
 ## [10] {bread, milk, papaya}             10           
 ## [11] {egg, milk}                       11</code></pre>
 <p>The following code runs the association analysis and stores the results in the object rules. Once you have this stored object, you can view it and partition it in different ways..</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="introduction.html#cb34-1" tabindex="-1"></a>trans.dat<span class="sc">@</span>itemInfo<span class="sc">$</span>labels</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="introduction.html#cb36-1" tabindex="-1"></a>trans.dat<span class="sc">@</span>itemInfo<span class="sc">$</span>labels</span></code></pre></div>
 <pre><code>## [1] &quot;bread&quot;      &quot;butter&quot;     &quot;egg&quot;        &quot;milk&quot;       &quot;oat packet&quot;
 ## [6] &quot;papaya&quot;</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="introduction.html#cb36-1" tabindex="-1"></a><span class="co"># Create an item frequency plot for the top 3 items</span></span>
-<span id="cb36-2"><a href="introduction.html#cb36-2" tabindex="-1"></a><span class="fu">itemFrequencyPlot</span>(trans.dat,<span class="at">topN=</span><span class="dv">3</span>,<span class="at">type=</span><span class="st">&quot;absolute&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="introduction.html#cb38-1" tabindex="-1"></a><span class="co"># Create an item frequency plot for the top 3 items</span></span>
+<span id="cb38-2"><a href="introduction.html#cb38-2" tabindex="-1"></a><span class="fu">itemFrequencyPlot</span>(trans.dat,<span class="at">topN=</span><span class="dv">3</span>,<span class="at">type=</span><span class="st">&quot;absolute&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/association2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="introduction.html#cb37-1" tabindex="-1"></a><span class="co"># Get the rules</span></span>
-<span id="cb37-2"><a href="introduction.html#cb37-2" tabindex="-1"></a>rules <span class="ot">&lt;-</span> <span class="fu">apriori</span>(trans.dat, <span class="at">parameter =</span> <span class="fu">list</span>(<span class="at">supp =</span> <span class="fl">0.1</span>, <span class="at">conf =</span> <span class="fl">0.001</span>, <span class="at">target=</span><span class="st">&quot;rules&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="introduction.html#cb39-1" tabindex="-1"></a><span class="co"># Get the rules</span></span>
+<span id="cb39-2"><a href="introduction.html#cb39-2" tabindex="-1"></a>rules <span class="ot">&lt;-</span> <span class="fu">apriori</span>(trans.dat, <span class="at">parameter =</span> <span class="fu">list</span>(<span class="at">supp =</span> <span class="fl">0.1</span>, <span class="at">conf =</span> <span class="fl">0.001</span>, <span class="at">target=</span><span class="st">&quot;rules&quot;</span>))</span></code></pre></div>
 <pre><code>## Apriori
 ## 
 ## Parameter specification:
@@ -737,9 +752,9 @@ bread
 ## checking subsets of size 1 2 3 done [0.00s].
 ## writing ... [32 rule(s)] done [0.00s].
 ## creating S4 object  ... done [0.00s].</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="introduction.html#cb39-1" tabindex="-1"></a>rules<span class="ot">&lt;-</span><span class="fu">sort</span>(rules, <span class="at">by=</span><span class="st">&quot;confidence&quot;</span>, <span class="at">decreasing=</span><span class="cn">TRUE</span>)</span>
-<span id="cb39-2"><a href="introduction.html#cb39-2" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="introduction.html#cb39-3" tabindex="-1"></a><span class="fu">inspect</span>(rules[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="introduction.html#cb41-1" tabindex="-1"></a>rules<span class="ot">&lt;-</span><span class="fu">sort</span>(rules, <span class="at">by=</span><span class="st">&quot;confidence&quot;</span>, <span class="at">decreasing=</span><span class="cn">TRUE</span>)</span>
+<span id="cb41-2"><a href="introduction.html#cb41-2" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="introduction.html#cb41-3" tabindex="-1"></a><span class="fu">inspect</span>(rules[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span></code></pre></div>
 <pre><code>##     lhs                    rhs      support   confidence coverage  lift    
 ## [1] {butter}            =&gt; {bread}  0.2727273 1.0000000  0.2727273 1.571429
 ## [2] {bread, oat packet} =&gt; {papaya} 0.1818182 1.0000000  0.1818182 1.833333
@@ -750,7 +765,7 @@ bread
 ## [2] 2    
 ## [3] 3    
 ## [4] 4</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="introduction.html#cb41-1" tabindex="-1"></a>oat.rules <span class="ot">=</span> <span class="fu">apriori</span>(trans.dat, <span class="at">parameter =</span> <span class="fu">list</span>(<span class="at">supp=</span><span class="fl">0.001</span>, <span class="at">conf=</span><span class="fl">0.8</span>),<span class="at">appearance =</span> <span class="fu">list</span>(<span class="at">default=</span><span class="st">&quot;lhs&quot;</span>,<span class="at">rhs=</span><span class="st">&quot;oat packet&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="introduction.html#cb43-1" tabindex="-1"></a>oat.rules <span class="ot">=</span> <span class="fu">apriori</span>(trans.dat, <span class="at">parameter =</span> <span class="fu">list</span>(<span class="at">supp=</span><span class="fl">0.001</span>, <span class="at">conf=</span><span class="fl">0.8</span>),<span class="at">appearance =</span> <span class="fu">list</span>(<span class="at">default=</span><span class="st">&quot;lhs&quot;</span>,<span class="at">rhs=</span><span class="st">&quot;oat packet&quot;</span>))</span></code></pre></div>
 <pre><code>## Apriori
 ## 
 ## Parameter specification:
@@ -772,7 +787,7 @@ bread
 ## checking subsets of size 1 2 3 4 done [0.00s].
 ## writing ... [2 rule(s)] done [0.00s].
 ## creating S4 object  ... done [0.00s].</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="introduction.html#cb43-1" tabindex="-1"></a>oat.rules2 <span class="ot">=</span> <span class="fu">apriori</span>(trans.dat, <span class="at">parameter =</span> <span class="fu">list</span>(<span class="at">supp=</span><span class="fl">0.001</span>, <span class="at">conf=</span><span class="fl">0.8</span>),<span class="at">appearance =</span> <span class="fu">list</span>(<span class="at">lhs=</span><span class="st">&quot;oat packet&quot;</span>, <span class="at">default=</span><span class="st">&quot;rhs&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="introduction.html#cb45-1" tabindex="-1"></a>oat.rules2 <span class="ot">=</span> <span class="fu">apriori</span>(trans.dat, <span class="at">parameter =</span> <span class="fu">list</span>(<span class="at">supp=</span><span class="fl">0.001</span>, <span class="at">conf=</span><span class="fl">0.8</span>),<span class="at">appearance =</span> <span class="fu">list</span>(<span class="at">lhs=</span><span class="st">&quot;oat packet&quot;</span>, <span class="at">default=</span><span class="st">&quot;rhs&quot;</span>))</span></code></pre></div>
 <pre><code>## Apriori
 ## 
 ## Parameter specification:
@@ -794,13 +809,13 @@ bread
 ## checking subsets of size 1 2 done [0.00s].
 ## writing ... [0 rule(s)] done [0.00s].
 ## creating S4 object  ... done [0.00s].</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="introduction.html#cb45-1" tabindex="-1"></a><span class="fu">plot</span>(rules)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="introduction.html#cb47-1" tabindex="-1"></a><span class="fu">plot</span>(rules)</span></code></pre></div>
 <pre><code>## To reduce overplotting, jitter is added! Use jitter = 0 to prevent jitter.</code></pre>
 <p><img src="bookdownproj_files/figure-html/association2-2.png" width="672" /></p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="introduction.html#cb47-1" tabindex="-1"></a>top10rules <span class="ot">=</span> <span class="fu">head</span>(rules, <span class="at">n =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="st">&quot;confidence&quot;</span>)</span>
-<span id="cb47-2"><a href="introduction.html#cb47-2" tabindex="-1"></a><span class="fu">plot</span>(top10rules, <span class="at">method =</span> <span class="st">&quot;graph&quot;</span>,  <span class="at">engine =</span> <span class="st">&quot;htmlwidget&quot;</span>)</span></code></pre></div>
-<div class="visNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1e19017cbf4a64143e09" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-1e19017cbf4a64143e09">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],"label":["bread","butter","egg","milk","oat packet","papaya","rule 1","rule 2","rule 3","rule 4","rule 5","rule 6","rule 7","rule 8","rule 9","rule 10"],"group":[1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2],"value":[1,1,1,1,1,1,20.8,1,20.8,40.6,1,1,1,100,20.8,40.6],"color":["#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#EE6666","#EE1B1B","#EE9999","#EECBCB","#EECBCB","#EECBCB","#EEB1B1","#EED4D4","#EEDCDC","#EECBCB"],"title":["bread","butter","egg","milk","oat packet","papaya","<B>[1]<\/B><BR><B>{butter}<\/B><BR>&nbsp;&nbsp; => <B>{bread}<\/B><BR><BR>support = 0.273<BR>confidence = 1<BR>coverage = 0.273<BR>lift = 1.57<BR>count = 3<BR>order = 2<BR>id = 1","<B>[2]<\/B><BR><B>{bread,<BR>&nbsp;&nbsp;oat packet}<\/B><BR>&nbsp;&nbsp; => <B>{papaya}<\/B><BR><BR>support = 0.182<BR>confidence = 1<BR>coverage = 0.182<BR>lift = 1.83<BR>count = 2<BR>order = 3<BR>id = 2","<B>[3]<\/B><BR><B>{oat packet}<\/B><BR>&nbsp;&nbsp; => <B>{papaya}<\/B><BR><BR>support = 0.273<BR>confidence = 0.75<BR>coverage = 0.364<BR>lift = 1.38<BR>count = 3<BR>order = 2<BR>id = 3","<B>[4]<\/B><BR><B>{papaya}<\/B><BR>&nbsp;&nbsp; => <B>{bread}<\/B><BR><BR>support = 0.364<BR>confidence = 0.667<BR>coverage = 0.545<BR>lift = 1.05<BR>count = 4<BR>order = 2<BR>id = 4","<B>[5]<\/B><BR><B>{oat packet,<BR>&nbsp;&nbsp;papaya}<\/B><BR>&nbsp;&nbsp; => <B>{bread}<\/B><BR><BR>support = 0.182<BR>confidence = 0.667<BR>coverage = 0.273<BR>lift = 1.05<BR>count = 2<BR>order = 3<BR>id = 5","<B>[6]<\/B><BR><B>{milk,<BR>&nbsp;&nbsp;papaya}<\/B><BR>&nbsp;&nbsp; => <B>{bread}<\/B><BR><BR>support = 0.182<BR>confidence = 0.667<BR>coverage = 0.273<BR>lift = 1.05<BR>count = 2<BR>order = 3<BR>id = 6","<B>[7]<\/B><BR><B>{bread,<BR>&nbsp;&nbsp;milk}<\/B><BR>&nbsp;&nbsp; => <B>{papaya}<\/B><BR><BR>support = 0.182<BR>confidence = 0.667<BR>coverage = 0.273<BR>lift = 1.22<BR>count = 2<BR>order = 3<BR>id = 7","<B>[8]<\/B><BR><B>{}<\/B><BR>&nbsp;&nbsp; => <B>{bread}<\/B><BR><BR>support = 0.636<BR>confidence = 0.636<BR>coverage = 1<BR>lift = 1<BR>count = 7<BR>order = 1<BR>id = 8","<B>[9]<\/B><BR><B>{egg}<\/B><BR>&nbsp;&nbsp; => <B>{bread}<\/B><BR><BR>support = 0.273<BR>confidence = 0.6<BR>coverage = 0.455<BR>lift = 0.943<BR>count = 3<BR>order = 2<BR>id = 9","<B>[10]<\/B><BR><B>{bread}<\/B><BR>&nbsp;&nbsp; => <B>{papaya}<\/B><BR><BR>support = 0.364<BR>confidence = 0.571<BR>coverage = 0.636<BR>lift = 1.05<BR>count = 4<BR>order = 2<BR>id = 10"],"shape":["box","box","box","box","box","box","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle"],"x":[-0.12215288132185,1,0.624535671923957,-1,-0.478983896524439,-0.553657224460214,0.526836076043988,-0.404023377205401,-0.797928939389297,-0.394385432236001,-0.227583835656663,-0.716454415063849,-0.610608296928104,-0.0742147687109009,0.322050564792028,-0.114426072712004],"y":[-0.0102233928152671,0.236798387812424,-1,-0.359640570169029,1,0.341123203050913,0.128118616137994,0.570736161282923,0.876096367519689,0.00128700381413482,0.615591517208096,-0.0342249567979971,-0.20961178905037,-0.566303082694188,-0.570910830269871,0.322160458000946]},"edges":{"from":[2,1,5,5,6,5,6,4,6,1,4,3,1,7,8,9,10,11,12,13,14,15,16],"to":[7,8,8,9,10,11,11,12,12,13,13,15,16,1,6,6,1,1,1,6,1,1,6],"arrows":["to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":false},"physics":{"stabilization":false},"interaction":{"hover":true,"zoomSpeed":1}},"groups":["1","2"],"width":null,"height":null,"idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="introduction.html#cb49-1" tabindex="-1"></a>top10rules <span class="ot">=</span> <span class="fu">head</span>(rules, <span class="at">n =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="st">&quot;confidence&quot;</span>)</span>
+<span id="cb49-2"><a href="introduction.html#cb49-2" tabindex="-1"></a><span class="fu">plot</span>(top10rules, <span class="at">method =</span> <span class="st">&quot;graph&quot;</span>,  <span class="at">engine =</span> <span class="st">&quot;htmlwidget&quot;</span>)</span></code></pre></div>
+<div class="visNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a85db0969abbd471c6d3" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-a85db0969abbd471c6d3">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],"label":["bread","butter","egg","milk","oat packet","papaya","rule 1","rule 2","rule 3","rule 4","rule 5","rule 6","rule 7","rule 8","rule 9","rule 10"],"group":[1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2],"value":[1,1,1,1,1,1,20.8,1,20.8,40.6,1,1,1,100,20.8,40.6],"color":["#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#EE6666","#EE1B1B","#EE9999","#EECBCB","#EECBCB","#EECBCB","#EEB1B1","#EED4D4","#EEDCDC","#EECBCB"],"title":["bread","butter","egg","milk","oat packet","papaya","<B>[1]<\/B><BR><B>{butter}<\/B><BR>&nbsp;&nbsp; => <B>{bread}<\/B><BR><BR>support = 0.273<BR>confidence = 1<BR>coverage = 0.273<BR>lift = 1.57<BR>count = 3<BR>order = 2<BR>id = 1","<B>[2]<\/B><BR><B>{bread,<BR>&nbsp;&nbsp;oat packet}<\/B><BR>&nbsp;&nbsp; => <B>{papaya}<\/B><BR><BR>support = 0.182<BR>confidence = 1<BR>coverage = 0.182<BR>lift = 1.83<BR>count = 2<BR>order = 3<BR>id = 2","<B>[3]<\/B><BR><B>{oat packet}<\/B><BR>&nbsp;&nbsp; => <B>{papaya}<\/B><BR><BR>support = 0.273<BR>confidence = 0.75<BR>coverage = 0.364<BR>lift = 1.38<BR>count = 3<BR>order = 2<BR>id = 3","<B>[4]<\/B><BR><B>{papaya}<\/B><BR>&nbsp;&nbsp; => <B>{bread}<\/B><BR><BR>support = 0.364<BR>confidence = 0.667<BR>coverage = 0.545<BR>lift = 1.05<BR>count = 4<BR>order = 2<BR>id = 4","<B>[5]<\/B><BR><B>{oat packet,<BR>&nbsp;&nbsp;papaya}<\/B><BR>&nbsp;&nbsp; => <B>{bread}<\/B><BR><BR>support = 0.182<BR>confidence = 0.667<BR>coverage = 0.273<BR>lift = 1.05<BR>count = 2<BR>order = 3<BR>id = 5","<B>[6]<\/B><BR><B>{milk,<BR>&nbsp;&nbsp;papaya}<\/B><BR>&nbsp;&nbsp; => <B>{bread}<\/B><BR><BR>support = 0.182<BR>confidence = 0.667<BR>coverage = 0.273<BR>lift = 1.05<BR>count = 2<BR>order = 3<BR>id = 6","<B>[7]<\/B><BR><B>{bread,<BR>&nbsp;&nbsp;milk}<\/B><BR>&nbsp;&nbsp; => <B>{papaya}<\/B><BR><BR>support = 0.182<BR>confidence = 0.667<BR>coverage = 0.273<BR>lift = 1.22<BR>count = 2<BR>order = 3<BR>id = 7","<B>[8]<\/B><BR><B>{}<\/B><BR>&nbsp;&nbsp; => <B>{bread}<\/B><BR><BR>support = 0.636<BR>confidence = 0.636<BR>coverage = 1<BR>lift = 1<BR>count = 7<BR>order = 1<BR>id = 8","<B>[9]<\/B><BR><B>{egg}<\/B><BR>&nbsp;&nbsp; => <B>{bread}<\/B><BR><BR>support = 0.273<BR>confidence = 0.6<BR>coverage = 0.455<BR>lift = 0.943<BR>count = 3<BR>order = 2<BR>id = 9","<B>[10]<\/B><BR><B>{bread}<\/B><BR>&nbsp;&nbsp; => <B>{papaya}<\/B><BR><BR>support = 0.364<BR>confidence = 0.571<BR>coverage = 0.636<BR>lift = 1.05<BR>count = 4<BR>order = 2<BR>id = 10"],"shape":["box","box","box","box","box","box","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle"],"x":[0.113164853118797,0.00747004075560409,-1,1,0.274103923951308,0.467118355857654,0.0595230300362222,0.28053660632711,0.601403405471269,0.0682381810990156,0.103940883387256,0.606051973161515,0.676436484424188,-0.208593690788155,-0.534959354208641,0.374400303678304],"y":[0.0985409754331625,-1,0.0560565730212621,-0.0213725308481618,1,0.475508563567383,-0.540111660441799,0.631141138859338,0.962061768806175,0.372181725600326,0.63576799782864,0.0274591471665879,0.193545455055444,-0.215153794068995,0.075401119720711,0.162414364832449]},"edges":{"from":[2,1,5,5,6,5,6,4,6,1,4,3,1,7,8,9,10,11,12,13,14,15,16],"to":[7,8,8,9,10,11,11,12,12,13,13,15,16,1,6,6,1,1,1,6,1,1,6],"arrows":["to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":false},"physics":{"stabilization":false},"interaction":{"hover":true,"zoomSpeed":1}},"groups":["1","2"],"width":null,"height":null,"idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>
