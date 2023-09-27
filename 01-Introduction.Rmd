@@ -117,6 +117,7 @@ Since the confidence interval does NOT include 0, we would conclude that the med
 ```{python}
 from matplotlib import pyplot as plt
 import numpy as np
+import pandas as pd
 import statistics
 from numpy import random
 
@@ -130,7 +131,7 @@ print(statistics.median(co2_py))
 # Bootstrap sample
 n = len(co2_py)
 temp = []
-for i in range(1000):
+for i in range(10000):
   temp.append(statistics.median(random.choice(co2_py,n)))
 #temp =statistics.median(random.choice(co2_py,n))
 
@@ -138,12 +139,27 @@ print(statistics.stdev(temp))
 print("Lower 95% confidence interval for median",np.quantile(temp,0.025))
 print("Upper 95% confidence interval for median",np.quantile(temp,0.975))
 
+plt.hist(temp)
+plt.show()
 
+ames_py=r.ames
+type(ames_py)
+yes=ames_py[ames_py["Central_Air"]=="Y"]
+no=ames_py[ames_py["Central_Air"]=="N"]
 
-
-
-
+diff_sale=[]
+n=2930
+for i in range(10000):
+  yes_boot=statistics.median(random.choice(yes["Sale_Price"],n))
+  no_boot=statistics.median(random.choice(no["Sale_Price"],n))
+  diff_temp=yes_boot-no_boot
+  diff_sale.append(diff_temp)
+  
+plt.hist(diff_sale)
+plt.show()
 ```
+
+
 
 
 ## Adjusting p-values
