@@ -20,3 +20,5 @@ mds
 other-topics
 transaction-data
 model-reliance
+python-for-bootstrapping
+tab:unnamed-chunk-3

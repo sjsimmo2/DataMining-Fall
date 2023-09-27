@@ -32,6 +32,9 @@ library(kableExtra)
 library(partykit)
 library(dbscan)
 library(AmesHousing)
+library(reticulate)
+
+use_python("C:\\ProgramData\\Anaconda3\\python.exe")
 
 #library(knitr)
 
@@ -107,6 +110,41 @@ quantile(diff.stat,probs = c(0.005,0.995))
 
 ```
 Since the confidence interval does NOT include 0, we would conclude that the medians appear to be significantly different.
+
+
+### Python for Bootstrapping
+
+```{python}
+from matplotlib import pyplot as plt
+import numpy as np
+import statistics
+from numpy import random
+
+co2_py = r.co2
+plt.hist(co2_py)
+plt.show()
+
+# Actual median
+print(statistics.median(co2_py))
+
+# Bootstrap sample
+n = len(co2_py)
+temp = []
+for i in range(1000):
+  temp.append(statistics.median(random.choice(co2_py,n)))
+#temp =statistics.median(random.choice(co2_py,n))
+
+print(statistics.stdev(temp))
+print("Lower 95% confidence interval for median",np.quantile(temp,0.025))
+print("Upper 95% confidence interval for median",np.quantile(temp,0.975))
+
+
+
+
+
+
+```
+
 
 ## Adjusting p-values
 
