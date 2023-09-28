@@ -282,3 +282,33 @@ top10rules = head(rules, n = 10, by = "confidence")
 plot(top10rules, method = "graph",  engine = "htmlwidget")
 
 ```
+
+
+### Python code for Association Analysis
+
+```{python}
+from mlxtend.frequent_patterns import association_rules
+from mlxtend.frequent_patterns import apriori
+
+grocery = pd.read_csv("Q:\\My Drive\\Data Mining\\Data\\Grocery1.csv")
+
+grocery_1 = pd.get_dummies(grocery["Grocery"])
+grocery_2=grocery_1*1
+grocery_2["ID"]=grocery["ID"]
+grocery_3 = grocery_2.groupby(["ID"]).max()
+grocery_4=grocery_3.applymap(bool)
+
+
+grocery_assoc = apriori(grocery_4, min_support = 0.001, use_colnames = True)
+
+out_rules = association_rules(grocery_assoc,metric = "confidence", min_threshold = 0.6)
+
+out_rules2=out_rules[['antecedents','consequents','support','confidence','lift']]
+
+out_rules2
+
+
+
+
+```
+
