@@ -26,3 +26,4 @@ tab:unnamed-chunk-4
 python-code-for-fdr
 python-code-for-association-analysis
 python-classification-trees
+regression-trees-in-python

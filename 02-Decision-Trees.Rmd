@@ -191,6 +191,41 @@ plotcp(body_model)
 
 ```
 
+### Regression trees in Python
+
+We can also do regression trees in Python:
+
+```{python}
+from sklearn.model_selection import cross_val_score
+from sklearn.tree import DecisionTreeRegressor
+
+train_py = r.train
+test_py = r.test
+
+X_train = train_py[['age', 'waistcirc', 'hipcirc', 'elbowbreadth', 'kneebreadth']]
+X_test = test_py[['age', 'waistcirc', 'hipcirc',
+  'elbowbreadth', 'kneebreadth']]
+y_train = train_py['DEXfat']
+y_test = test_py['DEXfat']
+
+regressor = DecisionTreeRegressor(random_state=12356,max_depth=4)
+reg_tree=regressor.fit(X_train,y_train)
+
+importance = regressor.feature_importances_
+
+for i,v in enumerate(importance):
+ print('Feature: %0d, Score: %.5f' % (i,v))
+
+error_vec=y_test-reg_tree.predict(X_test)
+mae=np.mean(np.abs(error_vec))
+print('MAE is ',mae )
+
+tree.plot_tree(reg_tree)
+
+```
+
+
+
 ## Recursive partitioning with partykit
 
 ```{r}

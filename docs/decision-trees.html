@@ -163,7 +163,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="decision-trees.html"><a href="decision-trees.html#python-classification-trees"><i class="fa fa-check"></i><b>3.1.1</b> Python Classification Trees</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="decision-trees.html"><a href="decision-trees.html#regression-trees"><i class="fa fa-check"></i><b>3.2</b> Regression Trees</a></li>
+<li class="chapter" data-level="3.2" data-path="decision-trees.html"><a href="decision-trees.html#regression-trees"><i class="fa fa-check"></i><b>3.2</b> Regression Trees</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="decision-trees.html"><a href="decision-trees.html#regression-trees-in-python"><i class="fa fa-check"></i><b>3.2.1</b> Regression trees in Python</a></li>
+</ul></li>
 <li class="chapter" data-level="3.3" data-path="decision-trees.html"><a href="decision-trees.html#recursive-partitioning-with-partykit"><i class="fa fa-check"></i><b>3.3</b> Recursive partitioning with partykit</a></li>
 <li class="chapter" data-level="3.4" data-path="decision-trees.html"><a href="decision-trees.html#model-reliance"><i class="fa fa-check"></i><b>3.4</b> Model Reliance</a></li>
 </ul></li>
@@ -623,17 +626,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb31-4"><a href="decision-trees.html#cb31-4" tabindex="-1"></a></span>
 <span id="cb31-5"><a href="decision-trees.html#cb31-5" tabindex="-1"></a><span class="fu">plotcp</span>(body_model)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/Regression%20Trees-10.png" width="672" /></p>
+<div id="regression-trees-in-python" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Regression trees in Python<a href="decision-trees.html#regression-trees-in-python" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can also do regression trees in Python:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="decision-trees.html#cb32-1" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb32-2"><a href="decision-trees.html#cb32-2" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeRegressor</span>
+<span id="cb32-3"><a href="decision-trees.html#cb32-3" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="decision-trees.html#cb32-4" tabindex="-1"></a>train_py <span class="op">=</span> r.train</span>
+<span id="cb32-5"><a href="decision-trees.html#cb32-5" tabindex="-1"></a>test_py <span class="op">=</span> r.test</span>
+<span id="cb32-6"><a href="decision-trees.html#cb32-6" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="decision-trees.html#cb32-7" tabindex="-1"></a>X_train <span class="op">=</span> train_py[[<span class="st">&#39;age&#39;</span>, <span class="st">&#39;waistcirc&#39;</span>, <span class="st">&#39;hipcirc&#39;</span>, <span class="st">&#39;elbowbreadth&#39;</span>, <span class="st">&#39;kneebreadth&#39;</span>]]</span>
+<span id="cb32-8"><a href="decision-trees.html#cb32-8" tabindex="-1"></a>X_test <span class="op">=</span> test_py[[<span class="st">&#39;age&#39;</span>, <span class="st">&#39;waistcirc&#39;</span>, <span class="st">&#39;hipcirc&#39;</span>,</span>
+<span id="cb32-9"><a href="decision-trees.html#cb32-9" tabindex="-1"></a>  <span class="st">&#39;elbowbreadth&#39;</span>, <span class="st">&#39;kneebreadth&#39;</span>]]</span>
+<span id="cb32-10"><a href="decision-trees.html#cb32-10" tabindex="-1"></a>y_train <span class="op">=</span> train_py[<span class="st">&#39;DEXfat&#39;</span>]</span>
+<span id="cb32-11"><a href="decision-trees.html#cb32-11" tabindex="-1"></a>y_test <span class="op">=</span> test_py[<span class="st">&#39;DEXfat&#39;</span>]</span>
+<span id="cb32-12"><a href="decision-trees.html#cb32-12" tabindex="-1"></a></span>
+<span id="cb32-13"><a href="decision-trees.html#cb32-13" tabindex="-1"></a>regressor <span class="op">=</span> DecisionTreeRegressor(random_state<span class="op">=</span><span class="dv">12356</span>,max_depth<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb32-14"><a href="decision-trees.html#cb32-14" tabindex="-1"></a>reg_tree<span class="op">=</span>regressor.fit(X_train,y_train)</span></code></pre></div>
+<pre><code>## C:\PROGRA~3\ANACON~1\lib\site-packages\sklearn\utils\validation.py:623: FutureWarning: is_sparse is deprecated and will be removed in a future version. Check `isinstance(dtype, pd.SparseDtype)` instead.
+##   if not hasattr(array, &quot;sparse&quot;) and array.dtypes.apply(is_sparse).any():</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="decision-trees.html#cb34-1" tabindex="-1"></a>importance <span class="op">=</span> regressor.feature_importances_</span>
+<span id="cb34-2"><a href="decision-trees.html#cb34-2" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="decision-trees.html#cb34-3" tabindex="-1"></a><span class="cf">for</span> i,v <span class="kw">in</span> <span class="bu">enumerate</span>(importance):</span>
+<span id="cb34-4"><a href="decision-trees.html#cb34-4" tabindex="-1"></a> <span class="bu">print</span>(<span class="st">&#39;Feature: </span><span class="sc">%0d</span><span class="st">, Score: </span><span class="sc">%.5f</span><span class="st">&#39;</span> <span class="op">%</span> (i,v))</span></code></pre></div>
+<pre><code>## Feature: 0, Score: 0.01353
+## Feature: 1, Score: 0.70797
+## Feature: 2, Score: 0.12906
+## Feature: 3, Score: 0.00809
+## Feature: 4, Score: 0.14136</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="decision-trees.html#cb36-1" tabindex="-1"></a>error_vec<span class="op">=</span>y_test<span class="op">-</span>reg_tree.predict(X_test)</span></code></pre></div>
+<pre><code>## C:\PROGRA~3\ANACON~1\lib\site-packages\sklearn\utils\validation.py:623: FutureWarning: is_sparse is deprecated and will be removed in a future version. Check `isinstance(dtype, pd.SparseDtype)` instead.
+##   if not hasattr(array, &quot;sparse&quot;) and array.dtypes.apply(is_sparse).any():</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="decision-trees.html#cb38-1" tabindex="-1"></a>mae<span class="op">=</span>np.mean(np.<span class="bu">abs</span>(error_vec))</span>
+<span id="cb38-2"><a href="decision-trees.html#cb38-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;MAE is &#39;</span>,mae )</span></code></pre></div>
+<pre><code>## MAE is  3.7088580246913585</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="decision-trees.html#cb40-1" tabindex="-1"></a>tree.plot_tree(reg_tree)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
 </div>
 <div id="recursive-partitioning-with-partykit" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Recursive partitioning with partykit<a href="decision-trees.html#recursive-partitioning-with-partykit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="decision-trees.html#cb32-1" tabindex="-1"></a><span class="do">### Classification example:</span></span>
-<span id="cb32-2"><a href="decision-trees.html#cb32-2" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="decision-trees.html#cb32-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7515</span>)</span>
-<span id="cb32-4"><a href="decision-trees.html#cb32-4" tabindex="-1"></a>perm<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">699</span>)</span>
-<span id="cb32-5"><a href="decision-trees.html#cb32-5" tabindex="-1"></a>BC_randomOrder<span class="ot">=</span>BCdata[perm,]</span>
-<span id="cb32-6"><a href="decision-trees.html#cb32-6" tabindex="-1"></a>train <span class="ot">=</span> BC_randomOrder[<span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>),]</span>
-<span id="cb32-7"><a href="decision-trees.html#cb32-7" tabindex="-1"></a>model1<span class="ot">=</span><span class="fu">ctree</span>(Target <span class="sc">~</span> . <span class="sc">-</span> ID, <span class="at">data=</span>train)</span>
-<span id="cb32-8"><a href="decision-trees.html#cb32-8" tabindex="-1"></a>model1</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="decision-trees.html#cb41-1" tabindex="-1"></a><span class="do">### Classification example:</span></span>
+<span id="cb41-2"><a href="decision-trees.html#cb41-2" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="decision-trees.html#cb41-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7515</span>)</span>
+<span id="cb41-4"><a href="decision-trees.html#cb41-4" tabindex="-1"></a>perm<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">699</span>)</span>
+<span id="cb41-5"><a href="decision-trees.html#cb41-5" tabindex="-1"></a>BC_randomOrder<span class="ot">=</span>BCdata[perm,]</span>
+<span id="cb41-6"><a href="decision-trees.html#cb41-6" tabindex="-1"></a>train <span class="ot">=</span> BC_randomOrder[<span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>),]</span>
+<span id="cb41-7"><a href="decision-trees.html#cb41-7" tabindex="-1"></a>model1<span class="ot">=</span><span class="fu">ctree</span>(Target <span class="sc">~</span> . <span class="sc">-</span> ID, <span class="at">data=</span>train)</span>
+<span id="cb41-8"><a href="decision-trees.html#cb41-8" tabindex="-1"></a>model1</span></code></pre></div>
 <pre><code>## 
 ## Model formula:
 ## Target ~ CT + Size + Shape + Margin + Epithelial + Bare + Chromatin + 
@@ -662,15 +702,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of inner nodes:     9
 ## Number of terminal nodes: 10</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="decision-trees.html#cb34-1" tabindex="-1"></a><span class="fu">plot</span>(model1)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="decision-trees.html#cb35-1" tabindex="-1"></a><span class="do">###Regression example:</span></span>
-<span id="cb35-2"><a href="decision-trees.html#cb35-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">13172</span>) </span>
-<span id="cb35-3"><a href="decision-trees.html#cb35-3" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="fu">nrow</span>(bodyfat), <span class="at">size =</span> <span class="fu">floor</span>(.<span class="dv">75</span><span class="sc">*</span><span class="fu">nrow</span>(bodyfat)), <span class="at">replace =</span> F)</span>
-<span id="cb35-4"><a href="decision-trees.html#cb35-4" tabindex="-1"></a>train <span class="ot">&lt;-</span> bodyfat[sample, ]</span>
-<span id="cb35-5"><a href="decision-trees.html#cb35-5" tabindex="-1"></a>model1<span class="ot">&lt;-</span><span class="fu">ctree</span>(DEXfat <span class="sc">~</span> age <span class="sc">+</span> waistcirc <span class="sc">+</span> hipcirc <span class="sc">+</span> elbowbreadth <span class="sc">+</span> </span>
-<span id="cb35-6"><a href="decision-trees.html#cb35-6" tabindex="-1"></a>                kneebreadth, <span class="at">data =</span> train)</span>
-<span id="cb35-7"><a href="decision-trees.html#cb35-7" tabindex="-1"></a>model1</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="decision-trees.html#cb43-1" tabindex="-1"></a><span class="fu">plot</span>(model1)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="decision-trees.html#cb44-1" tabindex="-1"></a><span class="do">###Regression example:</span></span>
+<span id="cb44-2"><a href="decision-trees.html#cb44-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">13172</span>) </span>
+<span id="cb44-3"><a href="decision-trees.html#cb44-3" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">sample.int</span>(<span class="at">n =</span> <span class="fu">nrow</span>(bodyfat), <span class="at">size =</span> <span class="fu">floor</span>(.<span class="dv">75</span><span class="sc">*</span><span class="fu">nrow</span>(bodyfat)), <span class="at">replace =</span> F)</span>
+<span id="cb44-4"><a href="decision-trees.html#cb44-4" tabindex="-1"></a>train <span class="ot">&lt;-</span> bodyfat[sample, ]</span>
+<span id="cb44-5"><a href="decision-trees.html#cb44-5" tabindex="-1"></a>model1<span class="ot">&lt;-</span><span class="fu">ctree</span>(DEXfat <span class="sc">~</span> age <span class="sc">+</span> waistcirc <span class="sc">+</span> hipcirc <span class="sc">+</span> elbowbreadth <span class="sc">+</span> </span>
+<span id="cb44-6"><a href="decision-trees.html#cb44-6" tabindex="-1"></a>                kneebreadth, <span class="at">data =</span> train)</span>
+<span id="cb44-7"><a href="decision-trees.html#cb44-7" tabindex="-1"></a>model1</span></code></pre></div>
 <pre><code>## 
 ## Model formula:
 ## DEXfat ~ age + waistcirc + hipcirc + elbowbreadth + kneebreadth
@@ -686,14 +726,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of inner nodes:    3
 ## Number of terminal nodes: 4</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="decision-trees.html#cb37-1" tabindex="-1"></a><span class="fu">plot</span>(model1)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="decision-trees.html#cb38-1" tabindex="-1"></a><span class="do">### Example for binning data:</span></span>
-<span id="cb38-2"><a href="decision-trees.html#cb38-2" tabindex="-1"></a>churn<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;Q:</span><span class="sc">\\</span><span class="st">My Drive</span><span class="sc">\\</span><span class="st">Data Mining</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">tele_churn.csv&quot;</span>)</span>
-<span id="cb38-3"><a href="decision-trees.html#cb38-3" tabindex="-1"></a>churn<span class="sc">$</span>y<span class="ot">&lt;-</span><span class="fu">ifelse</span>(churn<span class="sc">$</span>churn<span class="sc">==</span><span class="st">&quot;TRUE&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb38-4"><a href="decision-trees.html#cb38-4" tabindex="-1"></a>churn<span class="sc">$</span>y<span class="ot">&lt;-</span><span class="fu">ordered</span>(churn<span class="sc">$</span>y,<span class="at">levels=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">labels=</span><span class="st">&quot;No&quot;</span>,<span class="st">&quot;Yes&quot;</span>)</span>
-<span id="cb38-5"><a href="decision-trees.html#cb38-5" tabindex="-1"></a>model1<span class="ot">&lt;-</span><span class="fu">ctree</span>(y<span class="sc">~</span>total.day.minutes,<span class="at">data=</span>churn)</span>
-<span id="cb38-6"><a href="decision-trees.html#cb38-6" tabindex="-1"></a>model1</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="decision-trees.html#cb46-1" tabindex="-1"></a><span class="fu">plot</span>(model1)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-4-4.png" width="672" /></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="decision-trees.html#cb47-1" tabindex="-1"></a><span class="do">### Example for binning data:</span></span>
+<span id="cb47-2"><a href="decision-trees.html#cb47-2" tabindex="-1"></a>churn<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;Q:</span><span class="sc">\\</span><span class="st">My Drive</span><span class="sc">\\</span><span class="st">Data Mining</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">tele_churn.csv&quot;</span>)</span>
+<span id="cb47-3"><a href="decision-trees.html#cb47-3" tabindex="-1"></a>churn<span class="sc">$</span>y<span class="ot">&lt;-</span><span class="fu">ifelse</span>(churn<span class="sc">$</span>churn<span class="sc">==</span><span class="st">&quot;TRUE&quot;</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb47-4"><a href="decision-trees.html#cb47-4" tabindex="-1"></a>churn<span class="sc">$</span>y<span class="ot">&lt;-</span><span class="fu">ordered</span>(churn<span class="sc">$</span>y,<span class="at">levels=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">labels=</span><span class="st">&quot;No&quot;</span>,<span class="st">&quot;Yes&quot;</span>)</span>
+<span id="cb47-5"><a href="decision-trees.html#cb47-5" tabindex="-1"></a>model1<span class="ot">&lt;-</span><span class="fu">ctree</span>(y<span class="sc">~</span>total.day.minutes,<span class="at">data=</span>churn)</span>
+<span id="cb47-6"><a href="decision-trees.html#cb47-6" tabindex="-1"></a>model1</span></code></pre></div>
 <pre><code>## 
 ## Model formula:
 ## y ~ total.day.minutes
@@ -707,49 +747,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of inner nodes:    2
 ## Number of terminal nodes: 3</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="decision-trees.html#cb40-1" tabindex="-1"></a><span class="fu">plot</span>(model1)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="decision-trees.html#cb49-1" tabindex="-1"></a><span class="fu">plot</span>(model1)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-4-5.png" width="672" /></p>
 <p>Some interesting extra tidbits!! This shows how to do ROC curves and lift curves for classification trees.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="decision-trees.html#cb41-1" tabindex="-1"></a>test <span class="ot">=</span> BC_randomOrder[(<span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">699</span>,]</span>
-<span id="cb41-2"><a href="decision-trees.html#cb41-2" tabindex="-1"></a><span class="do">###Lift (from classification trees)</span></span>
-<span id="cb41-3"><a href="decision-trees.html#cb41-3" tabindex="-1"></a>scores1<span class="ot">=</span><span class="fu">predict</span>(BC.tree,test,<span class="at">type=</span><span class="st">&quot;prob&quot;</span>)</span>
-<span id="cb41-4"><a href="decision-trees.html#cb41-4" tabindex="-1"></a>pred_val <span class="ot">&lt;-</span><span class="fu">prediction</span>(scores1[,<span class="dv">2</span>],test<span class="sc">$</span>Target)</span>
-<span id="cb41-5"><a href="decision-trees.html#cb41-5" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">performance</span>(pred_val, <span class="at">measure=</span><span class="st">&quot;lift&quot;</span>, <span class="at">x.measure=</span><span class="st">&quot;rpp&quot;</span>), <span class="at">colorize=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="decision-trees.html#cb50-1" tabindex="-1"></a>test <span class="ot">=</span> BC_randomOrder[(<span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">699</span>,]</span>
+<span id="cb50-2"><a href="decision-trees.html#cb50-2" tabindex="-1"></a><span class="do">###Lift (from classification trees)</span></span>
+<span id="cb50-3"><a href="decision-trees.html#cb50-3" tabindex="-1"></a>scores1<span class="ot">=</span><span class="fu">predict</span>(BC.tree,test,<span class="at">type=</span><span class="st">&quot;prob&quot;</span>)</span>
+<span id="cb50-4"><a href="decision-trees.html#cb50-4" tabindex="-1"></a>pred_val <span class="ot">&lt;-</span><span class="fu">prediction</span>(scores1[,<span class="dv">2</span>],test<span class="sc">$</span>Target)</span>
+<span id="cb50-5"><a href="decision-trees.html#cb50-5" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">performance</span>(pred_val, <span class="at">measure=</span><span class="st">&quot;lift&quot;</span>, <span class="at">x.measure=</span><span class="st">&quot;rpp&quot;</span>), <span class="at">colorize=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/extras-1.png" width="672" /></p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="decision-trees.html#cb42-1" tabindex="-1"></a><span class="co"># Calculating True Positive and False Positive Rate</span></span>
-<span id="cb42-2"><a href="decision-trees.html#cb42-2" tabindex="-1"></a>perf_val <span class="ot">&lt;-</span> <span class="fu">performance</span>(pred_val, <span class="st">&quot;tpr&quot;</span>, <span class="st">&quot;fpr&quot;</span>)</span>
-<span id="cb42-3"><a href="decision-trees.html#cb42-3" tabindex="-1"></a><span class="co">#Plot the ROC curve</span></span>
-<span id="cb42-4"><a href="decision-trees.html#cb42-4" tabindex="-1"></a><span class="fu">plot</span>(perf_val, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="decision-trees.html#cb51-1" tabindex="-1"></a><span class="co"># Calculating True Positive and False Positive Rate</span></span>
+<span id="cb51-2"><a href="decision-trees.html#cb51-2" tabindex="-1"></a>perf_val <span class="ot">&lt;-</span> <span class="fu">performance</span>(pred_val, <span class="st">&quot;tpr&quot;</span>, <span class="st">&quot;fpr&quot;</span>)</span>
+<span id="cb51-3"><a href="decision-trees.html#cb51-3" tabindex="-1"></a><span class="co">#Plot the ROC curve</span></span>
+<span id="cb51-4"><a href="decision-trees.html#cb51-4" tabindex="-1"></a><span class="fu">plot</span>(perf_val, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/extras-2.png" width="672" /></p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="decision-trees.html#cb43-1" tabindex="-1"></a><span class="co">#Calculating KS statistics</span></span>
-<span id="cb43-2"><a href="decision-trees.html#cb43-2" tabindex="-1"></a>ks1.tree <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">attr</span>(perf_val, <span class="st">&quot;y.values&quot;</span>)[[<span class="dv">1</span>]] <span class="sc">-</span> (<span class="fu">attr</span>(perf_val, <span class="st">&quot;x.values&quot;</span>)[[<span class="dv">1</span>]]))</span>
-<span id="cb43-3"><a href="decision-trees.html#cb43-3" tabindex="-1"></a>ks1.tree</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="decision-trees.html#cb52-1" tabindex="-1"></a><span class="co">#Calculating KS statistics</span></span>
+<span id="cb52-2"><a href="decision-trees.html#cb52-2" tabindex="-1"></a>ks1.tree <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">attr</span>(perf_val, <span class="st">&quot;y.values&quot;</span>)[[<span class="dv">1</span>]] <span class="sc">-</span> (<span class="fu">attr</span>(perf_val, <span class="st">&quot;x.values&quot;</span>)[[<span class="dv">1</span>]]))</span>
+<span id="cb52-3"><a href="decision-trees.html#cb52-3" tabindex="-1"></a>ks1.tree</span></code></pre></div>
 <pre><code>## [1] 0.8971412</code></pre>
 </div>
 <div id="model-reliance" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Model Reliance<a href="decision-trees.html#model-reliance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Model reliance is a model agnostic value for variable importance. It is the ratio of the expected loss of a model when “noise” is incorporated into a model versus the expect loss of the model. For incorporating “noise” into the model, we will use Dr. Breiman’s permutation of a variable in the model. To explore the importance of variable 1, we will permutet the values of variable 1 and compare its expected loss to the expect loss when this variable is not permuted. We will do this for all variables in the data set. We will go back to the original decision tree:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="decision-trees.html#cb45-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7515</span>)</span>
-<span id="cb45-2"><a href="decision-trees.html#cb45-2" tabindex="-1"></a>perm<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">699</span>)</span>
-<span id="cb45-3"><a href="decision-trees.html#cb45-3" tabindex="-1"></a>BC_randomOrder<span class="ot">=</span>BCdata[perm,]</span>
-<span id="cb45-4"><a href="decision-trees.html#cb45-4" tabindex="-1"></a>train <span class="ot">=</span> BC_randomOrder[<span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>),]</span>
-<span id="cb45-5"><a href="decision-trees.html#cb45-5" tabindex="-1"></a>test <span class="ot">=</span> BC_randomOrder[(<span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">699</span>,]</span>
-<span id="cb45-6"><a href="decision-trees.html#cb45-6" tabindex="-1"></a>BC.tree <span class="ot">=</span> <span class="fu">rpart</span>(Target <span class="sc">~</span> . <span class="sc">-</span> ID, <span class="at">data=</span>train, <span class="at">method=</span><span class="st">&#39;class&#39;</span>,</span>
-<span id="cb45-7"><a href="decision-trees.html#cb45-7" tabindex="-1"></a> <span class="at">parms =</span> <span class="fu">list</span>(<span class="at">split=</span><span class="st">&#39;gini&#39;</span>)) <span class="do">## or &#39;information&#39;</span></span>
-<span id="cb45-8"><a href="decision-trees.html#cb45-8" tabindex="-1"></a></span>
-<span id="cb45-9"><a href="decision-trees.html#cb45-9" tabindex="-1"></a>VI <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length=</span><span class="fu">ncol</span>(train)<span class="sc">-</span><span class="dv">2</span>)</span>
-<span id="cb45-10"><a href="decision-trees.html#cb45-10" tabindex="-1"></a>loss.model<span class="ot">=</span><span class="fu">mean</span>(<span class="fu">abs</span>(train<span class="sc">$</span>Target<span class="sc">-</span><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(<span class="fu">predict</span>(BC.tree,<span class="at">type=</span><span class="st">&quot;class&quot;</span>)))))</span>
-<span id="cb45-11"><a href="decision-trees.html#cb45-11" tabindex="-1"></a>temp1<span class="ot">=</span>train</span>
-<span id="cb45-12"><a href="decision-trees.html#cb45-12" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb45-13"><a href="decision-trees.html#cb45-13" tabindex="-1"></a>  {temp1<span class="ot">=</span>train</span>
-<span id="cb45-14"><a href="decision-trees.html#cb45-14" tabindex="-1"></a>   temp1[,j]<span class="ot">=</span><span class="fu">sample</span>(train[,j])</span>
-<span id="cb45-15"><a href="decision-trees.html#cb45-15" tabindex="-1"></a>   loss.noise <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">abs</span>(train<span class="sc">$</span>Target<span class="sc">-</span><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(<span class="fu">predict</span>(BC.tree, <span class="at">newdata=</span>temp1,<span class="at">type=</span><span class="st">&quot;class&quot;</span>)))))</span>
-<span id="cb45-16"><a href="decision-trees.html#cb45-16" tabindex="-1"></a>   VI[(j<span class="dv">-1</span>)] <span class="ot">=</span> loss.noise<span class="sc">/</span>loss.model</span>
-<span id="cb45-17"><a href="decision-trees.html#cb45-17" tabindex="-1"></a>}</span>
-<span id="cb45-18"><a href="decision-trees.html#cb45-18" tabindex="-1"></a></span>
-<span id="cb45-19"><a href="decision-trees.html#cb45-19" tabindex="-1"></a>VI<span class="ot">&lt;-</span><span class="fu">data.frame</span>(VI)</span>
-<span id="cb45-20"><a href="decision-trees.html#cb45-20" tabindex="-1"></a><span class="fu">rownames</span>(VI)<span class="ot">&lt;-</span><span class="fu">colnames</span>(train[<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>])</span>
-<span id="cb45-21"><a href="decision-trees.html#cb45-21" tabindex="-1"></a>VI</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="decision-trees.html#cb54-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7515</span>)</span>
+<span id="cb54-2"><a href="decision-trees.html#cb54-2" tabindex="-1"></a>perm<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">699</span>)</span>
+<span id="cb54-3"><a href="decision-trees.html#cb54-3" tabindex="-1"></a>BC_randomOrder<span class="ot">=</span>BCdata[perm,]</span>
+<span id="cb54-4"><a href="decision-trees.html#cb54-4" tabindex="-1"></a>train <span class="ot">=</span> BC_randomOrder[<span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>),]</span>
+<span id="cb54-5"><a href="decision-trees.html#cb54-5" tabindex="-1"></a>test <span class="ot">=</span> BC_randomOrder[(<span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">699</span>,]</span>
+<span id="cb54-6"><a href="decision-trees.html#cb54-6" tabindex="-1"></a>BC.tree <span class="ot">=</span> <span class="fu">rpart</span>(Target <span class="sc">~</span> . <span class="sc">-</span> ID, <span class="at">data=</span>train, <span class="at">method=</span><span class="st">&#39;class&#39;</span>,</span>
+<span id="cb54-7"><a href="decision-trees.html#cb54-7" tabindex="-1"></a> <span class="at">parms =</span> <span class="fu">list</span>(<span class="at">split=</span><span class="st">&#39;gini&#39;</span>)) <span class="do">## or &#39;information&#39;</span></span>
+<span id="cb54-8"><a href="decision-trees.html#cb54-8" tabindex="-1"></a></span>
+<span id="cb54-9"><a href="decision-trees.html#cb54-9" tabindex="-1"></a>VI <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length=</span><span class="fu">ncol</span>(train)<span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb54-10"><a href="decision-trees.html#cb54-10" tabindex="-1"></a>loss.model<span class="ot">=</span><span class="fu">mean</span>(<span class="fu">abs</span>(train<span class="sc">$</span>Target<span class="sc">-</span><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(<span class="fu">predict</span>(BC.tree,<span class="at">type=</span><span class="st">&quot;class&quot;</span>)))))</span>
+<span id="cb54-11"><a href="decision-trees.html#cb54-11" tabindex="-1"></a>temp1<span class="ot">=</span>train</span>
+<span id="cb54-12"><a href="decision-trees.html#cb54-12" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb54-13"><a href="decision-trees.html#cb54-13" tabindex="-1"></a>  {temp1<span class="ot">=</span>train</span>
+<span id="cb54-14"><a href="decision-trees.html#cb54-14" tabindex="-1"></a>   temp1[,j]<span class="ot">=</span><span class="fu">sample</span>(train[,j])</span>
+<span id="cb54-15"><a href="decision-trees.html#cb54-15" tabindex="-1"></a>   loss.noise <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">abs</span>(train<span class="sc">$</span>Target<span class="sc">-</span><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(<span class="fu">predict</span>(BC.tree, <span class="at">newdata=</span>temp1,<span class="at">type=</span><span class="st">&quot;class&quot;</span>)))))</span>
+<span id="cb54-16"><a href="decision-trees.html#cb54-16" tabindex="-1"></a>   VI[(j<span class="dv">-1</span>)] <span class="ot">=</span> loss.noise<span class="sc">/</span>loss.model</span>
+<span id="cb54-17"><a href="decision-trees.html#cb54-17" tabindex="-1"></a>}</span>
+<span id="cb54-18"><a href="decision-trees.html#cb54-18" tabindex="-1"></a></span>
+<span id="cb54-19"><a href="decision-trees.html#cb54-19" tabindex="-1"></a>VI<span class="ot">&lt;-</span><span class="fu">data.frame</span>(VI)</span>
+<span id="cb54-20"><a href="decision-trees.html#cb54-20" tabindex="-1"></a><span class="fu">rownames</span>(VI)<span class="ot">&lt;-</span><span class="fu">colnames</span>(train[<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>])</span>
+<span id="cb54-21"><a href="decision-trees.html#cb54-21" tabindex="-1"></a>VI</span></code></pre></div>
 <pre><code>##                  VI
 ## CT         1.764706
 ## Size       6.588235
