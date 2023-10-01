@@ -36,6 +36,11 @@ temp.dat=read.table("Q:\\My Drive\\Data Mining\\Data\\Grocery1.csv",sep=',',head
 
 load("Q:\\My Drive\\Data Mining\\Data\\breast_cancer.Rdata")
 
+library(reticulate)
+
+use_python("C:\\ProgramData\\Anaconda3\\python.exe")
+
+
 ```
 
 
@@ -75,6 +80,61 @@ sum(scores!=test$Target)/nrow(test)
 
 rpart.plot(BC.tree)
 
+```
+
+
+### Python Classification Trees
+
+Note that Python is NOT able to handle categorical variables in its basic tree classifier.  This means that if you do have categorical variables, you will need to one-hot encode these variables before using the tree classifier.  For this data set, all variables are recorded as integer, so this is an exercise we do not need to worry about (but please do keep this in mind!!).
+
+```{python}
+import numpy as np
+import pandas as pd
+from sklearn import tree
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+
+bcdata_py=r.BCdata
+
+X=bcdata_py.iloc[:,1:10]
+y=bcdata_py['Target']
+
+X_train, X_test,y_train, y_test = train_test_split(X,y ,
+                                   random_state=49865, 
+                                   test_size=0.25, 
+                                   shuffle=True)
+
+## Now fit the tree
+class_tree = tree.DecisionTreeClassifier(criterion='entropy', max_depth=3)
+class_tree = class_tree.fit(X_train,y_train)
+
+y_pred = class_tree.predict(X_test)
+
+
+conf = confusion_matrix(y_test, y_pred)
+print('Confusion matrix\n\n', conf)
+
+tree.plot_tree(class_tree)
+
+
+
+
+
+
+```
+
+
+```{python}
+class_tree2 = tree.DecisionTreeClassifier(criterion='gini', max_depth=3)
+class_tree2 = class_tree2.fit(X_train,y_train)
+
+y_pred = class_tree2.predict(X_test)
+
+
+conf = confusion_matrix(y_test, y_pred)
+print('Confusion matrix\n\n', conf)
+
+tree.plot_tree(class_tree2)
 ```
 
 
