@@ -278,6 +278,10 @@ ks1.tree
 
 ```
 
+### Python for Conditional Inference Decision Trees
+
+Sorry, there is not a good algorithm to currently do this in Python.
+
 ## Model Reliance
 
 Model reliance is a model agnostic value for variable importance.  It is the ratio of the expected loss of a model when "noise" is incorporated into a model versus the expect loss of the model.  For incorporating "noise" into the model, we will use Dr. Breiman's permutation of a variable in the model.  To explore the importance of variable 1, we will permutet the values of variable 1 and compare its expected loss to the expect loss when this variable is not permuted.  We will do this for all variables in the data set. We will go back to the original decision tree:
