@@ -35,6 +35,10 @@ temp.dat=read.table("Q:\\My Drive\\Data Mining\\Data\\Grocery1.csv",sep=',',head
 
 load("Q:\\My Drive\\Data Mining\\Data\\breast_cancer.Rdata")
 
+library(reticulate)
+
+use_python("C:\\ProgramData\\Anaconda3\\python.exe")
+
 ```
 
 
@@ -116,6 +120,55 @@ all.k=profile.kmeans %>% group_by(k2$cluster) %>%
  NbClust(arrest.scal,method="kmeans",min.nc=2,max.nc = 4)
 
 ```
+
+### K-Means in Python
+
+```{python}
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+from scipy.spatial.distance import cdist
+import numpy as np
+import matplotlib.pyplot as plt
+
+arrest_py=r.USArrests
+scaler = StandardScaler()
+arrest_scal = scaler.fit_transform(arrest_py)
+clus_py=KMeans(n_clusters=2, random_state=5687, n_init=25).fit(arrest_scal)
+
+clus_py.labels_
+```
+
+```{python}
+
+inertias = []
+silhouette_coefficients = []
+   
+K=range(2,10)
+for k in K:
+    kmean1 = KMeans(n_clusters=k).fit(arrest_scal)
+    kmean1.fit(arrest_scal)
+    inertias.append(kmean1.inertia_)
+    score = silhouette_score(arrest_scal, kmean1.labels_)
+    silhouette_coefficients.append(score)
+
+plt.plot(K, inertias, 'bx-')
+plt.xlabel('Values of K')
+plt.ylabel('Inertia')
+plt.title('The Elbow Method using Inertia')
+plt.show()
+
+plt.plot(K, silhouette_coefficients, 'bx-')
+plt.xlabel('Values of K')
+plt.ylabel('Silhouette Coefficient')
+plt.title('The Silhouette Method')
+plt.show()
+  
+```
+
+
+
 ## Hierarchical Clustering
 
 In hierarchical clustering, we need to specify the distance metric we wish to use, as well as the linkage information.  There are MANY different distance measures, but the two most common are Euclidean and manhattan.  We will use the algorithms in the cluster package in R (provides most flexibility in algorithms).  In order to do the basic hierarchical clustering, the algorithm is called agnes (Agglomerative "Nested" Hierarchical Clustering).  The code below shows how to do this with complete linkage and using Euclidean distances.
