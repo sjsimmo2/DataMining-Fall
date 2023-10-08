@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. Susan Simmons" />
 
 
-<meta name="date" content="2023-10-05" />
+<meta name="date" content="2023-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -179,7 +179,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="clustering.html"><a href="clustering.html#k-means-in-python"><i class="fa fa-check"></i><b>4.1.1</b> K-Means in Python</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering"><i class="fa fa-check"></i><b>4.2</b> Hierarchical Clustering</a></li>
+<li class="chapter" data-level="4.2" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering"><i class="fa fa-check"></i><b>4.2</b> Hierarchical Clustering</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="clustering.html"><a href="clustering.html#python-for-hierarchical-clustering"><i class="fa fa-check"></i><b>4.2.1</b> Python for Hierarchical Clustering</a></li>
+</ul></li>
 <li class="chapter" data-level="4.3" data-path="clustering.html"><a href="clustering.html#variable-clustering"><i class="fa fa-check"></i><b>4.3</b> Variable Clustering</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="other-topics.html"><a href="other-topics.html"><i class="fa fa-check"></i><b>5</b> Other Topics</a>
@@ -234,37 +237,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>With only 4 variables and good scales, we will just use the scaled data (arrest.scal) for the clustering.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="clustering.html#cb8-1" tabindex="-1"></a>clus2<span class="ot">=</span><span class="fu">kmeans</span>(arrest.scal,<span class="at">centers=</span><span class="dv">2</span>,<span class="at">nstart =</span> <span class="dv">25</span>)</span>
 <span id="cb8-2"><a href="clustering.html#cb8-2" tabindex="-1"></a>clus2</span></code></pre></div>
-<pre><code>## K-means clustering with 2 clusters of sizes 20, 30
+<pre><code>## K-means clustering with 2 clusters of sizes 30, 20
 ## 
 ## Cluster means:
 ##      Murder    Assault   UrbanPop       Rape
-## 1  1.004934  1.0138274  0.1975853  0.8469650
-## 2 -0.669956 -0.6758849 -0.1317235 -0.5646433
+## 1 -0.669956 -0.6758849 -0.1317235 -0.5646433
+## 2  1.004934  1.0138274  0.1975853  0.8469650
 ## 
 ## Clustering vector:
 ##        Alabama         Alaska        Arizona       Arkansas     California 
-##              1              1              1              2              1 
+##              2              2              2              1              2 
 ##       Colorado    Connecticut       Delaware        Florida        Georgia 
-##              1              2              2              1              1 
-##         Hawaii          Idaho       Illinois        Indiana           Iowa 
-##              2              2              1              2              2 
-##         Kansas       Kentucky      Louisiana          Maine       Maryland 
-##              2              2              1              2              1 
-##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
-##              2              1              2              1              1 
-##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
-##              2              2              1              2              2 
-##     New Mexico       New York North Carolina   North Dakota           Ohio 
-##              1              1              1              2              2 
-##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
-##              2              2              2              2              1 
-##   South Dakota      Tennessee          Texas           Utah        Vermont 
 ##              2              1              1              2              2 
+##         Hawaii          Idaho       Illinois        Indiana           Iowa 
+##              1              1              2              1              1 
+##         Kansas       Kentucky      Louisiana          Maine       Maryland 
+##              1              1              2              1              2 
+##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
+##              1              2              1              2              2 
+##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+##              1              1              2              1              1 
+##     New Mexico       New York North Carolina   North Dakota           Ohio 
+##              2              2              2              1              1 
+##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
+##              1              1              1              1              2 
+##   South Dakota      Tennessee          Texas           Utah        Vermont 
+##              1              2              2              1              1 
 ##       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
-##              2              2              2              2              2 
+##              1              1              1              1              1 
 ## 
 ## Within cluster sum of squares by cluster:
-## [1] 46.74796 56.11445
+## [1] 56.11445 46.74796
 ##  (between_SS / total_SS =  47.5 %)
 ## 
 ## Available components:
@@ -553,20 +556,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##              2              1              1              2              2 
 ##       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
 ##              2              2              2              2              2</code></pre>
+<div id="python-for-hierarchical-clustering" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Python for Hierarchical Clustering<a href="clustering.html#python-for-hierarchical-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To view the dendogram in python, you can use the linkage command (caution!!! If you have a lot of data points, this is going to get really messy….in other words, I would not recommend it). This data set only has 50 observations, so it is not too bad to view. The method is the type of linkage and metric is the distance metric used.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="clustering.html#cb38-1" tabindex="-1"></a><span class="im">from</span> scipy.cluster.hierarchy <span class="im">import</span> dendrogram, linkage</span>
+<span id="cb38-2"><a href="clustering.html#cb38-2" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="clustering.html#cb38-3" tabindex="-1"></a>linkage_data <span class="op">=</span> linkage(arrest_scal, method<span class="op">=</span><span class="st">&#39;ward&#39;</span>, metric<span class="op">=</span><span class="st">&#39;euclidean&#39;</span>)</span>
+<span id="cb38-4"><a href="clustering.html#cb38-4" tabindex="-1"></a>dendrogram(linkage_data)</span></code></pre></div>
+<pre><code>## {&#39;icoord&#39;: [[5.0, 5.0, 15.0, 15.0], [25.0, 25.0, 35.0, 35.0], [10.0, 10.0, 30.0, 30.0], [55.0, 55.0, 65.0, 65.0], [45.0, 45.0, 60.0, 60.0], [20.0, 20.0, 52.5, 52.5], [85.0, 85.0, 95.0, 95.0], [75.0, 75.0, 90.0, 90.0], [135.0, 135.0, 145.0, 145.0], [125.0, 125.0, 140.0, 140.0], [115.0, 115.0, 132.5, 132.5], [105.0, 105.0, 123.75, 123.75], [82.5, 82.5, 114.375, 114.375], [175.0, 175.0, 185.0, 185.0], [165.0, 165.0, 180.0, 180.0], [155.0, 155.0, 172.5, 172.5], [98.4375, 98.4375, 163.75, 163.75], [36.25, 36.25, 131.09375, 131.09375], [195.0, 195.0, 205.0, 205.0], [215.0, 215.0, 225.0, 225.0], [200.0, 200.0, 220.0, 220.0], [245.0, 245.0, 255.0, 255.0], [235.0, 235.0, 250.0, 250.0], [265.0, 265.0, 275.0, 275.0], [295.0, 295.0, 305.0, 305.0], [285.0, 285.0, 300.0, 300.0], [270.0, 270.0, 292.5, 292.5], [242.5, 242.5, 281.25, 281.25], [210.0, 210.0, 261.875, 261.875], [315.0, 315.0, 325.0, 325.0], [335.0, 335.0, 345.0, 345.0], [320.0, 320.0, 340.0, 340.0], [365.0, 365.0, 375.0, 375.0], [385.0, 385.0, 395.0, 395.0], [370.0, 370.0, 390.0, 390.0], [355.0, 355.0, 380.0, 380.0], [415.0, 415.0, 425.0, 425.0], [405.0, 405.0, 420.0, 420.0], [445.0, 445.0, 455.0, 455.0], [435.0, 435.0, 450.0, 450.0], [465.0, 465.0, 475.0, 475.0], [442.5, 442.5, 470.0, 470.0], [485.0, 485.0, 495.0, 495.0], [456.25, 456.25, 490.0, 490.0], [412.5, 412.5, 473.125, 473.125], [367.5, 367.5, 442.8125, 442.8125], [330.0, 330.0, 405.15625, 405.15625], [235.9375, 235.9375, 367.578125, 367.578125], [83.671875, 83.671875, 301.7578125, 301.7578125]], &#39;dcoord&#39;: [[0.0, 0.7800624726117171, 0.7800624726117171, 0.0], [0.0, 1.0225018692038894, 1.0225018692038894, 0.0], [0.7800624726117171, 1.1021694044411907, 1.1021694044411907, 1.0225018692038894], [0.0, 0.7945530103578827, 0.7945530103578827, 0.0], [0.0, 1.2197191288489164, 1.2197191288489164, 0.7945530103578827], [1.1021694044411907, 2.7421139544450304, 2.7421139544450304, 1.2197191288489164], [0.0, 0.3537743681310408, 0.3537743681310408, 0.0], [0.0, 0.952332839989021, 0.952332839989021, 0.3537743681310408], [0.0, 0.5408248189680332, 0.5408248189680332, 0.0], [0.0, 0.9610307025238368, 0.9610307025238368, 0.5408248189680332], [0.0, 1.3122402649731468, 1.3122402649731468, 0.9610307025238368], [0.0, 1.7079251328916916, 1.7079251328916916, 1.3122402649731468], [0.952332839989021, 2.2649420381778995, 2.2649420381778995, 1.7079251328916916], [0.0, 1.2089769072372043, 1.2089769072372043, 0.0], [0.0, 1.404214498699647, 1.404214498699647, 1.2089769072372043], [0.0, 3.055735303919404, 3.055735303919404, 1.404214498699647], [2.2649420381778995, 3.531541898650026, 3.531541898650026, 3.055735303919404], [2.7421139544450304, 6.527470828535695, 6.527470828535695, 3.531541898650026], [0.0, 0.7180984285039761, 0.7180984285039761, 0.0], [0.0, 0.9924604112760993, 0.9924604112760993, 0.0], [0.7180984285039761, 1.3303363086847781, 1.3303363086847781, 0.9924604112760993], [0.0, 0.7464962542035871, 0.7464962542035871, 0.0], [0.0, 0.815842993431543, 0.815842993431543, 0.7464962542035871], [0.0, 0.4990993894073977, 0.4990993894073977, 0.0], [0.0, 0.2079437976133826, 0.2079437976133826, 0.0], [0.0, 0.6625852157172658, 0.6625852157172658, 0.2079437976133826], [0.4990993894073977, 1.3585660787207545, 1.3585660787207545, 0.6625852157172658], [0.815842993431543, 1.7661673389439376, 1.7661673389439376, 1.3585660787207545], [1.3303363086847781, 3.023678727416965, 3.023678727416965, 1.7661673389439376], [0.0, 0.7109765828248565, 0.7109765828248565, 0.0], [0.0, 1.0705701702968808, 1.0705701702968808, 0.0], [0.7109765828248565, 1.1724104281482475, 1.1724104281482475, 1.0705701702968808], [0.0, 0.8058634904273213, 0.8058634904273213, 0.0], [0.0, 1.0865316609298954, 1.0865316609298954, 0.0], [0.8058634904273213, 1.55526892227882, 1.55526892227882, 1.0865316609298954], [0.0, 1.8302005688424474, 1.8302005688424474, 1.55526892227882], [0.0, 0.59956022650398, 0.59956022650398, 0.0], [0.0, 1.2729224911920178, 1.2729224911920178, 0.59956022650398], [0.0, 0.43312429085085896, 0.43312429085085896, 0.0], [0.0, 0.5591483670409593, 0.5591483670409593, 0.43312429085085896], [0.0, 0.7860298248284557, 0.7860298248284557, 0.0], [0.5591483670409593, 0.8558054806051812, 0.8558054806051812, 0.7860298248284557], [0.0, 1.0818450636699195, 1.0818450636699195, 0.0], [0.8558054806051812, 1.95573383070349, 1.95573383070349, 1.0818450636699195], [1.2729224911920178, 2.225708599114937, 2.225708599114937, 1.95573383070349], [1.8302005688424474, 3.2433103740861906, 3.2433103740861906, 2.225708599114937], [1.1724104281482475, 3.772026252105819, 3.772026252105819, 3.2433103740861906], [3.023678727416965, 7.261167758993684, 7.261167758993684, 3.772026252105819], [6.527470828535695, 13.653466603337856, 13.653466603337856, 7.261167758993684]], &#39;ivl&#39;: [&#39;0&#39;, &#39;17&#39;, &#39;9&#39;, &#39;41&#39;, &#39;32&#39;, &#39;23&#39;, &#39;39&#39;, &#39;42&#39;, &#39;12&#39;, &#39;31&#39;, &#39;8&#39;, &#39;2&#39;, &#39;21&#39;, &#39;19&#39;, &#39;30&#39;, &#39;1&#39;, &#39;5&#39;, &#39;4&#39;, &#39;27&#39;, &#39;40&#39;, &#39;47&#39;, &#39;33&#39;, &#39;44&#39;, &#39;11&#39;, &#39;25&#39;, &#39;26&#39;, &#39;22&#39;, &#39;48&#39;, &#39;18&#39;, &#39;14&#39;, &#39;28&#39;, &#39;45&#39;, &#39;49&#39;, &#39;3&#39;, &#39;16&#39;, &#39;7&#39;, &#39;20&#39;, &#39;29&#39;, &#39;6&#39;, &#39;38&#39;, &#39;24&#39;, &#39;36&#39;, &#39;46&#39;, &#39;35&#39;, &#39;13&#39;, &#39;15&#39;, &#39;34&#39;, &#39;37&#39;, &#39;10&#39;, &#39;43&#39;], &#39;leaves&#39;: [0, 17, 9, 41, 32, 23, 39, 42, 12, 31, 8, 2, 21, 19, 30, 1, 5, 4, 27, 40, 47, 33, 44, 11, 25, 26, 22, 48, 18, 14, 28, 45, 49, 3, 16, 7, 20, 29, 6, 38, 24, 36, 46, 35, 13, 15, 34, 37, 10, 43], &#39;color_list&#39;: [&#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C0&#39;], &#39;leaves_color_list&#39;: [&#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C1&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;, &#39;C2&#39;]}</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="clustering.html#cb40-1" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>To do Agglomerative Clustering:</p>
+<p>Note that you need to specify the number of clusters here. You are able to say None for the number of clusters, but then you need to specify the distance threshold (from dendogram). Again illustrating that this is not the best method for large data sets.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="clustering.html#cb41-1" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> AgglomerativeClustering</span>
+<span id="cb41-2"><a href="clustering.html#cb41-2" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="clustering.html#cb41-3" tabindex="-1"></a>aggclus_py <span class="op">=</span> AgglomerativeClustering(n_clusters <span class="op">=</span> <span class="dv">2</span>, affinity <span class="op">=</span> <span class="st">&#39;euclidean&#39;</span>, linkage <span class="op">=</span> <span class="st">&#39;complete&#39;</span>)</span>
+<span id="cb41-4"><a href="clustering.html#cb41-4" tabindex="-1"></a>arrest_hy <span class="op">=</span> aggclus_py.fit_predict(arrest_scal)</span></code></pre></div>
+<p>Note: I did not find a good package for divisive clustering in Python.</p>
 <p>##DBSCAN</p>
 <p>DBSCAN is one of the most popular density-based clustering algorithm in use. Density Based Spatial Clustering Applications with Noise (DBSCAN) cluster points together that are “density reachable” (within a certain radius of each other). Users can specify this distance and the minimum number of points that will be used to create clusters (see <a href="https://cran.r-project.org/web/packages/dbscan/vignettes/dbscan.pdf" class="uri">https://cran.r-project.org/web/packages/dbscan/vignettes/dbscan.pdf</a>)</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="clustering.html#cb38-1" tabindex="-1"></a>scan1<span class="ot">&lt;-</span><span class="fu">hdbscan</span>(arrest.scal,<span class="at">minPts=</span><span class="dv">4</span>)</span>
-<span id="cb38-2"><a href="clustering.html#cb38-2" tabindex="-1"></a>pca_ex<span class="ot">=</span><span class="fu">prcomp</span>(arrest.scal,<span class="at">scale=</span>F)</span>
-<span id="cb38-3"><a href="clustering.html#cb38-3" tabindex="-1"></a>scan1data<span class="ot">=</span><span class="fu">cbind.data.frame</span>(pca_ex<span class="sc">$</span>x[,<span class="dv">1</span>],pca_ex<span class="sc">$</span>x[,<span class="dv">2</span>],<span class="fu">as.factor</span>(scan1<span class="sc">$</span>cluster<span class="sc">+</span><span class="dv">1</span>))</span>
-<span id="cb38-4"><a href="clustering.html#cb38-4" tabindex="-1"></a><span class="fu">colnames</span>(scan1data)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;PCA1&quot;</span>,<span class="st">&quot;PCA2&quot;</span>,<span class="st">&quot;cluster&quot;</span>)</span>
-<span id="cb38-5"><a href="clustering.html#cb38-5" tabindex="-1"></a><span class="fu">ggplot</span>(scan1data,<span class="fu">aes</span>(<span class="at">x=</span>PCA1,<span class="at">y=</span>PCA2,<span class="at">color=</span>cluster))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/hdbscan-1.png" width="672" /></p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="clustering.html#cb39-1" tabindex="-1"></a><span class="fu">plot</span>(scan1,<span class="at">show_flat=</span>T)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/hdbscan-2.png" width="672" /></p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="clustering.html#cb40-1" tabindex="-1"></a><span class="co">#res.dbscan=dbscan(arrest.scal,eps=1.2,minPts=4)</span></span>
-<span id="cb40-2"><a href="clustering.html#cb40-2" tabindex="-1"></a>d<span class="ot">=</span><span class="fu">dist</span>(arrest.scal,<span class="at">method =</span> <span class="st">&quot;canberra&quot;</span>)</span>
-<span id="cb40-3"><a href="clustering.html#cb40-3" tabindex="-1"></a>res.dbscan<span class="ot">=</span><span class="fu">dbscan</span>(d,<span class="at">eps=</span><span class="fl">1.2</span>,<span class="at">minPts=</span><span class="dv">4</span>)</span>
-<span id="cb40-4"><a href="clustering.html#cb40-4" tabindex="-1"></a>res.dbscan</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="clustering.html#cb42-1" tabindex="-1"></a>scan1<span class="ot">&lt;-</span><span class="fu">hdbscan</span>(arrest.scal,<span class="at">minPts=</span><span class="dv">4</span>)</span>
+<span id="cb42-2"><a href="clustering.html#cb42-2" tabindex="-1"></a>pca_ex<span class="ot">=</span><span class="fu">prcomp</span>(arrest.scal,<span class="at">scale=</span>F)</span>
+<span id="cb42-3"><a href="clustering.html#cb42-3" tabindex="-1"></a>scan1data<span class="ot">=</span><span class="fu">cbind.data.frame</span>(pca_ex<span class="sc">$</span>x[,<span class="dv">1</span>],pca_ex<span class="sc">$</span>x[,<span class="dv">2</span>],<span class="fu">as.factor</span>(scan1<span class="sc">$</span>cluster<span class="sc">+</span><span class="dv">1</span>))</span>
+<span id="cb42-4"><a href="clustering.html#cb42-4" tabindex="-1"></a><span class="fu">colnames</span>(scan1data)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;PCA1&quot;</span>,<span class="st">&quot;PCA2&quot;</span>,<span class="st">&quot;cluster&quot;</span>)</span>
+<span id="cb42-5"><a href="clustering.html#cb42-5" tabindex="-1"></a><span class="fu">ggplot</span>(scan1data,<span class="fu">aes</span>(<span class="at">x=</span>PCA1,<span class="at">y=</span>PCA2,<span class="at">color=</span>cluster))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/hdbscan-3.png" width="672" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="clustering.html#cb43-1" tabindex="-1"></a><span class="fu">plot</span>(scan1,<span class="at">show_flat=</span>T)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/hdbscan-4.png" width="672" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="clustering.html#cb44-1" tabindex="-1"></a><span class="co">#res.dbscan=dbscan(arrest.scal,eps=1.2,minPts=4)</span></span>
+<span id="cb44-2"><a href="clustering.html#cb44-2" tabindex="-1"></a>d<span class="ot">=</span><span class="fu">dist</span>(arrest.scal,<span class="at">method =</span> <span class="st">&quot;canberra&quot;</span>)</span>
+<span id="cb44-3"><a href="clustering.html#cb44-3" tabindex="-1"></a>res.dbscan<span class="ot">=</span><span class="fu">dbscan</span>(d,<span class="at">eps=</span><span class="fl">1.2</span>,<span class="at">minPts=</span><span class="dv">4</span>)</span>
+<span id="cb44-4"><a href="clustering.html#cb44-4" tabindex="-1"></a>res.dbscan</span></code></pre></div>
 <pre><code>## DBSCAN clustering for 50 objects.
 ## Parameters: eps = 1.2, minPts = 4
 ## Using canberra distances and borderpoints = TRUE
@@ -576,26 +596,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 27 10 13 
 ## 
 ## Available fields: cluster, eps, minPts, dist, borderPoints</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="clustering.html#cb42-1" tabindex="-1"></a>scan1data<span class="ot">=</span><span class="fu">cbind.data.frame</span>(pca_ex<span class="sc">$</span>x[,<span class="dv">1</span>],pca_ex<span class="sc">$</span>x[,<span class="dv">2</span>],<span class="fu">as.factor</span>(res.dbscan<span class="sc">$</span>cluster<span class="sc">+</span><span class="dv">1</span>))</span>
-<span id="cb42-2"><a href="clustering.html#cb42-2" tabindex="-1"></a><span class="fu">colnames</span>(scan1data)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;PCA1&quot;</span>,<span class="st">&quot;PCA2&quot;</span>,<span class="st">&quot;cluster&quot;</span>)</span>
-<span id="cb42-3"><a href="clustering.html#cb42-3" tabindex="-1"></a><span class="fu">ggplot</span>(scan1data,<span class="fu">aes</span>(<span class="at">x=</span>PCA1,<span class="at">y=</span>PCA2,<span class="at">color=</span>cluster))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/hdbscan-3.png" width="672" /></p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="clustering.html#cb43-1" tabindex="-1"></a><span class="do">###Nice visuals for PCA results:</span></span>
-<span id="cb43-2"><a href="clustering.html#cb43-2" tabindex="-1"></a><span class="do">## http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="clustering.html#cb46-1" tabindex="-1"></a>scan1data<span class="ot">=</span><span class="fu">cbind.data.frame</span>(pca_ex<span class="sc">$</span>x[,<span class="dv">1</span>],pca_ex<span class="sc">$</span>x[,<span class="dv">2</span>],<span class="fu">as.factor</span>(res.dbscan<span class="sc">$</span>cluster<span class="sc">+</span><span class="dv">1</span>))</span>
+<span id="cb46-2"><a href="clustering.html#cb46-2" tabindex="-1"></a><span class="fu">colnames</span>(scan1data)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;PCA1&quot;</span>,<span class="st">&quot;PCA2&quot;</span>,<span class="st">&quot;cluster&quot;</span>)</span>
+<span id="cb46-3"><a href="clustering.html#cb46-3" tabindex="-1"></a><span class="fu">ggplot</span>(scan1data,<span class="fu">aes</span>(<span class="at">x=</span>PCA1,<span class="at">y=</span>PCA2,<span class="at">color=</span>cluster))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/hdbscan-5.png" width="672" /></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="clustering.html#cb47-1" tabindex="-1"></a><span class="do">###Nice visuals for PCA results:</span></span>
+<span id="cb47-2"><a href="clustering.html#cb47-2" tabindex="-1"></a><span class="do">## http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/</span></span></code></pre></div>
+</div>
 </div>
 <div id="variable-clustering" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Variable Clustering<a href="clustering.html#variable-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="clustering.html#cb44-1" tabindex="-1"></a>telco<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;Q:</span><span class="sc">\\</span><span class="st">My Drive</span><span class="sc">\\</span><span class="st">Data Mining</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">TelcoChurn.csv&quot;</span>,<span class="at">header=</span>T)</span>
-<span id="cb44-2"><a href="clustering.html#cb44-2" tabindex="-1"></a>telco[<span class="fu">is.na</span>(telco)] <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb44-3"><a href="clustering.html#cb44-3" tabindex="-1"></a>quant.var<span class="ot">=</span>telco[,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">19</span>,<span class="dv">20</span>)]</span>
-<span id="cb44-4"><a href="clustering.html#cb44-4" tabindex="-1"></a>qual.var<span class="ot">=</span>telco[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span><span class="sc">:</span><span class="dv">18</span>)]</span>
-<span id="cb44-5"><a href="clustering.html#cb44-5" tabindex="-1"></a></span>
-<span id="cb44-6"><a href="clustering.html#cb44-6" tabindex="-1"></a>var.clust.h<span class="ot">=</span><span class="fu">hclustvar</span>(quant.var, qual.var)</span>
-<span id="cb44-7"><a href="clustering.html#cb44-7" tabindex="-1"></a>stab<span class="ot">=</span><span class="fu">stability</span>(var.clust.h,<span class="at">B=</span><span class="dv">50</span>) <span class="do">## This will take time!</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="clustering.html#cb48-1" tabindex="-1"></a>telco<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;Q:</span><span class="sc">\\</span><span class="st">My Drive</span><span class="sc">\\</span><span class="st">Data Mining</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">TelcoChurn.csv&quot;</span>,<span class="at">header=</span>T)</span>
+<span id="cb48-2"><a href="clustering.html#cb48-2" tabindex="-1"></a>telco[<span class="fu">is.na</span>(telco)] <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb48-3"><a href="clustering.html#cb48-3" tabindex="-1"></a>quant.var<span class="ot">=</span>telco[,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">19</span>,<span class="dv">20</span>)]</span>
+<span id="cb48-4"><a href="clustering.html#cb48-4" tabindex="-1"></a>qual.var<span class="ot">=</span>telco[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span><span class="sc">:</span><span class="dv">18</span>)]</span>
+<span id="cb48-5"><a href="clustering.html#cb48-5" tabindex="-1"></a></span>
+<span id="cb48-6"><a href="clustering.html#cb48-6" tabindex="-1"></a>var.clust.h<span class="ot">=</span><span class="fu">hclustvar</span>(quant.var, qual.var)</span>
+<span id="cb48-7"><a href="clustering.html#cb48-7" tabindex="-1"></a>stab<span class="ot">=</span><span class="fu">stability</span>(var.clust.h,<span class="at">B=</span><span class="dv">50</span>) <span class="do">## This will take time!</span></span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/variable%20clustering-1.png" width="672" /></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="clustering.html#cb45-1" tabindex="-1"></a><span class="fu">plot</span>(stab)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="clustering.html#cb49-1" tabindex="-1"></a><span class="fu">plot</span>(stab)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/variable%20clustering-2.png" width="672" /></p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="clustering.html#cb46-1" tabindex="-1"></a>h6<span class="ot">=</span><span class="fu">cutreevar</span>(var.clust.h, <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="clustering.html#cb50-1" tabindex="-1"></a>h6<span class="ot">=</span><span class="fu">cutreevar</span>(var.clust.h, <span class="dv">6</span>)</span></code></pre></div>
 
 </div>
 </div>

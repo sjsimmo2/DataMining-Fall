@@ -224,6 +224,35 @@ NbClust(arrest.scal,distance="euclidean",method="complete",min.nc=2,max.nc = 4)
 
 ```
 
+### Python for Hierarchical Clustering
+
+To view the dendogram in python, you can use the linkage command (caution!!! If you have a lot of data points, this is going to get really messy....in other words, I would not recommend it).  This data set only has 50 observations, so it is not too bad to view.  The method is the type of linkage and metric is the distance metric used.
+
+```{python}
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+linkage_data = linkage(arrest_scal, method='ward', metric='euclidean')
+dendrogram(linkage_data)
+
+plt.show()
+```
+
+
+To do Agglomerative Clustering:  
+
+Note that you need to specify the number of clusters here.  You are able to say None for the number of clusters, but then you need to specify the distance threshold (from dendogram).  Again illustrating that this is not the best method for large data sets. 
+
+```{python}
+from sklearn.cluster import AgglomerativeClustering
+
+aggclus_py = AgglomerativeClustering(n_clusters = 2, affinity = 'euclidean', linkage = 'complete')
+arrest_hy = aggclus_py.fit_predict(arrest_scal)
+
+
+```
+
+Note: I did not find a good package for divisive clustering in Python.
+
 ##DBSCAN
 
 DBSCAN is one of the most popular density-based clustering algorithm in use. Density Based Spatial Clustering Applications with Noise (DBSCAN) cluster points together that are "density reachable" (within a certain radius of each other). Users can specify this distance and the minimum number of points that will be used to create clusters (see https://cran.r-project.org/web/packages/dbscan/vignettes/dbscan.pdf)
