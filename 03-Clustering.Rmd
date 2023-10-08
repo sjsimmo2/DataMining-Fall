@@ -131,6 +131,7 @@ from sklearn.metrics import silhouette_score
 from scipy.spatial.distance import cdist
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
 arrest_py=r.USArrests
 scaler = StandardScaler()
@@ -316,5 +317,31 @@ stab=stability(var.clust.h,B=50) ## This will take time!
 plot(stab)
 
 h6=cutreevar(var.clust.h, 6)
+```
+
+
+### Variable Clustering in Python
+
+For variable clustering in Python, you can only have numeric values (unable to do this on categorical variables).  HOWEVER, it does have a nice function involving ratio of $R^{2}$.
+
+```{python}
+from varclushi import VarClusHi
+
+
+telco_py=pd.read_csv("Q:\\My Drive\\Data Mining\\Data\\TelcoChurn.csv")
+
+telco_clus=telco_py[['SeniorCitizen','tenure','MonthlyCharges']]
+
+telco_2=telco_py[['gender','Partner','Dependents','PhoneService','PaperlessBilling']]
+
+telco_3 = pd.get_dummies(telco_2,drop_first=True)
+telco_4=telco_3*1
+telco_clus2=pd.concat([telco_clus,telco_4],axis=1)
+
+telco_clus2.info()
+varclus_py=VarClusHi(telco_clus2,maxeigval2=0.7,maxclus=None)
+varclus_py.varclus()
+varclus_py.rsquare
+
 ```
 

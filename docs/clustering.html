@@ -187,7 +187,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="clustering.html"><a href="clustering.html#dbscan-in-python"><i class="fa fa-check"></i><b>4.3.1</b> DBSCAN in Python</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="clustering.html"><a href="clustering.html#variable-clustering"><i class="fa fa-check"></i><b>4.4</b> Variable Clustering</a></li>
+<li class="chapter" data-level="4.4" data-path="clustering.html"><a href="clustering.html#variable-clustering"><i class="fa fa-check"></i><b>4.4</b> Variable Clustering</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="clustering.html"><a href="clustering.html#variable-clustering-in-python"><i class="fa fa-check"></i><b>4.4.1</b> Variable Clustering in Python</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="other-topics.html"><a href="other-topics.html"><i class="fa fa-check"></i><b>5</b> Other Topics</a>
 <ul>
@@ -241,37 +244,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>With only 4 variables and good scales, we will just use the scaled data (arrest.scal) for the clustering.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="clustering.html#cb8-1" tabindex="-1"></a>clus2<span class="ot">=</span><span class="fu">kmeans</span>(arrest.scal,<span class="at">centers=</span><span class="dv">2</span>,<span class="at">nstart =</span> <span class="dv">25</span>)</span>
 <span id="cb8-2"><a href="clustering.html#cb8-2" tabindex="-1"></a>clus2</span></code></pre></div>
-<pre><code>## K-means clustering with 2 clusters of sizes 30, 20
+<pre><code>## K-means clustering with 2 clusters of sizes 20, 30
 ## 
 ## Cluster means:
 ##      Murder    Assault   UrbanPop       Rape
-## 1 -0.669956 -0.6758849 -0.1317235 -0.5646433
-## 2  1.004934  1.0138274  0.1975853  0.8469650
+## 1  1.004934  1.0138274  0.1975853  0.8469650
+## 2 -0.669956 -0.6758849 -0.1317235 -0.5646433
 ## 
 ## Clustering vector:
 ##        Alabama         Alaska        Arizona       Arkansas     California 
-##              2              2              2              1              2 
+##              1              1              1              2              1 
 ##       Colorado    Connecticut       Delaware        Florida        Georgia 
-##              2              1              1              2              2 
-##         Hawaii          Idaho       Illinois        Indiana           Iowa 
-##              1              1              2              1              1 
-##         Kansas       Kentucky      Louisiana          Maine       Maryland 
-##              1              1              2              1              2 
-##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
-##              1              2              1              2              2 
-##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
-##              1              1              2              1              1 
-##     New Mexico       New York North Carolina   North Dakota           Ohio 
-##              2              2              2              1              1 
-##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
-##              1              1              1              1              2 
-##   South Dakota      Tennessee          Texas           Utah        Vermont 
 ##              1              2              2              1              1 
+##         Hawaii          Idaho       Illinois        Indiana           Iowa 
+##              2              2              1              2              2 
+##         Kansas       Kentucky      Louisiana          Maine       Maryland 
+##              2              2              1              2              1 
+##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
+##              2              1              2              1              1 
+##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+##              2              2              1              2              2 
+##     New Mexico       New York North Carolina   North Dakota           Ohio 
+##              1              1              1              2              2 
+##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
+##              2              2              2              2              1 
+##   South Dakota      Tennessee          Texas           Utah        Vermont 
+##              2              1              1              2              2 
 ##       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
-##              1              1              1              1              1 
+##              2              2              2              2              2 
 ## 
 ## Within cluster sum of squares by cluster:
-## [1] 56.11445 46.74796
+## [1] 46.74796 56.11445
 ##  (between_SS / total_SS =  47.5 %)
 ## 
 ## Available components:
@@ -403,10 +406,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb21-5"><a href="clustering.html#cb21-5" tabindex="-1"></a><span class="im">from</span> scipy.spatial.distance <span class="im">import</span> cdist</span>
 <span id="cb21-6"><a href="clustering.html#cb21-6" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb21-7"><a href="clustering.html#cb21-7" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb21-8"><a href="clustering.html#cb21-8" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="clustering.html#cb21-9" tabindex="-1"></a>arrest_py<span class="op">=</span>r.USArrests</span>
-<span id="cb21-10"><a href="clustering.html#cb21-10" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
-<span id="cb21-11"><a href="clustering.html#cb21-11" tabindex="-1"></a>arrest_scal <span class="op">=</span> scaler.fit_transform(arrest_py)</span></code></pre></div>
+<span id="cb21-8"><a href="clustering.html#cb21-8" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb21-9"><a href="clustering.html#cb21-9" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="clustering.html#cb21-10" tabindex="-1"></a>arrest_py<span class="op">=</span>r.USArrests</span>
+<span id="cb21-11"><a href="clustering.html#cb21-11" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb21-12"><a href="clustering.html#cb21-12" tabindex="-1"></a>arrest_scal <span class="op">=</span> scaler.fit_transform(arrest_py)</span></code></pre></div>
 <pre><code>## C:\PROGRA~3\ANACON~1\lib\site-packages\sklearn\utils\validation.py:623: FutureWarning: is_sparse is deprecated and will be removed in a future version. Check `isinstance(dtype, pd.SparseDtype)` instead.
 ##   if not hasattr(array, &quot;sparse&quot;) and array.dtypes.apply(is_sparse).any():
 ## C:\PROGRA~3\ANACON~1\lib\site-packages\sklearn\utils\validation.py:623: FutureWarning: is_sparse is deprecated and will be removed in a future version. Check `isinstance(dtype, pd.SparseDtype)` instead.
@@ -641,7 +645,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="clustering.html#cb55-1" tabindex="-1"></a><span class="fu">plot</span>(stab)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/variable%20clustering-2.png" width="672" /></p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="clustering.html#cb56-1" tabindex="-1"></a>h6<span class="ot">=</span><span class="fu">cutreevar</span>(var.clust.h, <span class="dv">6</span>)</span></code></pre></div>
+<div id="variable-clustering-in-python" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Variable Clustering in Python<a href="clustering.html#variable-clustering-in-python" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For variable clustering in Python, you can only have numeric values (unable to do this on categorical variables). HOWEVER, it does have a nice function involving ratio of <span class="math inline">\(R^{2}\)</span>.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="clustering.html#cb57-1" tabindex="-1"></a><span class="im">from</span> varclushi <span class="im">import</span> VarClusHi</span>
+<span id="cb57-2"><a href="clustering.html#cb57-2" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="clustering.html#cb57-3" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="clustering.html#cb57-4" tabindex="-1"></a>telco_py<span class="op">=</span>pd.read_csv(<span class="st">&quot;Q:</span><span class="ch">\\</span><span class="st">My Drive</span><span class="ch">\\</span><span class="st">Data Mining</span><span class="ch">\\</span><span class="st">Data</span><span class="ch">\\</span><span class="st">TelcoChurn.csv&quot;</span>)</span>
+<span id="cb57-5"><a href="clustering.html#cb57-5" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="clustering.html#cb57-6" tabindex="-1"></a>telco_clus<span class="op">=</span>telco_py[[<span class="st">&#39;SeniorCitizen&#39;</span>,<span class="st">&#39;tenure&#39;</span>,<span class="st">&#39;MonthlyCharges&#39;</span>]]</span>
+<span id="cb57-7"><a href="clustering.html#cb57-7" tabindex="-1"></a></span>
+<span id="cb57-8"><a href="clustering.html#cb57-8" tabindex="-1"></a>telco_2<span class="op">=</span>telco_py[[<span class="st">&#39;gender&#39;</span>,<span class="st">&#39;Partner&#39;</span>,<span class="st">&#39;Dependents&#39;</span>,<span class="st">&#39;PhoneService&#39;</span>,<span class="st">&#39;PaperlessBilling&#39;</span>]]</span>
+<span id="cb57-9"><a href="clustering.html#cb57-9" tabindex="-1"></a></span>
+<span id="cb57-10"><a href="clustering.html#cb57-10" tabindex="-1"></a>telco_3 <span class="op">=</span> pd.get_dummies(telco_2,drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb57-11"><a href="clustering.html#cb57-11" tabindex="-1"></a>telco_4<span class="op">=</span>telco_3<span class="op">*</span><span class="dv">1</span></span>
+<span id="cb57-12"><a href="clustering.html#cb57-12" tabindex="-1"></a>telco_clus2<span class="op">=</span>pd.concat([telco_clus,telco_4],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb57-13"><a href="clustering.html#cb57-13" tabindex="-1"></a></span>
+<span id="cb57-14"><a href="clustering.html#cb57-14" tabindex="-1"></a>telco_clus2.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 7043 entries, 0 to 7042
+## Data columns (total 8 columns):
+##  #   Column                Non-Null Count  Dtype  
+## ---  ------                --------------  -----  
+##  0   SeniorCitizen         7043 non-null   int64  
+##  1   tenure                7043 non-null   int64  
+##  2   MonthlyCharges        7043 non-null   float64
+##  3   gender_Male           7043 non-null   int32  
+##  4   Partner_Yes           7043 non-null   int32  
+##  5   Dependents_Yes        7043 non-null   int32  
+##  6   PhoneService_Yes      7043 non-null   int32  
+##  7   PaperlessBilling_Yes  7043 non-null   int32  
+## dtypes: float64(1), int32(5), int64(2)
+## memory usage: 302.8 KB</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="clustering.html#cb59-1" tabindex="-1"></a>varclus_py<span class="op">=</span>VarClusHi(telco_clus2,maxeigval2<span class="op">=</span><span class="fl">0.7</span>,maxclus<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb59-2"><a href="clustering.html#cb59-2" tabindex="-1"></a>varclus_py.varclus()</span></code></pre></div>
+<pre><code>## &lt;varclushi.varclushi.VarClusHi object at 0x000001E830F3E6A0&gt;</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="clustering.html#cb61-1" tabindex="-1"></a>varclus_py.rsquare</span></code></pre></div>
+<pre><code>##    Cluster              Variable    RS_Own     RS_NC      RS_Ratio
+## 0        0           Partner_Yes  0.726338  0.144170  3.197620e-01
+## 1        0        Dependents_Yes  0.726338  0.044599  2.864367e-01
+## 2        1        MonthlyCharges  0.676075  0.061454  3.451351e-01
+## 3        1  PaperlessBilling_Yes  0.676075  0.024502  3.320610e-01
+## 4        2           gender_Male  1.000000  0.000256  2.221015e-16
+## 5        3      PhoneService_Yes  1.000000  0.025753  2.279141e-16
+## 6        4         SeniorCitizen  1.000000  0.052474  0.000000e+00
+## 7        5                tenure  1.000000  0.100147  0.000000e+00</code></pre>
 
+</div>
 </div>
 </div>
             </section>
@@ -704,6 +754,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
