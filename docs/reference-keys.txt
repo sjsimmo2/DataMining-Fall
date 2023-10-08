@@ -30,3 +30,5 @@ regression-trees-in-python
 python-for-conditional-inference-decision-trees
 k-means-in-python
 python-for-hierarchical-clustering
+dbscan-in-python
+dbscan

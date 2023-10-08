@@ -224,6 +224,7 @@ NbClust(arrest.scal,distance="euclidean",method="complete",min.nc=2,max.nc = 4)
 
 ```
 
+
 ### Python for Hierarchical Clustering
 
 To view the dendogram in python, you can use the linkage command (caution!!! If you have a lot of data points, this is going to get really messy....in other words, I would not recommend it).  This data set only has 50 observations, so it is not too bad to view.  The method is the type of linkage and metric is the distance metric used.
@@ -251,9 +252,10 @@ arrest_hy = aggclus_py.fit_predict(arrest_scal)
 
 ```
 
-Note: I did not find a good package for divisive clustering in Python.
+I did not find a good package for divisive clustering in Python.
 
-##DBSCAN
+
+## DBSCAN
 
 DBSCAN is one of the most popular density-based clustering algorithm in use. Density Based Spatial Clustering Applications with Noise (DBSCAN) cluster points together that are "density reachable" (within a certain radius of each other). Users can specify this distance and the minimum number of points that will be used to create clusters (see https://cran.r-project.org/web/packages/dbscan/vignettes/dbscan.pdf)
 
@@ -280,6 +282,25 @@ ggplot(scan1data,aes(x=PCA1,y=PCA2,color=cluster))+geom_point()+ scale_fill_brew
 ###Nice visuals for PCA results:
 ## http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/
 ```
+
+
+### DBSCAN in Python
+
+```{python}
+from sklearn.cluster import DBSCAN
+from collections import Counter
+
+
+db_py = DBSCAN(eps=1.2,min_samples=4).fit(arrest_scal)
+
+db_py.labels_ 
+
+set(db_py.labels_)
+Counter(db_py.labels_)
+
+```
+
+
 
 
 ## Variable Clustering

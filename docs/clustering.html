@@ -183,7 +183,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="clustering.html"><a href="clustering.html#python-for-hierarchical-clustering"><i class="fa fa-check"></i><b>4.2.1</b> Python for Hierarchical Clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="clustering.html"><a href="clustering.html#variable-clustering"><i class="fa fa-check"></i><b>4.3</b> Variable Clustering</a></li>
+<li class="chapter" data-level="4.3" data-path="clustering.html"><a href="clustering.html#dbscan"><i class="fa fa-check"></i><b>4.3</b> DBSCAN</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="clustering.html"><a href="clustering.html#dbscan-in-python"><i class="fa fa-check"></i><b>4.3.1</b> DBSCAN in Python</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="clustering.html"><a href="clustering.html#variable-clustering"><i class="fa fa-check"></i><b>4.4</b> Variable Clustering</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="other-topics.html"><a href="other-topics.html"><i class="fa fa-check"></i><b>5</b> Other Topics</a>
 <ul>
@@ -572,8 +576,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb41-2"><a href="clustering.html#cb41-2" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="clustering.html#cb41-3" tabindex="-1"></a>aggclus_py <span class="op">=</span> AgglomerativeClustering(n_clusters <span class="op">=</span> <span class="dv">2</span>, affinity <span class="op">=</span> <span class="st">&#39;euclidean&#39;</span>, linkage <span class="op">=</span> <span class="st">&#39;complete&#39;</span>)</span>
 <span id="cb41-4"><a href="clustering.html#cb41-4" tabindex="-1"></a>arrest_hy <span class="op">=</span> aggclus_py.fit_predict(arrest_scal)</span></code></pre></div>
-<p>Note: I did not find a good package for divisive clustering in Python.</p>
-<p>##DBSCAN</p>
+<p>I did not find a good package for divisive clustering in Python.</p>
+</div>
+</div>
+<div id="dbscan" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> DBSCAN<a href="clustering.html#dbscan" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>DBSCAN is one of the most popular density-based clustering algorithm in use. Density Based Spatial Clustering Applications with Noise (DBSCAN) cluster points together that are “density reachable” (within a certain radius of each other). Users can specify this distance and the minimum number of points that will be used to create clusters (see <a href="https://cran.r-project.org/web/packages/dbscan/vignettes/dbscan.pdf" class="uri">https://cran.r-project.org/web/packages/dbscan/vignettes/dbscan.pdf</a>)</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="clustering.html#cb42-1" tabindex="-1"></a>scan1<span class="ot">&lt;-</span><span class="fu">hdbscan</span>(arrest.scal,<span class="at">minPts=</span><span class="dv">4</span>)</span>
 <span id="cb42-2"><a href="clustering.html#cb42-2" tabindex="-1"></a>pca_ex<span class="ot">=</span><span class="fu">prcomp</span>(arrest.scal,<span class="at">scale=</span>F)</span>
@@ -602,21 +609,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="bookdownproj_files/figure-html/hdbscan-5.png" width="672" /></p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="clustering.html#cb47-1" tabindex="-1"></a><span class="do">###Nice visuals for PCA results:</span></span>
 <span id="cb47-2"><a href="clustering.html#cb47-2" tabindex="-1"></a><span class="do">## http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/</span></span></code></pre></div>
+<div id="dbscan-in-python" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> DBSCAN in Python<a href="clustering.html#dbscan-in-python" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="clustering.html#cb48-1" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> DBSCAN</span>
+<span id="cb48-2"><a href="clustering.html#cb48-2" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
+<span id="cb48-3"><a href="clustering.html#cb48-3" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="clustering.html#cb48-4" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="clustering.html#cb48-5" tabindex="-1"></a>db_py <span class="op">=</span> DBSCAN(eps<span class="op">=</span><span class="fl">1.2</span>,min_samples<span class="op">=</span><span class="dv">4</span>).fit(arrest_scal)</span>
+<span id="cb48-6"><a href="clustering.html#cb48-6" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="clustering.html#cb48-7" tabindex="-1"></a>db_py.labels_ </span></code></pre></div>
+<pre><code>## array([ 0, -1,  1,  1, -1, -1,  1,  1, -1,  0,  1,  1,  1,  1,  1,  1,  1,
+##         0,  1,  1,  1,  1,  1,  0,  1,  1,  1, -1,  1,  1,  1,  1,  0,  1,
+##         1,  1,  1,  1,  1,  0,  1,  0,  1,  1,  1,  1,  1,  1,  1,  1],
+##       dtype=int64)</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="clustering.html#cb50-1" tabindex="-1"></a><span class="bu">set</span>(db_py.labels_)</span></code></pre></div>
+<pre><code>## {0, 1, -1}</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="clustering.html#cb52-1" tabindex="-1"></a>Counter(db_py.labels_)</span></code></pre></div>
+<pre><code>## Counter({1: 38, 0: 7, -1: 5})</code></pre>
 </div>
 </div>
-<div id="variable-clustering" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Variable Clustering<a href="clustering.html#variable-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="clustering.html#cb48-1" tabindex="-1"></a>telco<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;Q:</span><span class="sc">\\</span><span class="st">My Drive</span><span class="sc">\\</span><span class="st">Data Mining</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">TelcoChurn.csv&quot;</span>,<span class="at">header=</span>T)</span>
-<span id="cb48-2"><a href="clustering.html#cb48-2" tabindex="-1"></a>telco[<span class="fu">is.na</span>(telco)] <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb48-3"><a href="clustering.html#cb48-3" tabindex="-1"></a>quant.var<span class="ot">=</span>telco[,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">19</span>,<span class="dv">20</span>)]</span>
-<span id="cb48-4"><a href="clustering.html#cb48-4" tabindex="-1"></a>qual.var<span class="ot">=</span>telco[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span><span class="sc">:</span><span class="dv">18</span>)]</span>
-<span id="cb48-5"><a href="clustering.html#cb48-5" tabindex="-1"></a></span>
-<span id="cb48-6"><a href="clustering.html#cb48-6" tabindex="-1"></a>var.clust.h<span class="ot">=</span><span class="fu">hclustvar</span>(quant.var, qual.var)</span>
-<span id="cb48-7"><a href="clustering.html#cb48-7" tabindex="-1"></a>stab<span class="ot">=</span><span class="fu">stability</span>(var.clust.h,<span class="at">B=</span><span class="dv">50</span>) <span class="do">## This will take time!</span></span></code></pre></div>
+<div id="variable-clustering" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Variable Clustering<a href="clustering.html#variable-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="clustering.html#cb54-1" tabindex="-1"></a>telco<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;Q:</span><span class="sc">\\</span><span class="st">My Drive</span><span class="sc">\\</span><span class="st">Data Mining</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">TelcoChurn.csv&quot;</span>,<span class="at">header=</span>T)</span>
+<span id="cb54-2"><a href="clustering.html#cb54-2" tabindex="-1"></a>telco[<span class="fu">is.na</span>(telco)] <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb54-3"><a href="clustering.html#cb54-3" tabindex="-1"></a>quant.var<span class="ot">=</span>telco[,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">19</span>,<span class="dv">20</span>)]</span>
+<span id="cb54-4"><a href="clustering.html#cb54-4" tabindex="-1"></a>qual.var<span class="ot">=</span>telco[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span><span class="sc">:</span><span class="dv">18</span>)]</span>
+<span id="cb54-5"><a href="clustering.html#cb54-5" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="clustering.html#cb54-6" tabindex="-1"></a>var.clust.h<span class="ot">=</span><span class="fu">hclustvar</span>(quant.var, qual.var)</span>
+<span id="cb54-7"><a href="clustering.html#cb54-7" tabindex="-1"></a>stab<span class="ot">=</span><span class="fu">stability</span>(var.clust.h,<span class="at">B=</span><span class="dv">50</span>) <span class="do">## This will take time!</span></span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/variable%20clustering-1.png" width="672" /></p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="clustering.html#cb49-1" tabindex="-1"></a><span class="fu">plot</span>(stab)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="clustering.html#cb55-1" tabindex="-1"></a><span class="fu">plot</span>(stab)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/variable%20clustering-2.png" width="672" /></p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="clustering.html#cb50-1" tabindex="-1"></a>h6<span class="ot">=</span><span class="fu">cutreevar</span>(var.clust.h, <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="clustering.html#cb56-1" tabindex="-1"></a>h6<span class="ot">=</span><span class="fu">cutreevar</span>(var.clust.h, <span class="dv">6</span>)</span></code></pre></div>
 
 </div>
 </div>
