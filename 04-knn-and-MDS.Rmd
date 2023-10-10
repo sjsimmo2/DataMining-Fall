@@ -36,6 +36,10 @@ temp.dat=read.table("Q:\\My Drive\\Data Mining\\Data\\Grocery1.csv",sep=',',head
 load("Q:\\My Drive\\Data Mining\\Data\\breast_cancer.Rdata")
 arrest.scal=scale(USArrests)
 
+library(reticulate)
+
+use_python("C:\\ProgramData\\Anaconda3\\python.exe")
+
 ```
 # Other Topics
 
@@ -89,7 +93,34 @@ pred.error[i]=mean(temp.val)}
 all.dat=data.frame(cbind(k.attempts,pred.error))
 ggplot(all.dat,aes(x=k.attempts,y=pred.error))+geom_line()+labs(x="Values for k",y="Test error")
 
+trainx=train.x
+trainy=train.y
+testx=test.x
+testy=test.y
+
 ```
+
+### K-nn in Python
+
+```{python}
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+xtrain_py=r.trainx
+xtest_py=r.testx
+
+ytrain_py=r.trainy
+ytest_py=r.testy
+
+knn3 = KNeighborsClassifier(n_neighbors = 3)
+knn3.fit(xtrain_py, ytrain_py)
+
+y_pred_3 = knn3.predict(xtest_py)
+print("Accuracy with k=3", accuracy_score(ytest_py, y_pred_3)*100)
+
+
+```
+
 
 ## MDS
 

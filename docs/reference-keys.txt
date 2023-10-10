@@ -33,3 +33,4 @@ python-for-hierarchical-clustering
 dbscan-in-python
 dbscan
 variable-clustering-in-python
+k-nn-in-python

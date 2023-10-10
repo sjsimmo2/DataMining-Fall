@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Other Topics | Data Mining</title>
   <meta name="description" content="Chapter 5 Other Topics | Data Mining" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Other Topics | Data Mining" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. Susan Simmons" />
 
 
-<meta name="date" content="2022-10-06" />
+<meta name="date" content="2023-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -139,26 +143,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Data Mining</a></li>
 <li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#bootstrapping"><i class="fa fa-check"></i><b>2.1</b> Bootstrapping</a></li>
-<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#adjusting-p-values"><i class="fa fa-check"></i><b>2.2</b> Adjusting p-values</a></li>
-<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#tranaction-data"><i class="fa fa-check"></i><b>2.3</b> Tranaction data</a></li>
-<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#association-analysis"><i class="fa fa-check"></i><b>2.4</b> Association Analysis</a></li>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#bootstrapping"><i class="fa fa-check"></i><b>2.1</b> Bootstrapping</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction.html"><a href="introduction.html#python-for-bootstrapping"><i class="fa fa-check"></i><b>2.1.1</b> Python for Bootstrapping</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#adjusting-p-values"><i class="fa fa-check"></i><b>2.2</b> Adjusting p-values</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction.html"><a href="introduction.html#python-code-for-fdr"><i class="fa fa-check"></i><b>2.2.1</b> Python code for FDR</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#transaction-data"><i class="fa fa-check"></i><b>2.3</b> Transaction data</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#association-analysis"><i class="fa fa-check"></i><b>2.4</b> Association Analysis</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction.html"><a href="introduction.html#python-code-for-association-analysis"><i class="fa fa-check"></i><b>2.4.1</b> Python code for Association Analysis</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="decision-trees.html"><a href="decision-trees.html"><i class="fa fa-check"></i><b>3</b> Decision Trees</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="decision-trees.html"><a href="decision-trees.html#classification-trees"><i class="fa fa-check"></i><b>3.1</b> Classification Trees</a></li>
-<li class="chapter" data-level="3.2" data-path="decision-trees.html"><a href="decision-trees.html#regression-trees"><i class="fa fa-check"></i><b>3.2</b> Regression Trees</a></li>
-<li class="chapter" data-level="3.3" data-path="decision-trees.html"><a href="decision-trees.html#recursive-partitioning-with-partykit"><i class="fa fa-check"></i><b>3.3</b> Recursive partitioning with partykit</a></li>
+<li class="chapter" data-level="3.1" data-path="decision-trees.html"><a href="decision-trees.html#classification-trees"><i class="fa fa-check"></i><b>3.1</b> Classification Trees</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="decision-trees.html"><a href="decision-trees.html#python-classification-trees"><i class="fa fa-check"></i><b>3.1.1</b> Python Classification Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="decision-trees.html"><a href="decision-trees.html#regression-trees"><i class="fa fa-check"></i><b>3.2</b> Regression Trees</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="decision-trees.html"><a href="decision-trees.html#regression-trees-in-python"><i class="fa fa-check"></i><b>3.2.1</b> Regression trees in Python</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="decision-trees.html"><a href="decision-trees.html#recursive-partitioning-with-partykit"><i class="fa fa-check"></i><b>3.3</b> Recursive partitioning with partykit</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="decision-trees.html"><a href="decision-trees.html#python-for-conditional-inference-decision-trees"><i class="fa fa-check"></i><b>3.3.1</b> Python for Conditional Inference Decision Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="decision-trees.html"><a href="decision-trees.html#model-reliance"><i class="fa fa-check"></i><b>3.4</b> Model Reliance</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>4</b> Clustering</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="clustering.html"><a href="clustering.html#kmeans"><i class="fa fa-check"></i><b>4.1</b> Kmeans</a></li>
-<li class="chapter" data-level="4.2" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering"><i class="fa fa-check"></i><b>4.2</b> Hierarchical Clustering</a></li>
-<li class="chapter" data-level="4.3" data-path="clustering.html"><a href="clustering.html#variable-clustering"><i class="fa fa-check"></i><b>4.3</b> Variable Clustering</a></li>
+<li class="chapter" data-level="4.1" data-path="clustering.html"><a href="clustering.html#kmeans"><i class="fa fa-check"></i><b>4.1</b> Kmeans</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="clustering.html"><a href="clustering.html#k-means-in-python"><i class="fa fa-check"></i><b>4.1.1</b> K-Means in Python</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering"><i class="fa fa-check"></i><b>4.2</b> Hierarchical Clustering</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="clustering.html"><a href="clustering.html#python-for-hierarchical-clustering"><i class="fa fa-check"></i><b>4.2.1</b> Python for Hierarchical Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="clustering.html"><a href="clustering.html#dbscan"><i class="fa fa-check"></i><b>4.3</b> DBSCAN</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="clustering.html"><a href="clustering.html#dbscan-in-python"><i class="fa fa-check"></i><b>4.3.1</b> DBSCAN in Python</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="clustering.html"><a href="clustering.html#variable-clustering"><i class="fa fa-check"></i><b>4.4</b> Variable Clustering</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="clustering.html"><a href="clustering.html#variable-clustering-in-python"><i class="fa fa-check"></i><b>4.4.1</b> Variable Clustering in Python</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="other-topics.html"><a href="other-topics.html"><i class="fa fa-check"></i><b>5</b> Other Topics</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="other-topics.html"><a href="other-topics.html#k-nearest-neighbors"><i class="fa fa-check"></i><b>5.1</b> K-nearest neighbors</a></li>
+<li class="chapter" data-level="5.1" data-path="other-topics.html"><a href="other-topics.html#k-nearest-neighbors"><i class="fa fa-check"></i><b>5.1</b> K-nearest neighbors</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="other-topics.html"><a href="other-topics.html#k-nn-in-python"><i class="fa fa-check"></i><b>5.1.1</b> K-nn in Python</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="other-topics.html"><a href="other-topics.html#mds"><i class="fa fa-check"></i><b>5.2</b> MDS</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -185,101 +224,123 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="k-nearest-neighbors" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> K-nearest neighbors<a href="other-topics.html#k-nearest-neighbors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The kNN algorithm uses the entire training data as its “model”. So, there really is no training, however, to make predictions, this can take a long time (need to find distances from new observations to training data and find the nearest k neighbors!). The knn command in R is for classification (categorical response).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="other-topics.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">####Note: Bare has 16 missing values.  From decision tree, this variable does not seem as important as the other variables, so will be dropped for this illustration.</span></span>
-<span id="cb1-2"><a href="other-topics.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7515</span>)</span>
-<span id="cb1-3"><a href="other-topics.html#cb1-3" aria-hidden="true" tabindex="-1"></a>perm<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">699</span>)</span>
-<span id="cb1-4"><a href="other-topics.html#cb1-4" aria-hidden="true" tabindex="-1"></a>BC_randomOrder<span class="ot">=</span>BCdata[perm,]</span>
-<span id="cb1-5"><a href="other-topics.html#cb1-5" aria-hidden="true" tabindex="-1"></a>train <span class="ot">=</span> BC_randomOrder[<span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>),<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">7</span>)]</span>
-<span id="cb1-6"><a href="other-topics.html#cb1-6" aria-hidden="true" tabindex="-1"></a>test <span class="ot">=</span> BC_randomOrder[(<span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">699</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">7</span>)]</span>
-<span id="cb1-7"><a href="other-topics.html#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="other-topics.html#cb1-8" aria-hidden="true" tabindex="-1"></a>train.x<span class="ot">=</span><span class="fu">subset</span>(train,<span class="at">select=</span><span class="sc">-</span>Target)</span>
-<span id="cb1-9"><a href="other-topics.html#cb1-9" aria-hidden="true" tabindex="-1"></a>train.y<span class="ot">=</span><span class="fu">as.factor</span>(train<span class="sc">$</span>Target)</span>
-<span id="cb1-10"><a href="other-topics.html#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="other-topics.html#cb1-11" aria-hidden="true" tabindex="-1"></a>test.x<span class="ot">=</span><span class="fu">subset</span>(test,<span class="at">select=</span><span class="sc">-</span>Target)</span>
-<span id="cb1-12"><a href="other-topics.html#cb1-12" aria-hidden="true" tabindex="-1"></a>test.y<span class="ot">=</span><span class="fu">as.factor</span>(test<span class="sc">$</span>Target)</span>
-<span id="cb1-13"><a href="other-topics.html#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="other-topics.html#cb1-14" aria-hidden="true" tabindex="-1"></a>predict.test<span class="ot">=</span><span class="fu">knn</span>(train.x,test.x,train.y,<span class="at">k=</span><span class="dv">3</span>)</span>
-<span id="cb1-15"><a href="other-topics.html#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(predict.test <span class="sc">!=</span> test.y)<span class="sc">/</span><span class="dv">175</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="other-topics.html#cb1-1" tabindex="-1"></a><span class="do">####Note: Bare has 16 missing values.  From decision tree, this variable does not seem as important as the other variables, so will be dropped for this illustration.</span></span>
+<span id="cb1-2"><a href="other-topics.html#cb1-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7515</span>)</span>
+<span id="cb1-3"><a href="other-topics.html#cb1-3" tabindex="-1"></a>perm<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">699</span>)</span>
+<span id="cb1-4"><a href="other-topics.html#cb1-4" tabindex="-1"></a>BC_randomOrder<span class="ot">=</span>BCdata[perm,]</span>
+<span id="cb1-5"><a href="other-topics.html#cb1-5" tabindex="-1"></a>train <span class="ot">=</span> BC_randomOrder[<span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>),<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">7</span>)]</span>
+<span id="cb1-6"><a href="other-topics.html#cb1-6" tabindex="-1"></a>test <span class="ot">=</span> BC_randomOrder[(<span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">699</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">7</span>)]</span>
+<span id="cb1-7"><a href="other-topics.html#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="other-topics.html#cb1-8" tabindex="-1"></a>train.x<span class="ot">=</span><span class="fu">subset</span>(train,<span class="at">select=</span><span class="sc">-</span>Target)</span>
+<span id="cb1-9"><a href="other-topics.html#cb1-9" tabindex="-1"></a>train.y<span class="ot">=</span><span class="fu">as.factor</span>(train<span class="sc">$</span>Target)</span>
+<span id="cb1-10"><a href="other-topics.html#cb1-10" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="other-topics.html#cb1-11" tabindex="-1"></a>test.x<span class="ot">=</span><span class="fu">subset</span>(test,<span class="at">select=</span><span class="sc">-</span>Target)</span>
+<span id="cb1-12"><a href="other-topics.html#cb1-12" tabindex="-1"></a>test.y<span class="ot">=</span><span class="fu">as.factor</span>(test<span class="sc">$</span>Target)</span>
+<span id="cb1-13"><a href="other-topics.html#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="other-topics.html#cb1-14" tabindex="-1"></a>predict.test<span class="ot">=</span><span class="fu">knn</span>(train.x,test.x,train.y,<span class="at">k=</span><span class="dv">3</span>)</span>
+<span id="cb1-15"><a href="other-topics.html#cb1-15" tabindex="-1"></a><span class="fu">sum</span>(predict.test <span class="sc">!=</span> test.y)<span class="sc">/</span><span class="dv">175</span></span></code></pre></div>
 <pre><code>## [1] 0.05714286</code></pre>
 <p>However, we just chose the value of 3 for k. Is this the best k value? We can “tune” this parameter to find the best k…</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="other-topics.html#cb3-1" aria-hidden="true" tabindex="-1"></a>k.attempts<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">15</span>)</span>
-<span id="cb3-2"><a href="other-topics.html#cb3-2" aria-hidden="true" tabindex="-1"></a>pred.error<span class="ot">=</span><span class="fu">vector</span>(<span class="at">length=</span><span class="dv">15</span>)</span>
-<span id="cb3-3"><a href="other-topics.html#cb3-3" aria-hidden="true" tabindex="-1"></a>temp.val<span class="ot">=</span><span class="fu">vector</span>(<span class="at">length=</span><span class="dv">20</span>)</span>
-<span id="cb3-4"><a href="other-topics.html#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="other-topics.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(k.attempts))</span>
-<span id="cb3-6"><a href="other-topics.html#cb3-6" aria-hidden="true" tabindex="-1"></a>{<span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(temp.val))</span>
-<span id="cb3-7"><a href="other-topics.html#cb3-7" aria-hidden="true" tabindex="-1"></a>  {perm<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">699</span>)</span>
-<span id="cb3-8"><a href="other-topics.html#cb3-8" aria-hidden="true" tabindex="-1"></a>  BC_randomOrder<span class="ot">=</span>BCdata[perm,]</span>
-<span id="cb3-9"><a href="other-topics.html#cb3-9" aria-hidden="true" tabindex="-1"></a>  train <span class="ot">=</span> BC_randomOrder[<span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>),<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">7</span>)]</span>
-<span id="cb3-10"><a href="other-topics.html#cb3-10" aria-hidden="true" tabindex="-1"></a>  test <span class="ot">=</span> BC_randomOrder[(<span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">699</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">7</span>)]</span>
-<span id="cb3-11"><a href="other-topics.html#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="other-topics.html#cb3-12" aria-hidden="true" tabindex="-1"></a>  train.x<span class="ot">=</span><span class="fu">subset</span>(train,<span class="at">select=</span><span class="sc">-</span>Target)</span>
-<span id="cb3-13"><a href="other-topics.html#cb3-13" aria-hidden="true" tabindex="-1"></a>  train.y<span class="ot">=</span><span class="fu">as.factor</span>(train<span class="sc">$</span>Target)</span>
-<span id="cb3-14"><a href="other-topics.html#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="other-topics.html#cb3-15" aria-hidden="true" tabindex="-1"></a>  test.x<span class="ot">=</span><span class="fu">subset</span>(test,<span class="at">select=</span><span class="sc">-</span>Target)</span>
-<span id="cb3-16"><a href="other-topics.html#cb3-16" aria-hidden="true" tabindex="-1"></a>  test.y<span class="ot">=</span><span class="fu">as.factor</span>(test<span class="sc">$</span>Target)</span>
-<span id="cb3-17"><a href="other-topics.html#cb3-17" aria-hidden="true" tabindex="-1"></a>  predict.test<span class="ot">=</span><span class="fu">knn</span>(train.x,test.x,train.y,<span class="at">k=</span>i)</span>
-<span id="cb3-18"><a href="other-topics.html#cb3-18" aria-hidden="true" tabindex="-1"></a>  temp.val[j]<span class="ot">=</span><span class="fu">sum</span>(predict.test <span class="sc">!=</span> test.y)<span class="sc">/</span><span class="dv">175</span>}</span>
-<span id="cb3-19"><a href="other-topics.html#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="other-topics.html#cb3-20" aria-hidden="true" tabindex="-1"></a>pred.error[i]<span class="ot">=</span><span class="fu">mean</span>(temp.val)}</span>
-<span id="cb3-21"><a href="other-topics.html#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="other-topics.html#cb3-22" aria-hidden="true" tabindex="-1"></a>all.dat<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cbind</span>(k.attempts,pred.error))</span>
-<span id="cb3-23"><a href="other-topics.html#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(all.dat,<span class="fu">aes</span>(<span class="at">x=</span>k.attempts,<span class="at">y=</span>pred.error))<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Values for k&quot;</span>,<span class="at">y=</span><span class="st">&quot;Test error&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="other-topics.html#cb3-1" tabindex="-1"></a>k.attempts<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">15</span>)</span>
+<span id="cb3-2"><a href="other-topics.html#cb3-2" tabindex="-1"></a>pred.error<span class="ot">=</span><span class="fu">vector</span>(<span class="at">length=</span><span class="dv">15</span>)</span>
+<span id="cb3-3"><a href="other-topics.html#cb3-3" tabindex="-1"></a>temp.val<span class="ot">=</span><span class="fu">vector</span>(<span class="at">length=</span><span class="dv">20</span>)</span>
+<span id="cb3-4"><a href="other-topics.html#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="other-topics.html#cb3-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(k.attempts))</span>
+<span id="cb3-6"><a href="other-topics.html#cb3-6" tabindex="-1"></a>{<span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(temp.val))</span>
+<span id="cb3-7"><a href="other-topics.html#cb3-7" tabindex="-1"></a>  {perm<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">699</span>)</span>
+<span id="cb3-8"><a href="other-topics.html#cb3-8" tabindex="-1"></a>  BC_randomOrder<span class="ot">=</span>BCdata[perm,]</span>
+<span id="cb3-9"><a href="other-topics.html#cb3-9" tabindex="-1"></a>  train <span class="ot">=</span> BC_randomOrder[<span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>),<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">7</span>)]</span>
+<span id="cb3-10"><a href="other-topics.html#cb3-10" tabindex="-1"></a>  test <span class="ot">=</span> BC_randomOrder[(<span class="fu">floor</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="dv">699</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">699</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">7</span>)]</span>
+<span id="cb3-11"><a href="other-topics.html#cb3-11" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="other-topics.html#cb3-12" tabindex="-1"></a>  train.x<span class="ot">=</span><span class="fu">subset</span>(train,<span class="at">select=</span><span class="sc">-</span>Target)</span>
+<span id="cb3-13"><a href="other-topics.html#cb3-13" tabindex="-1"></a>  train.y<span class="ot">=</span><span class="fu">as.factor</span>(train<span class="sc">$</span>Target)</span>
+<span id="cb3-14"><a href="other-topics.html#cb3-14" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="other-topics.html#cb3-15" tabindex="-1"></a>  test.x<span class="ot">=</span><span class="fu">subset</span>(test,<span class="at">select=</span><span class="sc">-</span>Target)</span>
+<span id="cb3-16"><a href="other-topics.html#cb3-16" tabindex="-1"></a>  test.y<span class="ot">=</span><span class="fu">as.factor</span>(test<span class="sc">$</span>Target)</span>
+<span id="cb3-17"><a href="other-topics.html#cb3-17" tabindex="-1"></a>  predict.test<span class="ot">=</span><span class="fu">knn</span>(train.x,test.x,train.y,<span class="at">k=</span>i)</span>
+<span id="cb3-18"><a href="other-topics.html#cb3-18" tabindex="-1"></a>  temp.val[j]<span class="ot">=</span><span class="fu">sum</span>(predict.test <span class="sc">!=</span> test.y)<span class="sc">/</span><span class="dv">175</span>}</span>
+<span id="cb3-19"><a href="other-topics.html#cb3-19" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="other-topics.html#cb3-20" tabindex="-1"></a>pred.error[i]<span class="ot">=</span><span class="fu">mean</span>(temp.val)}</span>
+<span id="cb3-21"><a href="other-topics.html#cb3-21" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="other-topics.html#cb3-22" tabindex="-1"></a>all.dat<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cbind</span>(k.attempts,pred.error))</span>
+<span id="cb3-23"><a href="other-topics.html#cb3-23" tabindex="-1"></a><span class="fu">ggplot</span>(all.dat,<span class="fu">aes</span>(<span class="at">x=</span>k.attempts,<span class="at">y=</span>pred.error))<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Values for k&quot;</span>,<span class="at">y=</span><span class="st">&quot;Test error&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/tune%20k%20in%20knn-1.png" width="672" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="other-topics.html#cb4-1" tabindex="-1"></a>trainx<span class="ot">=</span>train.x</span>
+<span id="cb4-2"><a href="other-topics.html#cb4-2" tabindex="-1"></a>trainy<span class="ot">=</span>train.y</span>
+<span id="cb4-3"><a href="other-topics.html#cb4-3" tabindex="-1"></a>testx<span class="ot">=</span>test.x</span>
+<span id="cb4-4"><a href="other-topics.html#cb4-4" tabindex="-1"></a>testy<span class="ot">=</span>test.y</span></code></pre></div>
+<div id="k-nn-in-python" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> K-nn in Python<a href="other-topics.html#k-nn-in-python" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="other-topics.html#cb5-1" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb5-2"><a href="other-topics.html#cb5-2" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb5-3"><a href="other-topics.html#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="other-topics.html#cb5-4" tabindex="-1"></a>xtrain_py<span class="op">=</span>r.trainx</span>
+<span id="cb5-5"><a href="other-topics.html#cb5-5" tabindex="-1"></a>xtest_py<span class="op">=</span>r.testx</span>
+<span id="cb5-6"><a href="other-topics.html#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="other-topics.html#cb5-7" tabindex="-1"></a>ytrain_py<span class="op">=</span>r.trainy</span>
+<span id="cb5-8"><a href="other-topics.html#cb5-8" tabindex="-1"></a>ytest_py<span class="op">=</span>r.testy</span>
+<span id="cb5-9"><a href="other-topics.html#cb5-9" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="other-topics.html#cb5-10" tabindex="-1"></a>knn3 <span class="op">=</span> KNeighborsClassifier(n_neighbors <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb5-11"><a href="other-topics.html#cb5-11" tabindex="-1"></a>knn3.fit(xtrain_py, ytrain_py)</span></code></pre></div>
+<style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KNeighborsClassifier(n_neighbors=3)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsClassifier</label><div class="sk-toggleable__content"><pre>KNeighborsClassifier(n_neighbors=3)</pre></div></div></div></div></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="other-topics.html#cb6-1" tabindex="-1"></a>y_pred_3 <span class="op">=</span> knn3.predict(xtest_py)</span>
+<span id="cb6-2"><a href="other-topics.html#cb6-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Accuracy with k=3&quot;</span>, accuracy_score(ytest_py, y_pred_3)<span class="op">*</span><span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## Accuracy with k=3 96.57142857142857</code></pre>
+</div>
 </div>
 <div id="mds" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> MDS<a href="other-topics.html#mds" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Multidimensional Scaling is an alternative to PCA in terms of visualizing high dimensional data in a lower dimension. IF you will be using this data for future analysis (for example, clustering), then PCA would be recommended. However, if you are trying to visualize your data, MDS is a good alternative that can be explored! The nice thing about MDS is that it does provide some measures of how it does when it reduces the dimension.</p>
 <p>For example, in classical MDS, you get a measure for the goodness-of-fit (want this number closer to 1…would at least like 0.8). When performing non-metric MDS, you can get the stress of reduction (want this number close to 0).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="other-topics.html#cb4-1" aria-hidden="true" tabindex="-1"></a>pca_ex<span class="ot">=</span><span class="fu">prcomp</span>(arrest.scal,<span class="at">scale=</span>F)</span>
-<span id="cb4-2"><a href="other-topics.html#cb4-2" aria-hidden="true" tabindex="-1"></a>pve <span class="ot">=</span> <span class="dv">100</span> <span class="sc">*</span>pca_ex<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">sum</span>(pca_ex<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb4-3"><a href="other-topics.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cumsum</span>(pve),<span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="other-topics.html#cb8-1" tabindex="-1"></a>pca_ex<span class="ot">=</span><span class="fu">prcomp</span>(arrest.scal,<span class="at">scale=</span>F)</span>
+<span id="cb8-2"><a href="other-topics.html#cb8-2" tabindex="-1"></a>pve <span class="ot">=</span> <span class="dv">100</span> <span class="sc">*</span>pca_ex<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">sum</span>(pca_ex<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb8-3"><a href="other-topics.html#cb8-3" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cumsum</span>(pve),<span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/MDS%20arrest-1.png" width="672" /></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="other-topics.html#cb5-1" aria-hidden="true" tabindex="-1"></a>graph.pca<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cbind</span>(pca_ex<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]))</span>
-<span id="cb5-2"><a href="other-topics.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(graph.pca)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;PCA1&quot;</span>,<span class="st">&quot;PCA2&quot;</span>)</span>
-<span id="cb5-3"><a href="other-topics.html#cb5-3" aria-hidden="true" tabindex="-1"></a>graph.pca<span class="sc">$</span>PCA1<span class="ot">=</span><span class="fu">as.numeric</span>(graph.pca<span class="sc">$</span>PCA1)</span>
-<span id="cb5-4"><a href="other-topics.html#cb5-4" aria-hidden="true" tabindex="-1"></a>graph.pca<span class="sc">$</span>PCA2<span class="ot">=</span><span class="fu">as.numeric</span>(graph.pca<span class="sc">$</span>PCA2)</span>
-<span id="cb5-5"><a href="other-topics.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(graph.pca,<span class="fu">aes</span>(<span class="at">x=</span>PCA1,<span class="at">y=</span>PCA2))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;PCA2&quot;</span>,<span class="at">x=</span><span class="st">&quot;PCA1&quot;</span>,<span class="at">title=</span><span class="st">&quot;PCA visualization&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="other-topics.html#cb9-1" tabindex="-1"></a>graph.pca<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cbind</span>(pca_ex<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]))</span>
+<span id="cb9-2"><a href="other-topics.html#cb9-2" tabindex="-1"></a><span class="fu">colnames</span>(graph.pca)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;PCA1&quot;</span>,<span class="st">&quot;PCA2&quot;</span>)</span>
+<span id="cb9-3"><a href="other-topics.html#cb9-3" tabindex="-1"></a>graph.pca<span class="sc">$</span>PCA1<span class="ot">=</span><span class="fu">as.numeric</span>(graph.pca<span class="sc">$</span>PCA1)</span>
+<span id="cb9-4"><a href="other-topics.html#cb9-4" tabindex="-1"></a>graph.pca<span class="sc">$</span>PCA2<span class="ot">=</span><span class="fu">as.numeric</span>(graph.pca<span class="sc">$</span>PCA2)</span>
+<span id="cb9-5"><a href="other-topics.html#cb9-5" tabindex="-1"></a><span class="fu">ggplot</span>(graph.pca,<span class="fu">aes</span>(<span class="at">x=</span>PCA1,<span class="at">y=</span>PCA2))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;PCA2&quot;</span>,<span class="at">x=</span><span class="st">&quot;PCA1&quot;</span>,<span class="at">title=</span><span class="st">&quot;PCA visualization&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/MDS%20arrest-2.png" width="672" /></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="other-topics.html#cb6-1" aria-hidden="true" tabindex="-1"></a>d<span class="ot">=</span><span class="fu">dist</span>(arrest.scal)</span>
-<span id="cb6-2"><a href="other-topics.html#cb6-2" aria-hidden="true" tabindex="-1"></a>mds_ex<span class="ot">=</span><span class="fu">cmdscale</span>(d,<span class="at">eig=</span><span class="cn">TRUE</span>, <span class="at">k=</span><span class="dv">2</span>)</span>
-<span id="cb6-3"><a href="other-topics.html#cb6-3" aria-hidden="true" tabindex="-1"></a>graph.mds<span class="ot">=</span><span class="fu">data.frame</span>(mds_ex<span class="sc">$</span>points)</span>
-<span id="cb6-4"><a href="other-topics.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(graph.mds)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;MDS1&quot;</span>,<span class="st">&quot;MDS2&quot;</span>)</span>
-<span id="cb6-5"><a href="other-topics.html#cb6-5" aria-hidden="true" tabindex="-1"></a>graph.mds<span class="sc">$</span>MDS1<span class="ot">=</span><span class="fu">as.numeric</span>(graph.mds<span class="sc">$</span>MDS1)</span>
-<span id="cb6-6"><a href="other-topics.html#cb6-6" aria-hidden="true" tabindex="-1"></a>graph.mds<span class="sc">$</span>MDS2<span class="ot">=</span><span class="fu">as.numeric</span>(graph.mds<span class="sc">$</span>MDS2)</span>
-<span id="cb6-7"><a href="other-topics.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(graph.mds,<span class="fu">aes</span>(<span class="at">x=</span>MDS1,<span class="at">y=</span>MDS2))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;MDS2&quot;</span>,<span class="at">x=</span><span class="st">&quot;MDS1&quot;</span>,<span class="at">title=</span><span class="st">&quot;metric MDS visualization&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="other-topics.html#cb10-1" tabindex="-1"></a>d<span class="ot">=</span><span class="fu">dist</span>(arrest.scal)</span>
+<span id="cb10-2"><a href="other-topics.html#cb10-2" tabindex="-1"></a>mds_ex<span class="ot">=</span><span class="fu">cmdscale</span>(d,<span class="at">eig=</span><span class="cn">TRUE</span>, <span class="at">k=</span><span class="dv">2</span>)</span>
+<span id="cb10-3"><a href="other-topics.html#cb10-3" tabindex="-1"></a>graph.mds<span class="ot">=</span><span class="fu">data.frame</span>(mds_ex<span class="sc">$</span>points)</span>
+<span id="cb10-4"><a href="other-topics.html#cb10-4" tabindex="-1"></a><span class="fu">colnames</span>(graph.mds)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;MDS1&quot;</span>,<span class="st">&quot;MDS2&quot;</span>)</span>
+<span id="cb10-5"><a href="other-topics.html#cb10-5" tabindex="-1"></a>graph.mds<span class="sc">$</span>MDS1<span class="ot">=</span><span class="fu">as.numeric</span>(graph.mds<span class="sc">$</span>MDS1)</span>
+<span id="cb10-6"><a href="other-topics.html#cb10-6" tabindex="-1"></a>graph.mds<span class="sc">$</span>MDS2<span class="ot">=</span><span class="fu">as.numeric</span>(graph.mds<span class="sc">$</span>MDS2)</span>
+<span id="cb10-7"><a href="other-topics.html#cb10-7" tabindex="-1"></a><span class="fu">ggplot</span>(graph.mds,<span class="fu">aes</span>(<span class="at">x=</span>MDS1,<span class="at">y=</span>MDS2))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;MDS2&quot;</span>,<span class="at">x=</span><span class="st">&quot;MDS1&quot;</span>,<span class="at">title=</span><span class="st">&quot;metric MDS visualization&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/MDS%20arrest-3.png" width="672" /></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="other-topics.html#cb7-1" aria-hidden="true" tabindex="-1"></a>ex_MDS<span class="ot">=</span> NCI60<span class="sc">$</span>data</span>
-<span id="cb7-2"><a href="other-topics.html#cb7-2" aria-hidden="true" tabindex="-1"></a>pca_ex<span class="ot">=</span><span class="fu">prcomp</span>(ex_MDS,<span class="at">scale=</span>T)</span>
-<span id="cb7-3"><a href="other-topics.html#cb7-3" aria-hidden="true" tabindex="-1"></a>pve <span class="ot">=</span> <span class="dv">100</span> <span class="sc">*</span>pca_ex<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">sum</span>(pca_ex<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb7-4"><a href="other-topics.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cumsum</span>(pve),<span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="other-topics.html#cb11-1" tabindex="-1"></a>ex_MDS<span class="ot">=</span> NCI60<span class="sc">$</span>data</span>
+<span id="cb11-2"><a href="other-topics.html#cb11-2" tabindex="-1"></a>pca_ex<span class="ot">=</span><span class="fu">prcomp</span>(ex_MDS,<span class="at">scale=</span>T)</span>
+<span id="cb11-3"><a href="other-topics.html#cb11-3" tabindex="-1"></a>pve <span class="ot">=</span> <span class="dv">100</span> <span class="sc">*</span>pca_ex<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">sum</span>(pca_ex<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb11-4"><a href="other-topics.html#cb11-4" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cumsum</span>(pve),<span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/MDS-1.png" width="672" /></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="other-topics.html#cb8-1" aria-hidden="true" tabindex="-1"></a>graph.pca<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cbind</span>(pca_ex<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="fu">as.character</span>(NCI60<span class="sc">$</span>labs)))</span>
-<span id="cb8-2"><a href="other-topics.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(graph.pca)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;PCA1&quot;</span>,<span class="st">&quot;PCA2&quot;</span>,<span class="st">&quot;cancer&quot;</span>)</span>
-<span id="cb8-3"><a href="other-topics.html#cb8-3" aria-hidden="true" tabindex="-1"></a>graph.pca<span class="sc">$</span>PCA1<span class="ot">=</span><span class="fu">as.numeric</span>(graph.pca<span class="sc">$</span>PCA1)</span>
-<span id="cb8-4"><a href="other-topics.html#cb8-4" aria-hidden="true" tabindex="-1"></a>graph.pca<span class="sc">$</span>PCA2<span class="ot">=</span><span class="fu">as.numeric</span>(graph.pca<span class="sc">$</span>PCA2)</span>
-<span id="cb8-5"><a href="other-topics.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(graph.pca,<span class="fu">aes</span>(<span class="at">x=</span>PCA1,<span class="at">y=</span>PCA2,<span class="at">color=</span>cancer))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;PCA2&quot;</span>,<span class="at">x=</span><span class="st">&quot;PCA1&quot;</span>,<span class="at">title=</span><span class="st">&quot;PCA visualization&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="other-topics.html#cb12-1" tabindex="-1"></a>graph.pca<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cbind</span>(pca_ex<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="fu">as.character</span>(NCI60<span class="sc">$</span>labs)))</span>
+<span id="cb12-2"><a href="other-topics.html#cb12-2" tabindex="-1"></a><span class="fu">colnames</span>(graph.pca)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;PCA1&quot;</span>,<span class="st">&quot;PCA2&quot;</span>,<span class="st">&quot;cancer&quot;</span>)</span>
+<span id="cb12-3"><a href="other-topics.html#cb12-3" tabindex="-1"></a>graph.pca<span class="sc">$</span>PCA1<span class="ot">=</span><span class="fu">as.numeric</span>(graph.pca<span class="sc">$</span>PCA1)</span>
+<span id="cb12-4"><a href="other-topics.html#cb12-4" tabindex="-1"></a>graph.pca<span class="sc">$</span>PCA2<span class="ot">=</span><span class="fu">as.numeric</span>(graph.pca<span class="sc">$</span>PCA2)</span>
+<span id="cb12-5"><a href="other-topics.html#cb12-5" tabindex="-1"></a><span class="fu">ggplot</span>(graph.pca,<span class="fu">aes</span>(<span class="at">x=</span>PCA1,<span class="at">y=</span>PCA2,<span class="at">color=</span>cancer))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;PCA2&quot;</span>,<span class="at">x=</span><span class="st">&quot;PCA1&quot;</span>,<span class="at">title=</span><span class="st">&quot;PCA visualization&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/MDS-2.png" width="672" /></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="other-topics.html#cb9-1" aria-hidden="true" tabindex="-1"></a>d<span class="ot">=</span><span class="fu">dist</span>(ex_MDS)</span>
-<span id="cb9-2"><a href="other-topics.html#cb9-2" aria-hidden="true" tabindex="-1"></a>mds_ex<span class="ot">=</span><span class="fu">cmdscale</span>(d,<span class="at">eig=</span><span class="cn">TRUE</span>, <span class="at">k=</span><span class="dv">2</span>)</span>
-<span id="cb9-3"><a href="other-topics.html#cb9-3" aria-hidden="true" tabindex="-1"></a>graph.mds<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cbind</span>(mds_ex<span class="sc">$</span>points,<span class="fu">as.character</span>(NCI60<span class="sc">$</span>labs)))</span>
-<span id="cb9-4"><a href="other-topics.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(graph.mds)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;MDS1&quot;</span>,<span class="st">&quot;MDS2&quot;</span>,<span class="st">&quot;cancer&quot;</span>)</span>
-<span id="cb9-5"><a href="other-topics.html#cb9-5" aria-hidden="true" tabindex="-1"></a>graph.mds<span class="sc">$</span>MDS1<span class="ot">=</span><span class="fu">as.numeric</span>(graph.mds<span class="sc">$</span>MDS1)</span>
-<span id="cb9-6"><a href="other-topics.html#cb9-6" aria-hidden="true" tabindex="-1"></a>graph.mds<span class="sc">$</span>MDS2<span class="ot">=</span><span class="fu">as.numeric</span>(graph.mds<span class="sc">$</span>MDS2)</span>
-<span id="cb9-7"><a href="other-topics.html#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(graph.mds,<span class="fu">aes</span>(<span class="at">x=</span>MDS1,<span class="at">y=</span>MDS2,<span class="at">color=</span>cancer))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;MDS2&quot;</span>,<span class="at">x=</span><span class="st">&quot;MDS1&quot;</span>,<span class="at">title=</span><span class="st">&quot;metric MDS visualization&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="other-topics.html#cb13-1" tabindex="-1"></a>d<span class="ot">=</span><span class="fu">dist</span>(ex_MDS)</span>
+<span id="cb13-2"><a href="other-topics.html#cb13-2" tabindex="-1"></a>mds_ex<span class="ot">=</span><span class="fu">cmdscale</span>(d,<span class="at">eig=</span><span class="cn">TRUE</span>, <span class="at">k=</span><span class="dv">2</span>)</span>
+<span id="cb13-3"><a href="other-topics.html#cb13-3" tabindex="-1"></a>graph.mds<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cbind</span>(mds_ex<span class="sc">$</span>points,<span class="fu">as.character</span>(NCI60<span class="sc">$</span>labs)))</span>
+<span id="cb13-4"><a href="other-topics.html#cb13-4" tabindex="-1"></a><span class="fu">colnames</span>(graph.mds)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;MDS1&quot;</span>,<span class="st">&quot;MDS2&quot;</span>,<span class="st">&quot;cancer&quot;</span>)</span>
+<span id="cb13-5"><a href="other-topics.html#cb13-5" tabindex="-1"></a>graph.mds<span class="sc">$</span>MDS1<span class="ot">=</span><span class="fu">as.numeric</span>(graph.mds<span class="sc">$</span>MDS1)</span>
+<span id="cb13-6"><a href="other-topics.html#cb13-6" tabindex="-1"></a>graph.mds<span class="sc">$</span>MDS2<span class="ot">=</span><span class="fu">as.numeric</span>(graph.mds<span class="sc">$</span>MDS2)</span>
+<span id="cb13-7"><a href="other-topics.html#cb13-7" tabindex="-1"></a><span class="fu">ggplot</span>(graph.mds,<span class="fu">aes</span>(<span class="at">x=</span>MDS1,<span class="at">y=</span>MDS2,<span class="at">color=</span>cancer))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;MDS2&quot;</span>,<span class="at">x=</span><span class="st">&quot;MDS1&quot;</span>,<span class="at">title=</span><span class="st">&quot;metric MDS visualization&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/MDS-3.png" width="672" /></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="other-topics.html#cb10-1" aria-hidden="true" tabindex="-1"></a>mds_ex<span class="ot">=</span><span class="fu">isoMDS</span>(d, <span class="at">k=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="other-topics.html#cb14-1" tabindex="-1"></a>mds_ex<span class="ot">=</span><span class="fu">isoMDS</span>(d, <span class="at">k=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## initial  value 30.903164 
 ## iter   5 value 20.778162
 ## iter   5 value 20.760297
 ## iter   5 value 20.750556
 ## final  value 20.750556 
 ## converged</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="other-topics.html#cb12-1" aria-hidden="true" tabindex="-1"></a>graph.mds<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cbind</span>(mds_ex<span class="sc">$</span>points,<span class="fu">as.character</span>(NCI60<span class="sc">$</span>labs)))</span>
-<span id="cb12-2"><a href="other-topics.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(graph.mds)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;MDS1&quot;</span>,<span class="st">&quot;MDS2&quot;</span>,<span class="st">&quot;cancer&quot;</span>)</span>
-<span id="cb12-3"><a href="other-topics.html#cb12-3" aria-hidden="true" tabindex="-1"></a>graph.mds<span class="sc">$</span>MDS1<span class="ot">=</span><span class="fu">as.numeric</span>(graph.mds<span class="sc">$</span>MDS1)</span>
-<span id="cb12-4"><a href="other-topics.html#cb12-4" aria-hidden="true" tabindex="-1"></a>graph.mds<span class="sc">$</span>MDS2<span class="ot">=</span><span class="fu">as.numeric</span>(graph.mds<span class="sc">$</span>MDS2)</span>
-<span id="cb12-5"><a href="other-topics.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(graph.mds,<span class="fu">aes</span>(<span class="at">x=</span>MDS1,<span class="at">y=</span>MDS2,<span class="at">color=</span>cancer))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;MDS2&quot;</span>,<span class="at">x=</span><span class="st">&quot;MDS1&quot;</span>,<span class="at">title=</span><span class="st">&quot;non-metric MDS visualization&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="other-topics.html#cb16-1" tabindex="-1"></a>graph.mds<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cbind</span>(mds_ex<span class="sc">$</span>points,<span class="fu">as.character</span>(NCI60<span class="sc">$</span>labs)))</span>
+<span id="cb16-2"><a href="other-topics.html#cb16-2" tabindex="-1"></a><span class="fu">colnames</span>(graph.mds)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;MDS1&quot;</span>,<span class="st">&quot;MDS2&quot;</span>,<span class="st">&quot;cancer&quot;</span>)</span>
+<span id="cb16-3"><a href="other-topics.html#cb16-3" tabindex="-1"></a>graph.mds<span class="sc">$</span>MDS1<span class="ot">=</span><span class="fu">as.numeric</span>(graph.mds<span class="sc">$</span>MDS1)</span>
+<span id="cb16-4"><a href="other-topics.html#cb16-4" tabindex="-1"></a>graph.mds<span class="sc">$</span>MDS2<span class="ot">=</span><span class="fu">as.numeric</span>(graph.mds<span class="sc">$</span>MDS2)</span>
+<span id="cb16-5"><a href="other-topics.html#cb16-5" tabindex="-1"></a><span class="fu">ggplot</span>(graph.mds,<span class="fu">aes</span>(<span class="at">x=</span>MDS1,<span class="at">y=</span>MDS2,<span class="at">color=</span>cancer))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;MDS2&quot;</span>,<span class="at">x=</span><span class="st">&quot;MDS1&quot;</span>,<span class="at">title=</span><span class="st">&quot;non-metric MDS visualization&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/MDS-4.png" width="672" /></p>
 
 </div>
