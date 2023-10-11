@@ -181,6 +181,37 @@ graph.mds$MDS1=as.numeric(graph.mds$MDS1)
 graph.mds$MDS2=as.numeric(graph.mds$MDS2)
 ggplot(graph.mds,aes(x=MDS1,y=MDS2,color=cancer))+geom_point()+labs(y="MDS2",x="MDS1",title="non-metric MDS visualization")
 
+labs_NCI60=NCI60$labs
+```
+### MDS in Python
 
+```{python}
+from sklearn.manifold import MDS
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+
+NCI60_py=r.ex_MDS
+NCI60_labs=r.labs_NCI60
+labs=pd.DataFrame(NCI60_labs,columns=['Cancer'])
+
+mds_py=MDS()
+x_metric=mds_py.fit_transform(NCI60_py)
+temp=pd.DataFrame(x_metric,columns=['MDS1','MDS2'])
+plot_metric=pd.concat([labs,temp],axis=1)
+sns.relplot(data=plot_metric,x='MDS1',y='MDS2',hue='Cancer')
+plt.show()
+
+
+mds2_py=MDS(metric=False,normalized_stress=True)
+x_nonmetric=mds2_py.fit_transform(NCI60_py)
+temp1=pd.DataFrame(x_nonmetric,columns=['MDS1','MDS2'])
+plot_nonmetric=pd.concat([labs,temp1],axis=1)
+sns.relplot(data=plot_nonmetric,x='MDS1',y='MDS2',hue='Cancer')
+plt.show()
+
+stress = mds2_py.stress_
+print(stress)
 ```
 
+Note that the stress value should only be calculated for nonMetric MDS.  From the scikit-learn.org webpage "A value of 0 indicates "perfect" fit, 0.025 excellent, 0.05 good, 0.1 fair, and 0.2 poor [1]".  Thus, this projection was not that good.

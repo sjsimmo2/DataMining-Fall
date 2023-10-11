@@ -316,6 +316,7 @@ var.clust.h=hclustvar(quant.var, qual.var)
 stab=stability(var.clust.h,B=50) ## This will take time!
 plot(stab)
 
+plot(var.clust.h)
 h6=cutreevar(var.clust.h, 6)
 ```
 

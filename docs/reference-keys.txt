@@ -34,3 +34,4 @@ dbscan-in-python
 dbscan
 variable-clustering-in-python
 k-nn-in-python
+mds-in-python

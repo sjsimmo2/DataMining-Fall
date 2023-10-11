@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. Susan Simmons" />
 
 
-<meta name="date" content="2023-10-10" />
+<meta name="date" content="2023-10-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -198,7 +198,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="other-topics.html"><a href="other-topics.html#k-nn-in-python"><i class="fa fa-check"></i><b>5.1.1</b> K-nn in Python</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="other-topics.html"><a href="other-topics.html#mds"><i class="fa fa-check"></i><b>5.2</b> MDS</a></li>
+<li class="chapter" data-level="5.2" data-path="other-topics.html"><a href="other-topics.html#mds"><i class="fa fa-check"></i><b>5.2</b> MDS</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="other-topics.html"><a href="other-topics.html#mds-in-python"><i class="fa fa-check"></i><b>5.2.1</b> MDS in Python</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -342,7 +345,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-4"><a href="other-topics.html#cb16-4" tabindex="-1"></a>graph.mds<span class="sc">$</span>MDS2<span class="ot">=</span><span class="fu">as.numeric</span>(graph.mds<span class="sc">$</span>MDS2)</span>
 <span id="cb16-5"><a href="other-topics.html#cb16-5" tabindex="-1"></a><span class="fu">ggplot</span>(graph.mds,<span class="fu">aes</span>(<span class="at">x=</span>MDS1,<span class="at">y=</span>MDS2,<span class="at">color=</span>cancer))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;MDS2&quot;</span>,<span class="at">x=</span><span class="st">&quot;MDS1&quot;</span>,<span class="at">title=</span><span class="st">&quot;non-metric MDS visualization&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/MDS-4.png" width="672" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="other-topics.html#cb17-1" tabindex="-1"></a>labs_NCI60<span class="ot">=</span>NCI60<span class="sc">$</span>labs</span></code></pre></div>
+<div id="mds-in-python" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> MDS in Python<a href="other-topics.html#mds-in-python" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="other-topics.html#cb18-1" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> MDS</span>
+<span id="cb18-2"><a href="other-topics.html#cb18-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-3"><a href="other-topics.html#cb18-3" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-4"><a href="other-topics.html#cb18-4" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb18-5"><a href="other-topics.html#cb18-5" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="other-topics.html#cb18-6" tabindex="-1"></a>NCI60_py<span class="op">=</span>r.ex_MDS</span>
+<span id="cb18-7"><a href="other-topics.html#cb18-7" tabindex="-1"></a>NCI60_labs<span class="op">=</span>r.labs_NCI60</span>
+<span id="cb18-8"><a href="other-topics.html#cb18-8" tabindex="-1"></a>labs<span class="op">=</span>pd.DataFrame(NCI60_labs,columns<span class="op">=</span>[<span class="st">&#39;Cancer&#39;</span>])</span>
+<span id="cb18-9"><a href="other-topics.html#cb18-9" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="other-topics.html#cb18-10" tabindex="-1"></a>mds_py<span class="op">=</span>MDS()</span>
+<span id="cb18-11"><a href="other-topics.html#cb18-11" tabindex="-1"></a>x_metric<span class="op">=</span>mds_py.fit_transform(NCI60_py)</span></code></pre></div>
+<pre><code>## C:\PROGRA~3\ANACON~1\lib\site-packages\sklearn\manifold\_mds.py:298: FutureWarning: The default value of `normalized_stress` will change to `&#39;auto&#39;` in version 1.4. To suppress this warning, manually set the value of `normalized_stress`.
+##   warnings.warn(</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="other-topics.html#cb20-1" tabindex="-1"></a>temp<span class="op">=</span>pd.DataFrame(x_metric,columns<span class="op">=</span>[<span class="st">&#39;MDS1&#39;</span>,<span class="st">&#39;MDS2&#39;</span>])</span>
+<span id="cb20-2"><a href="other-topics.html#cb20-2" tabindex="-1"></a>plot_metric<span class="op">=</span>pd.concat([labs,temp],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-3"><a href="other-topics.html#cb20-3" tabindex="-1"></a>sns.relplot(data<span class="op">=</span>plot_metric,x<span class="op">=</span><span class="st">&#39;MDS1&#39;</span>,y<span class="op">=</span><span class="st">&#39;MDS2&#39;</span>,hue<span class="op">=</span><span class="st">&#39;Cancer&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-2-1.png" width="308" /></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="other-topics.html#cb21-1" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-2-2.png" width="615" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="other-topics.html#cb22-1" tabindex="-1"></a>mds2_py<span class="op">=</span>MDS(metric<span class="op">=</span><span class="va">False</span>,normalized_stress<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb22-2"><a href="other-topics.html#cb22-2" tabindex="-1"></a>x_nonmetric<span class="op">=</span>mds2_py.fit_transform(NCI60_py)</span>
+<span id="cb22-3"><a href="other-topics.html#cb22-3" tabindex="-1"></a>temp1<span class="op">=</span>pd.DataFrame(x_nonmetric,columns<span class="op">=</span>[<span class="st">&#39;MDS1&#39;</span>,<span class="st">&#39;MDS2&#39;</span>])</span>
+<span id="cb22-4"><a href="other-topics.html#cb22-4" tabindex="-1"></a>plot_nonmetric<span class="op">=</span>pd.concat([labs,temp1],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb22-5"><a href="other-topics.html#cb22-5" tabindex="-1"></a>sns.relplot(data<span class="op">=</span>plot_nonmetric,x<span class="op">=</span><span class="st">&#39;MDS1&#39;</span>,y<span class="op">=</span><span class="st">&#39;MDS2&#39;</span>,hue<span class="op">=</span><span class="st">&#39;Cancer&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-2-3.png" width="308" /></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="other-topics.html#cb23-1" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-2-4.png" width="615" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="other-topics.html#cb24-1" tabindex="-1"></a>stress <span class="op">=</span> mds2_py.stress_</span>
+<span id="cb24-2"><a href="other-topics.html#cb24-2" tabindex="-1"></a><span class="bu">print</span>(stress)</span></code></pre></div>
+<pre><code>## 0.29544119720288964</code></pre>
+<p>Note that the stress value should only be calculated for nonMetric MDS. From the scikit-learn.org webpage “A value of 0 indicates”perfect” fit, 0.025 excellent, 0.05 good, 0.1 fair, and 0.2 poor [1]“. Thus, this projection was not that good.</p>
 
+</div>
 </div>
 </div>
             </section>
