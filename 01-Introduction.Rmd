@@ -82,34 +82,6 @@ quantile(boot.med,probs = c(0.025,0.975))
 ggplot(data=data.frame(boot.med),aes(x=boot.med))+geom_histogram() + labs(x="Bootstrap Sample",y="Frequency")
 
 ```
-The second example is exploring if the median price of homes in Iowa with air conditioning is significantly different than the median price of homes in Iowa without air conditioning (this is using the Ames housing data set from summer!).  Recall that distributions of Sale Price were NOT normal (for both with and without air conditioning) and the variability of the distributions were very different.  We are able to test the hypothesis:   
-
-
-$$H_{0}: Median_{YES} = Median_{NO}$$
-
-$$H_{A}: Median_{YES} \neq Median_{NO}$$
-
-by creating a confidence interval about the difference $ Median_{YES}-Median_{NO} $.
-
-```{r bootstrap hypothesis test}
-
-
-diff.stat=vector(length=10000)
-yes<-ames %>% filter(Central_Air=="Y") %>% pull(Sale_Price)
-no<-ames %>% filter(Central_Air=="N") %>% pull(Sale_Price)
-for (i in 1:10000){
-  yes.vec <-median(sample(yes,length(yes),replace = T))
-  no.vec <-median(sample(no,length(no),replace = T))
-  diff.stat[i]<- yes.vec-no.vec
-}
-
-
-ggplot(data=data.frame(diff.stat),aes(x=diff.stat))+geom_histogram()
-
-quantile(diff.stat,probs = c(0.005,0.995))
-
-```
-Since the confidence interval does NOT include 0, we would conclude that the medians appear to be significantly different.
 
 
 ### Python for Bootstrapping
@@ -142,21 +114,7 @@ print("Upper 95% confidence interval for median",np.quantile(temp,0.975))
 plt.hist(temp)
 plt.show()
 
-ames_py=r.ames
-type(ames_py)
-yes=ames_py[ames_py["Central_Air"]=="Y"]
-no=ames_py[ames_py["Central_Air"]=="N"]
 
-diff_sale=[]
-n=2930
-for i in range(10000):
-  yes_boot=statistics.median(random.choice(yes["Sale_Price"],n))
-  no_boot=statistics.median(random.choice(no["Sale_Price"],n))
-  diff_temp=yes_boot-no_boot
-  diff_sale.append(diff_temp)
-  
-plt.hist(diff_sale)
-plt.show()
 ```
 
 
@@ -164,7 +122,7 @@ plt.show()
 
 ## Adjusting p-values
 
-The package p.adjust will do the Bonferroni adjustment, Benjamini & Hochberg and many other adjustments for p-values when you are conducting a lot of tests!  All you need to do is send it a vector of p-values and it will return the adjusted p-values!
+The package p.adjust will do the Bonferroni adjustment, Benjamini & Hochberg and other adjustments for p-values when you are conducting a lot of tests!  All you need to do is send it a vector of p-values and it will return the adjusted p-values!
 
 ```{r adjust p-values,collapse=TRUE}
 
@@ -195,7 +153,7 @@ p_test *len(p_test)
 
 ## Transaction data
 
-A basic concept you will need is how to deal with transactional data.  Trasactional data is usually in the form of a long data set with multiple observation per "ID".  Take for example the following small data set:
+A basic concept you will need is how to deal with transaction data.  Trasaction data is usually in the form of a long data set with multiple observation per "ID".  Take for example the following small data set:
 
 
 
@@ -207,6 +165,7 @@ kbl(check[1:11,], caption = "Example") %>%
   pack_rows("Person 2", 5, 8) %>%
   pack_rows("Person 3", 9, 11)
 ```
+
 Notice that there are four transactions for Person 1, four transactions for Person 2 (including a missing value) and three transactions for Person 3. We will need to "roll" these up into one observation per person.  
 
 ```{r, roll-up observations}
