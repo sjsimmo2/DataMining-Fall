@@ -69,9 +69,9 @@ sum(predict.test != test.y)/175
 However, we just chose the value of 3 for k.  Is this the best k value?  We can "tune" this parameter to find the best k...
 ```{r tune k in knn}
 
-k.attempts=seq(1,15)
-pred.error=vector(length=15)
-temp.val=vector(length=20)
+k.attempts=seq(1,30)
+pred.error=vector(length=length(k.attempts))
+temp.val=vector(length=100)
 
 for (i in 1:length(k.attempts))
 {for (j in 1:length(temp.val))
