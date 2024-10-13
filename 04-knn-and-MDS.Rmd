@@ -182,6 +182,35 @@ graph.mds$MDS2=as.numeric(graph.mds$MDS2)
 ggplot(graph.mds,aes(x=MDS1,y=MDS2,color=cancer))+geom_point()+labs(y="MDS2",x="MDS1",title="non-metric MDS visualization")
 
 labs_NCI60=NCI60$labs
+
+#### With scaling it
+scale.nci<-scale(NCI60$data)
+
+pca_ex=prcomp(scale.nci,scale=F)
+pve = 100 *pca_ex$sdev^2/sum(pca_ex$sdev^2)
+plot(cumsum(pve),type="l")
+
+graph.pca=data.frame(cbind(pca_ex$x[,1:2],as.character(NCI60$labs)))
+colnames(graph.pca)=c("PCA1","PCA2","cancer")
+graph.pca$PCA1=as.numeric(graph.pca$PCA1)
+graph.pca$PCA2=as.numeric(graph.pca$PCA2)
+ggplot(graph.pca,aes(x=PCA1,y=PCA2,color=cancer))+geom_point()+labs(y="PCA2",x="PCA1",title="PCA visualization")
+
+d=dist(scale.nci)
+mds_ex=cmdscale(d,eig=TRUE, k=2)
+graph.mds=data.frame(cbind(mds_ex$points,as.character(NCI60$labs)))
+colnames(graph.mds)=c("MDS1","MDS2","cancer")
+graph.mds$MDS1=as.numeric(graph.mds$MDS1)
+graph.mds$MDS2=as.numeric(graph.mds$MDS2)
+ggplot(graph.mds,aes(x=MDS1,y=MDS2,color=cancer))+geom_point()+labs(y="MDS2",x="MDS1",title="metric MDS visualization")
+
+mds_ex=isoMDS(d, k=2)
+graph.mds=data.frame(cbind(mds_ex$points,as.character(NCI60$labs)))
+colnames(graph.mds)=c("MDS1","MDS2","cancer")
+graph.mds$MDS1=as.numeric(graph.mds$MDS1)
+graph.mds$MDS2=as.numeric(graph.mds$MDS2)
+ggplot(graph.mds,aes(x=MDS1,y=MDS2,color=cancer))+geom_point()+labs(y="MDS2",x="MDS1",title="non-metric MDS visualization")
+
 ```
 ### MDS in Python
 
